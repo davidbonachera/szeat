@@ -1,0 +1,239 @@
+<?php require_once("../class/config.inc.php"); ?>
+<?php require_once("../class/class.phpmailer.php"); ?>
+<?php require_once("../class/FileUpload.class.php"); ?>
+<?php require_once("../class/Pagination.class.php"); ?>
+<?php include("include/functions.php"); ?>
+<?php is_session(); ?>
+<?php 
+	$pData = array(
+				array(
+					'link'	=> 'dashboard.php',
+					'title'	=> 'Dashboard'
+				),
+				array(
+					'link'	=> 'orders.php',
+					'title'	=> 'Orders'
+				)
+			);
+?>
+<?php
+if (isset($_GET['id']) && checkFeild($_GET['id'])) {
+	$id = addslashes($_GET['id']);
+
+	if (isset($_GET['delete'])) {
+		if($db->query("DELETE FROM orders WHERE id='$id' LIMIT 1")) {
+			$_SESSION['msg'] = "Order successfully deleted.";
+			$_SESSION['error'] = false;
+			header("Location: orders.php");
+			exit();
+		} else {
+			$_SESSION['msg'] = "Order can't be deleted.";
+			$_SESSION['error'] = true;
+			header("Location: orders.php");
+			exit();
+		}
+	} elseif (isset($_GET['status'])) {
+		
+		$data['status'] = $_GET['status'];
+		
+		if ($db->query_update("orders", $data, "id='$id'")) {
+			$_SESSION['msg'] = "Order status successfully changed.";
+			$_SESSION['error'] = false;
+			header("Location: orders.php");
+			exit();
+		} else {
+			$_SESSION['msg'] = "Order status can't be changed.";
+			$_SESSION['error'] = true;
+			header("Location: orders.php");
+			exit();
+		}
+	} elseif (isset($_GET['sent'])) {
+		
+		$data['sent'] 		= $_GET['sent'];
+		$data['admin_id'] 	= $_SESSION['aid'];
+		
+		if ($db->query_update("orders", $data, "id='$id'")) {
+			
+			if ($data['sent']==1) {
+				$order = $db->query_first("SELECT * FROM orders WHERE id={$id}");
+			
+				$siteTitle 	= _title;
+				$fromEmail 	= _email;
+				$toEmail 	= getData("users","email",$order['user_id']);
+				$toName 	= getData("users","name",$order['user_id']);
+				$resName	= getData("restaurants","name",$order['restaurant_id']);
+	
+				$mSubject	= "$siteTitle: Your order has been sent";
+				$mBody		= "Dear, $toName <br /><br /><br />
+							   Your Order #{$order['id']} on $siteTitle has been sent to $resName.
+							   <br /><br /><br />
+							   <em>
+								   Thank You,<br />
+								   $siteTitle Team
+							   </em>";
+
+				sendEmail($siteTitle, $fromEmail, $toEmail, $mSubject, $mBody);
+			}
+
+			$_SESSION['msg'] = "Order status successfully changed.";
+			$_SESSION['error'] = false;
+			header("Location: orders.php");
+			exit();
+		} else {
+			$_SESSION['msg'] = "Order status can't be changed.";
+			$_SESSION['error'] = true;
+			header("Location: orders.php");
+			exit();
+		}
+	} elseif (isset($_GET['paid'])) {
+		
+		$data['paid'] 		= $_GET['paid'];
+		$data['admin_id'] 	= $_SESSION['aid'];
+		
+		if ($db->query_update("orders", $data, "id='$id'")) {
+			$_SESSION['msg'] = "Order status successfully changed.";
+			$_SESSION['error'] = false;
+			header("Location: orders.php");
+			exit();
+		} else {
+			$_SESSION['msg'] = "Order status can't be changed.";
+			$_SESSION['error'] = true;
+			header("Location: orders.php");
+			exit();
+		}
+	}
+}
+/*
+$check 		= $db->query("SELECT * FROM orders WHERE viewed=0");
+$newOrders 	= $db->affected_rows;
+if ($newOrders > 0) {
+	$data['viewed'] = 1;
+	$viewed = $db->query_update("orders",$data);
+}
+*/
+
+$check 		= $db->query("SELECT * FROM orders WHERE sent=0");
+$newOrders 	= $db->affected_rows;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Orders</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="30">
+	<link id="bootstrap-style" href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link id="base-style" href="css/style.css" rel="stylesheet">
+	<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+	<!--[if lt IE 7 ]>
+		<link id="ie-style" href="css/style-ie.css" rel="stylesheet">
+	<![endif]-->
+	<!--[if IE 8 ]>
+		<link id="ie-style" href="css/style-ie.css" rel="stylesheet">
+	<![endif]-->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link rel="shortcut icon" href="img/favicon.ico">
+    <style type="text/css">
+		#overlay {display:none !important;}
+	</style>
+</head>
+<body>
+	<?php include("include/header.php"); ?>
+		<div class="container-fluid">
+            <div class="row-fluid">
+                <?php include("include/sidebar.php"); ?>
+                <?php include("include/no-javascript-error.php"); ?>
+                <div id="content" class="span10">
+                <!-- start: Content -->
+                <?php include("include/breadcrumbs.php"); ?>
+                    
+                    <div class="row-fluid sortable">		
+                        <div class="box span12">
+                            <div class="box-header" data-original-title>
+                                <h2><i class="icon-shopping-cart"></i><span class="break"></span>Orders</h2>
+                            </div>
+                            
+                            <?php if(isset($_SESSION['msg'])) { ?>
+                            <div class="box-content alerts">
+                                <div class="alert alert-<?php echo $_SESSION['error']==true ? 'error':'success'; ?>">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <?php echo $_SESSION['msg']; ?>
+                                </div>
+                            </div><!--alerts-->
+                            <?php } // if isset($_SESSION['msg']) ?>
+                            
+                            <div class="box-content">
+                                <table class="table table-striped table-bordered bootstrap-datatable" id="orders">
+                                  <thead>
+                                      <tr>
+                                          <th class="sorting_desc hidden"></th>
+                                          <th>Received</th>
+                                          <th>Restaurant</th>
+                                          <th>User</th>
+                                          <th>Price</th>
+                                          <th>Sent</th>
+                                          <th>Actions</th>
+                                      </tr>
+                                  </thead>   
+                                  <tbody>
+                                    <?php $query = $db->query("SELECT * FROM orders ORDER BY date DESC, id DESC"); ?>
+                                    <?php if ($db->affected_rows > 0) { ?>
+										<?php while($r=$db->fetch_array($query)) { ?>
+                                            <tr>
+                                            	<td class="hidden"><?php echo $r['id']; ?></td>
+                                                <td><?php echo date("H:i d-m-y",strtotime($r['date'])); ?></td>
+                                                <td><?php echo getData('restaurants','name',$r['restaurant_id']); ?></td>
+                                                <td><?php echo getData('users','name',$r['user_id']); ?></td>
+                                                <td><?php echo _priceSymbol; ?><?php echo $r['price']; ?></td>
+                                                <td class="center">
+                                                    <a class="btn <?php echo $r['sent']==1 ? 'btn-success':NULL; ?>" href="?id=<?php echo $r["id"]; ?>&sent=<?php echo $r['sent']==1 ? 0:1; ?>">
+                                                        <i class="<?php echo $r['sent']==1 ? 'icon-ok icon-white':'icon-remove-circle'; ?>"></i> 
+                                                    </a>
+                                                    <!--
+                                                    <br /><br />
+                                                    <a class="label <?php echo $r['paid']==1 ? 'label-success':'label-important'; ?>" href="?id=<?php echo $r["id"]; ?>&paid=<?php echo $r['paid']==1 ? 0:1; ?>">
+														<?php echo $r['paid']==1 ? 'Paid':'Not Paid'; ?>
+                                                    </a>
+                                                    -->
+                                                </td>
+                                                <td class="center">
+                                                    <a class="btn btn-info" href="orders-edit.php?id=<?php echo $r['id']; ?>" title="View">
+                                                        <i class="icon-search icon-white"></i>  
+                                                    </a>
+                                                    <a class="btn btn-inverse" href="?id=<?php echo $r["id"]; ?>&status=<?php echo $r['status']==1 ? 0:1; ?>" title="Change Status">
+                                                        <i class="icon-eye-<?php echo $r['status']==1 ? 'open':'close'; ?> icon-white"></i> 
+                                                    </a>
+                                                    <a class="btn btn-danger" href="?id=<?php echo $r["id"]; ?>&delete" title="Delete">
+                                                        <i class="icon-trash icon-white"></i> 
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php } // endwhile $query loop ?>
+                                    <?php } // $db->affected_rows ?>
+                                  </tbody>
+                              </table>            
+                            </div>
+                        </div><!--/span-->
+                    
+                    </div><!--/row-->
+                    
+                    
+                </div><!--/#content.span10-->
+            </div><!--/fluid-row-->
+		<div class="clearfix">&nbsp;</div>
+		<?php include("include/footer.php"); ?>		
+	</div><!--/.fluid-container-->
+<?php include("include/footer-inc.php"); ?>
+<?php unset($_SESSION['msg'], $_SESSION['error']); ?>
+
+<?php if ($newOrders > 0) { ?>
+    <audio id="soundAlert" src="notify.wav" preload="auto" autobuffer autoplay></audio>
+<?php } // if ($newOrders > 0) ?>
+
+</body>
+</html>
