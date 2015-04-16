@@ -8,12 +8,7 @@ session_start();
 error_reporting (0); // E_ALL ^ E_NOTICE
 date_default_timezone_set('Asia/Hong_Kong');
 
-$config['server'] 	= 'localhost';
-$config['user'] 	= 'szeat_szeat';
-$config['pass'] 	= 'yellowsc2';
-$config['database'] = 'szeat_szeat';
-$config['siteURL']	= 'http://www.shenzheneat.com/';
-
+require("dblogin.inc.php");
 // pull in the file with the database class
 require("Database.class.php");
 

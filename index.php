@@ -1,3 +1,4 @@
+<?php require_once('class/dblogin.inc.php'); ?>
 <?php require_once('class/config.inc.php'); ?>
 <?php require_once("class/Pagination.class.php"); ?>
 <?php require_once('includes/functions.php'); ?>
