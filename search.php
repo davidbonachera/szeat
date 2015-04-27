@@ -114,25 +114,29 @@ if ($_GET) {
                                 	<a href="restaurant.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><img src="timthumb.php?w=111&zc=0&src=./<?php echo checkFeild($res['thumbnail']) ? $res['thumbnail']:'images/no_image_thumb.gif'; ?>" alt="" /></a>
                                 </div>
                             </div>
-                            <div class="span5 ">
+                            <div class="span5">
                             	<div class="row">
                                 	<div class="span5 product-name-list">
                                     	<h2><a href="restaurant.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php __($res['name']); ?></a></h2>
-                                        <p><?php __($res['address']); ?></p>
+                                        <p>
+                                            <?php __($res['address']); ?>
+                                            <br>
+                                            <strong>Minimum Order:</strong><?php echo $res['minimum_order']; ?>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row product-type-list">
                                 	<div class="span3">
-                                    	<strong>Type of food</strong>
+                                    	<strong>Type of Food</strong>
 										<?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['restaurant_id']} AND r.status=1 AND c.status=1"); ?>
                                         <?php $cuisines2 = array(); ?>
                                         <?php while ($rcr=$db->fetch_array($rc)) $cuisines2[] = $rcr['title']; ?>
                                         <p><?php echo implode(", ",$cuisines2); ?></p>
                                     </div>
                                     <div class="span2">
-                                    	<strong>Delivery Time</strong>
+                                        <strong>Minimum Order</strong>
                                         <?php $del_hours = deliveryHours($res['restaurant_id'], true); ?>
-										<p><?php __($del_hours['start']); ?> - <?php __($del_hours['end']); ?></p>
+                                        <p><?php __($del_hours['start']); ?> - <?php __($del_hours['end']); ?></p>
                                     </div>
                                 </div>
                             </div>

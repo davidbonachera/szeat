@@ -30,7 +30,10 @@
                             <i><?php echo $itemPriceCalculated; ?><a href="menu.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>&remove_item=<?php echo $item['id']; ?>&size=<?php echo $item['size']; ?>"><img src="img/order-delete.png" alt=""  /></a></i>
                         </li>
                     <?php } // $db->affected_rows > 0 ?>
-                <?php } // endforeach ?>
+                <?php } // endforeach 
+
+                            
+                        ?>
                 <li>
                     <p>Subtotal:</p>
                     <span>&nbsp;</span>
@@ -39,8 +42,19 @@
                 </li>
 			<?php } // end isset ?>
         </ul>
+
+                           <?php         $minOrda = $res['minimum_order'];
+                            $minSpend = $db->query("SELECT * FROM restaurants WHERE id=$rID AND $totalItemPrice>=$minOrda");    
+                            
+                            if ($db->affected_rows > 0) {
+                                $spendEnough = true;
+                            } else { 
+                                $spendEnough = false;
+                                echo '<p class="redwarning">You have not reached the restaurant\'s minimum order yet.</p>';
+                            } ?>
+
         <div class="order-button">
-            <div class="view-menu"><a class="yellow-button" href="<?php echo ($deliveryAvailable==false) ? "":"order-details.php"; ?>">Order Now</a></div>
+            <div class="view-menu"><a class="yellow-button" href="<?php echo (($deliveryAvailable==false)||($spendEnough!=true)) ? "":"order-details.php"; ?>">Order Now</a></div>
         </div>
     </div>
 </div>

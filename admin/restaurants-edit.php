@@ -34,6 +34,7 @@ if ($_POST) {
 		$data["name"] 				= $_POST["name"];
 		$data["address"] 			= $_POST["address"];
 		$data["phone"] 				= $_POST["phone"];
+		$data["minimum_order"] 				= $_POST["minimum_order"];
 		//$data["delivery_time"] 		= $_POST["delivery_time"];
 		$data["description"] 		= $_POST["description"];
 		//$data["facebook"] 		= $_POST["facebook"];
@@ -175,6 +176,12 @@ $query = $db->query_first("SELECT * FROM restaurants WHERE id='$id'");
                                         <label class="control-label" for="phone">Phone No.</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="phone" name="phone" type="text" value="<?php echo $query['phone']; ?>">
+                                        </div>
+                                      </div>
+                                       <div class="control-group">
+                                        <label class="control-label" for="minimum_order">Minimum Order</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="minimum_order" name="minimum_order" type="text" value="<?php echo $query['minimum_order']; ?>">
                                         </div>
                                       </div>
                                       <!--

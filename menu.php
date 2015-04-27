@@ -38,15 +38,19 @@ if ($db->affected_rows > 0) {
 	exit;
 }
 ?>
+
+
 <?php
 	$currentDay = strtoupper(date("l"));
-	$time = $db->query("SELECT * FROM delivery_times WHERE CURRENT_TIME() BETWEEN TIME(`start`) AND TIME(`end`) AND day='$currentDay' AND restaurant_id={$_SESSION['user']['restaurant']['id']} AND status=1");
+	$time = $db->query("SELECT * FROM delivery_times WHERE CURRENT_TIME() BETWEEN TIME(`start`) AND TIME(`end`) AND day='$currentDay' AND restaurant_id={$_SESSION['user']['restaurant']['id']} AND status=1");    
 	if ($db->affected_rows > 0) {
 		$deliveryAvailable = true;
 	} else {
 		$deliveryAvailable = false;
 	}
 ?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -54,6 +58,7 @@ if ($db->affected_rows > 0) {
     <title><?php echo htmlentities($res['name']); ?> <?php echo _title; ?><?php echo checkFeild(_tagline) ? ' - '._tagline:NULL; ?></title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
     <link rel="stylesheet/less" type="text/css" href="css/style.less"/>
+    <link rel="stylesheet" type="text/css" href="css/custom.css"/>
     <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="js/less-1.3.0.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -138,12 +143,16 @@ if ($db->affected_rows > 0) {
             	<div class="row ">
                 	<div class="span6 product-name">
                     	<h2><?php echo $res['name']; ?></h2>
-                        <p><?php echo $res['address']; ?></p>
+                        <p>
+                            <?php __($res['address']); ?>
+                            <br>
+                            <strong>Minimum Order: </strong><?php echo $res['minimum_order']; ?> RMB
+                        </p>
                     </div>
                 </div>
                 <div class="row">
                 	<div class="span3 type-food">
-                    	<h3>Type of food</h3>
+                    	<h3>Type of Food</h3>
                         <?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['id']} AND r.status=1 AND c.status=1"); ?>
                         <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = $rcr['title']; ?>
 						<p><?php echo implode(", ",$cuisines); ?></p>
@@ -240,6 +249,7 @@ if ($db->affected_rows > 0) {
         <br />
         <a class="yellow-button fleft" href="#" onclick="$.prettyPhoto.close();">Continue</a>
     </div>
+
 
 </body>
 </html>
