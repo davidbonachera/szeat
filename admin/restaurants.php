@@ -159,9 +159,28 @@ if (isset($_GET['id']) && checkFeild($_GET['id'])) {
                                                     <a class="btn <?php echo $r['black_list']==0 ? 'btn-success':NULL; ?>" href="?id=<?php echo $r["id"]; ?>&black_list=<?php echo $r['black_list']==1 ? 0:1; ?>" title="Blacklist">
                                                         <i class="<?php echo $r['black_list']==0 ? 'icon-ok-circle icon-white':'icon-ban-circle'; ?>"></i> 
                                                     </a>
-                                                    <a class="btn btn-danger" href="?id=<?php echo $r["id"]; ?>&delete" title="Delete">
-                                                        <i class="icon-trash icon-white"></i> 
+                                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $r['id']; ?>" title="Delete">
+                                                        <i class="icon-trash icon-white"></i>
                                                     </a>
+
+                                                    <div class="modal fade" id="deleteModal<?php echo $r['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <div class="col">
+
+                                                                        <p>Are you sure?</p>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                                        <a class="btn btn-danger" href="?id=<?php echo $r['id']; ?>&delete" title="Delete">
+                                                                            <i class="icon-trash icon-white"></i>
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <a class="btn btn-primary" href="menus.php?id=<?php echo $r['id']; ?>" title="Menus">
                                                         <i class="icon-glass icon-white"></i> 
                                                     </a>

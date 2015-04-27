@@ -133,9 +133,29 @@ if (isset($_GET['id']) && checkFeild($_GET['id'])) {
                                                     <a class="btn btn-inverse" href="?id=<?php echo $r["id"]; ?>&status=<?php echo $r['status']==1 ? 0:1; ?>" title="Change Status">
                                                         <i class="icon-eye-<?php echo $r['status']==1 ? 'open':'close'; ?> icon-white"></i> 
                                                     </a>
-                                                    <a class="btn btn-danger" href="?id=<?php echo $r["id"]; ?>&delete" title="Delete">
-                                                        <i class="icon-trash icon-white"></i> 
+                                                    
+                                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $r['id']; ?>" title="Delete">
+                                                        <i class="icon-trash icon-white"></i>
                                                     </a>
+
+                                                    <div class="modal fade" id="deleteModal<?php echo $r['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <div class="col">
+
+                                                                        <p>Are you sure?</p>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                                        <a class="btn btn-danger" href="?id=<?php echo $r['id']; ?>&delete" title="Delete">
+                                                                            <i class="icon-trash icon-white"></i>
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </td>
                                             </tr>
                                         <?php } // endwhile $query loop ?>

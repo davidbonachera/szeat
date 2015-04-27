@@ -1600,3 +1600,6 @@ function widthFunctions( e ) {
 		
 	}
 }
+
+// make modal windows work when indented in code
+$('.modal').appendTo("body");
