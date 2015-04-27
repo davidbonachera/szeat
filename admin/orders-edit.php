@@ -168,7 +168,7 @@ $query = $db->query_first("SELECT * FROM orders WHERE id='$id'");
                                       <div class="control-group">
                                         <label class="control-label" for="date">Received</label>
                                         <div class="controls">
-                                          <span class="input-xlarge uneditable-input"><?php echo date("H:m d-m-y",strtotime($query['date'])); ?></span>
+                                          <span class="input-xlarge uneditable-input"><?php echo date("H:i d-m-y",strtotime($query['date'])); ?></span>
                                         </div>
                                       </div>
                                       
