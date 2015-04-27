@@ -1,4 +1,4 @@
-<div id="overlay">
+<!-- <div id="overlay">
     <ul>
       <li class="li1"></li>
       <li class="li2"></li>
@@ -7,7 +7,7 @@
       <li class="li5"></li>
       <li class="li6"></li>
     </ul>
-</div>	
+</div> -->
 <!-- start: Header -->
 <div class="navbar">
     <div class="navbar-inner">
