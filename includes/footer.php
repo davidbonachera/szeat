@@ -37,8 +37,21 @@
     </div>
 </div>
 
-<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script src="js/static.getclicky.com.js" type="text/javascript"></script>
 <script type="text/javascript">try{ clicky.init(100728789); }catch(e){}</script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100728789ns.gif" /></p></noscript>
 
 <?php if (isset($_SESSION['error'])) unset($_SESSION['error'],$_SESSION['msg']); ?>
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min"></script>
+<script type="text/javascript" src="js/less-1.3.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<!--
+<script type="text/javascript" src="js/jquery.dd.min.js"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+-->
+<script src="js/chosen/chosen.jquery.js" type="text/javascript"></script>
+
+    
+</body>
+</html>

@@ -44,4 +44,25 @@ if (!isset($_SESSION['user']['restaurant'])) $_SESSION['user']['restaurant'] = a
 if (!is_writable(session_save_path())) {
     echo 'Session path "'.session_save_path().'" is not writable for PHP!'; 
 }
+
+// set page
+if (isset($_GET['page'])) {
+	$page = $_GET['page'];
+} else {
+	$page = 'home';
+}
+
+// language select
+if (isset($_GET['lang'])) {
+	$lang = $_GET['lang'];
+	$_SESSION['lang'] = $lang;
+} else {
+	if (isset($_SESSION['lang'])) {
+		$lang = $_SESSION['lang'];
+	} else {
+		$lang = 'en';
+	}
+}
+
+
 ?>
