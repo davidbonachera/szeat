@@ -4,8 +4,8 @@
 	
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php echo _title; ?><?php echo checkFeild(_tagline) ? ' - '._tagline:NULL; ?></title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-    <link rel="stylesheet/less" type="text/css" href="css/style.less"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet/less" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/dd.css"/>
     <link rel="stylesheet" href="js/chosen/chosen.css" />
     <link rel="stylesheet" href="css/custom.css" />

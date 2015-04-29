@@ -9,7 +9,7 @@
     if(file_exists('pages/'.$page.'/local.css')) {
         echo '<link rel="stylesheet" type="text/css" href="pages/'.$page.'/local.css"/>';
     }
-    require_once('includes/header.php');
+    require_once('includes/header_new.php');
 
     if(file_exists('pages/'.$page.'/display.php')) {
         if(file_exists('pages/'.$page.'/local_vars.php')) {

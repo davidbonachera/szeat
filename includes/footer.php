@@ -41,11 +41,12 @@
 <script type="text/javascript">try{ clicky.init(100728789); }catch(e){}</script>
 
 <?php if (isset($_SESSION['error'])) unset($_SESSION['error'],$_SESSION['msg']); ?>
-
-<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="js/jquery-migrate-1.2.1.min"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+// <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-migrate-1.2.1.min"></script> -->
 <script type="text/javascript" src="js/less-1.3.0.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
+
 <!--
 <script type="text/javascript" src="js/jquery.dd.min.js"></script>
 <script src="js/jquery.min.js" type="text/javascript"></script>
