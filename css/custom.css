@@ -81,7 +81,6 @@ fieldset[disabled] .btn-yellow.active {
   border-color: #ff9933;
 }
 
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -90,24 +89,31 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  /*margin-bottom: 60px;*/
+  margin-bottom: 8em;
 }
+
 .footer {
-	padding-top: 1em;
   position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  /*height: 60px;*/
+  height: 8em;
   background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.footer {
+  background-color: #f8f8f8;
+  padding-top: 1em;
 }
 
 .footer ul {
   list-style-type: none;
 }
-
-
-
 
 /* Custom page CSS
 -------------------------------------------------- */
@@ -128,7 +134,7 @@ body {
 	color: #fff;
 	border-radius: 3px;
 	padding-top: 3em;
-	/*padding-bottom: 1em;*/
+	padding-bottom: 1em;
 	background: #c9121a;
 }
 

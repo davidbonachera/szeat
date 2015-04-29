@@ -20,8 +20,22 @@
         require 'pages/home/display.php';
     }
 
-    require('includes/footer_new.php'); 
+    require('includes/footer_new2.php');
 
-    if(file_exists('pages/'.$page.'/local.js')) {
+?>      
+<!-- <script src="js/static.getclicky.com.js" type="text/javascript"></script> -->
+<script type="text/javascript">//try{ clicky.init(100728789); }catch(e){}</script>
+
+<?php if (isset($_SESSION['error'])) unset($_SESSION['error'],$_SESSION['msg']); ?>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/chosen.jquery.min.js"></script>
+<?php if(file_exists('pages/'.$page.'/local.js')) {
         echo '<script type="text/javascript" src="pages/'.$page.'/local.js"></script>';
     }
+?>
+
+
+</body>
+</html>

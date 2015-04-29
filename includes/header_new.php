@@ -2,6 +2,7 @@
 
 <body>
 
+
     <div class="header">
         <div class="header">
            <nav class="navbar navbar-default"> 
@@ -27,7 +28,7 @@
                                     <li><a href="logout.php" style="color:#343333;">Log Out</a></li>
                                 </ul>                      
                             <?php } else { ?>
-                                <a href="#">Sign Up</a>
+                                <a href="login.php">Sign Up</a>
                                 <a class="btn btn-custom navbar-btn" href="login.php" role="button"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Log In</a>                                
                             <?php } ?>
                             <a href=""><img src="img/uk-flag.png" style="max-height:44px;" /></a>

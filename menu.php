@@ -241,7 +241,7 @@ if ($db->affected_rows > 0) {
             <?php include('includes/sidebar-order.php'); ?>
         </div>
     </div>
-    <?php include('includes/footer.php'); ?>
+    <?php //include('includes/footer.php'); ?>
 
     <div id="inlineContent" class="castomer-reviews hide">
         <br />

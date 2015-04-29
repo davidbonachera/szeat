@@ -22,3 +22,5 @@ $('#searchForm').submit(function() {
         return false;
     }
 });
+
+$(".chosen-select").chosen();
