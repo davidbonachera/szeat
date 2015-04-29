@@ -1,7 +1,23 @@
+@font-face {
+    font-family: 'love_ya_like_a_sisterregular';
+    src: url('fonts/loveyalikeasister.eot');
+    src: url('fonts/lloveyalikeasister.eot?#iefix') format('embedded-opentype'),
+         url('fonts/loveyalikeasister.woff') format('woff'),
+         url('fonts/loveyalikeasister.ttf') format('truetype'),
+         url('fonts/loveyalikeasister.svg#love_ya_like_a_sisterregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .redwarning {
 	color: #c9121a;
 	padding-left: 1em;
 	padding-right: 1em;
+}
+
+#homesub {
+	font-family: 'love_ya_like_a_sisterregular';
+	color: #c9121a;
 }
 
 .btn-custom {
@@ -33,6 +49,89 @@ fieldset[disabled] .btn-custom.active {
   	border-color: #ce0b10;
 }
 
+
+
+
+.btn-yellow {
+	color: black;
+  	background-color: #ff9933;
+  	border-color: #ff9933;
+}
+.btn-yellow:hover,
+.btn-yellow:focus,
+.btn-yellow:active,
+.btn-yellow.active {
+	color: black;
+  	background-color: #ff8c1a;
+  	border-color: #ff8000;
+}
+.btn-yellow.disabled:hover,
+.btn-yellow.disabled:focus,
+.btn-yellow.disabled:active,
+.btn-yellow.disabled.active,
+.btn-yellow[disabled]:hover,
+.btn-yellow[disabled]:focus,
+.btn-yellow[disabled]:active,
+.btn-yellow[disabled].active,
+fieldset[disabled] .btn-yellow:hover,
+fieldset[disabled] .btn-yellow:focus,
+fieldset[disabled] .btn-yellow:active,
+fieldset[disabled] .btn-yellow.active {
+  background-color: #ff9933;
+  border-color: #ff9933;
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
 .container {
-	/*width: 960px;*/
+  width: auto;
+  max-width: 960px;
+  padding: 0 15px;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+#startbox {
+	color: #fff;
+	border-radius: 3px;
+	padding-top: 3em;
+	padding-bottom: 1em;
+	background: #c9121a;
+}
+
+#startbox label {
+	font-size: 1.2em;
+}
+
+#homesubmit{
+	margin-top: 2em;	
+}
+
+.HomePageError {
+	padding-top: 1em;
+	padding-left: 15px;
 }

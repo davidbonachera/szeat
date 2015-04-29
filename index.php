@@ -20,7 +20,7 @@
         require 'pages/home/display.php';
     }
 
-    require('includes/footer.php'); 
+    require('includes/footer_new.php'); 
 
     if(file_exists('pages/'.$page.'/local.js')) {
         echo '<script type="text/javascript" src="pages/'.$page.'/local.js"></script>';

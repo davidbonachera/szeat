@@ -1,15 +1,3 @@
-try {
-    $(".styled").chosen(); 
-    /*
-    $(".home-fotm-box select#area").msDropDown();
-    $(".home-fotm-box select#building").msDropDown();
-    $(".home-fotm-box select#cuisines").msDropDown();
-    */
-} catch(e) {
-    // alert(e.message);
-}
-
-
 $("select#area").change(function(){
     $.getJSON("ajaxSelect.php",{area: $(this).val(), ajax: 'true'}, function(j){
         var Options = '';
