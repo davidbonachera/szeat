@@ -148,8 +148,8 @@ if (isset($_GET['restaurant'])) {
             </div>
         	<div class="span2">
             	<img src="img/keep-up.png" />
-                <div class="soc-net"><a href="<?php echo checkFeild(_facebook) ? _facebook:'#'; ?>"><img src="img/fbook1.png" alt="" />Facebook</a></div>
-                <div class="soc-net"><a href="<?php echo checkFeild(_twitter) ? _twitter:'#'; ?>"><img src="img/twiter1.png" alt="" />Twiter</a></div>
+                <div class="soc-net"><a href="https://www.facebook.com/ShenzhenEat" target="_blank"><img src="img/fbook1.png" alt="" />Facebook</a></div>
+                <div class="soc-net"><a href="https://twitter.com/ShenzhenEat" target="_blank"><img src="img/twiter1.png" alt="" />Twiter</a></div>
             </div>
         </div>
         

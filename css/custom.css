@@ -90,16 +90,23 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  /*margin-bottom: 60px;*/
 }
 .footer {
+	padding-top: 1em;
   position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
+  /*height: 60px;*/
   background-color: #f5f5f5;
 }
+
+.footer ul {
+  list-style-type: none;
+}
+
+
 
 
 /* Custom page CSS
@@ -115,11 +122,13 @@ body {
   margin: 20px 0;
 }
 
+/*-------------------------------------------------- */
+
 #startbox {
 	color: #fff;
 	border-radius: 3px;
 	padding-top: 3em;
-	padding-bottom: 1em;
+	/*padding-bottom: 1em;*/
 	background: #c9121a;
 }
 

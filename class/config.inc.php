@@ -28,8 +28,6 @@ $site = $db->query_first("SELECT * FROM config WHERE id=1");
 define("_title", 	html_entity_decode($site['title']));
 define("_tagline", 	html_entity_decode($site['tagline']));
 define("_email", 	$site['email']);
-define("_twitter", 	$site['twitter']);
-define("_facebook", $site['facebook']);
 define("_self", 	$_SERVER['PHP_SELF']);
 define("_priceSymbol", $site['currency']);
 define("_nowdt", date('Y-m-d H:i:s'));
