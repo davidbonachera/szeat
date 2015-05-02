@@ -134,7 +134,7 @@ if ($_GET) {
                                         <p><?php echo implode(", ",$cuisines2); ?></p>
                                     </div>
                                     <div class="span2">
-                                        <strong>Minimum Order</strong>
+                                        <strong>Delivery Hours</strong>
                                         <?php $del_hours = deliveryHours($res['restaurant_id'], true); ?>
                                         <p><?php __($del_hours['start']); ?> - <?php __($del_hours['end']); ?></p>
                                     </div>
