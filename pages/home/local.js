@@ -1,3 +1,7 @@
+$(".chosen-select").chosen();
+
+
+
 $("select#area").change(function(){
     $.getJSON("ajaxSelect.php",{area: $(this).val(), ajax: 'true'}, function(j){
         var Options = '';
@@ -5,7 +9,7 @@ $("select#area").change(function(){
             Options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
         }
         $("select#building").html(Options);
-        $("select#building").trigger("liszt:updated");
+        $("select#building").trigger("chosen:updated");
     });
 });
 
@@ -23,4 +27,3 @@ $('#searchForm').submit(function() {
     }
 });
 
-$(".chosen-select").chosen();
