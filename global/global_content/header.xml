@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <en>
+        <signup>Sign Up</signup>
+        <login>Log In</login>
+        <myacc>My Account</myacc>
+        <logout>Log Out</logout>
+
+    </en>
+    <cn>
+        <signup>注册</signup>
+        <login>登陆</login>
+        <myacc>我的账号</myacc>
+        <logout>退出</logout>
+    </cn>
+</document>

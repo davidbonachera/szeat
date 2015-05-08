@@ -2,14 +2,15 @@
 
     require_once('class/dblogin.inc.php');
     require_once('class/config.inc.php');
+    require_once('global/global_vars.php');
     require_once("class/Pagination.class.php");
     require_once('includes/functions.php');
 
-    require_once('includes/global_meta.php');
+    require_once('global/global_meta.php');
     if(file_exists('pages/'.$page.'/local.css')) {
         echo '<link rel="stylesheet" type="text/css" href="pages/'.$page.'/local.css"/>';
     }
-    require_once('includes/header_new.php');
+    require_once('global/header.php');
 
     if(file_exists('pages/'.$page.'/display.php')) {
         if(file_exists('pages/'.$page.'/local_vars.php')) {
@@ -20,7 +21,7 @@
         require 'pages/home/display.php';
     }
 
-    require('includes/footer_new2.php');
+    require('global/footer.php');
 
 ?>      
 <!-- <script src="js/static.getclicky.com.js" type="text/javascript"></script> -->

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <en>
+        <tagline>Order your food delivery online</tagline>
+        <where>Where do you live?</where>
+        <building>What building?</building>
+        <foodtype>What do you fancy?</foodtype>
+        <search>Find me a food delivery!</search>
+
+        <selectArea>Select Area</selectArea>
+        <selectBuilding>Select Building</selectBuilding>
+        <showAll>Show Everything</showAll>
+
+    </en>
+    <cn>
+        <tagline>在线点外卖</tagline>
+        <where>您的所在区域</where>
+        <building>您的小区楼栋</building>
+        <foodtype>您想要什么吃?</foodtype>
+        <search>为我找寻附近外卖餐厅</search>
+
+        <selectArea>选择地区</selectArea>
+        <selectBuilding>选择花园</selectBuilding>
+        <showAll>显示一切</showAll>
+    </cn>
+</document>
