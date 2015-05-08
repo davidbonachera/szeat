@@ -53,7 +53,8 @@ fieldset[disabled] .btn-custom.active {
 
 
 .btn-yellow {
-	color: black;
+	 color: black;
+   font-weight: bold;
   	background-color: #ff9933;
   	border-color: #ff9933;
 }
