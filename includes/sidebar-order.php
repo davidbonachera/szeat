@@ -43,29 +43,14 @@
 			<?php } // end isset ?>
         </ul>
 
-        <?php 
-            // $minOrda = $res['minimum_order'];
-            // $minSpend = $db->query("SELECT * FROM restaurants WHERE id=$rID AND $totalItemPrice>=$minOrda");    
-
-            // if ($db->affected_rows > 0) {
-            //     $spendEnough = true;
-            // } else { 
-            //     $spendEnough = false;
-            //     echo '<p class="redwarning">You have not reached the restaurant\'s minimum order yet.</p>';
-            // } 
-
-        $spendEnough = false;
-        $minOrda = $res['minimum_order'];
-
-        if ($totalItemPrice>=$minOrda) {
-            $spendEnough=true;
-        } else {
-            $spendEnough=false;
-            echo '<p class="redwarning">You have not reached the restaurant\'s minimum order yet.</p>';
-        }
-
-        
-
+        <?php
+            // stop submit if less than resto's min order
+            $spendEnough = false;
+            if ($totalItemPrice>=$res['minimum_order']) {
+                $spendEnough=true;
+            } else {
+                echo '<p class="redwarning">You have not reached the restaurant\'s minimum order yet.</p>';
+            }
         ?>
 
         <div class="order-button">
