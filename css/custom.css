@@ -167,3 +167,6 @@ body {
 }
 
 
+.chosen-container-single .chosen-search input {
+  color: #cc3333;
+}

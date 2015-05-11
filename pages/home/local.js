@@ -1,4 +1,4 @@
-$(".chosen-select").chosen({"disable_search_threshold": 5});
+$(".chosen-select").chosen({"disable_search_threshold": 5,search_contains: true});
 
 
 $("select#area").change(function(){
