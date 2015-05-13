@@ -146,7 +146,11 @@ if ($db->affected_rows > 0) {
                         <p>
                             <?php __($res['address']); ?>
                             <br>
-                            <strong>Minimum Order: </strong><?php echo $res['minimum_order']; ?> RMB
+                            <?php
+                            if ($res['minimum_order'] != NULL) {
+                                echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order']; 
+                            }
+                            ?>
                         </p>
                     </div>
                 </div>

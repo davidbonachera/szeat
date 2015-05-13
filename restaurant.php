@@ -56,8 +56,14 @@ if (isset($_GET['restaurant'])) {
                         <div class="row ">
                             <div class="span5 product-name">
                                 <h2><?php echo $res['name']; ?></h2>
-                                <p>Minimum order: RMB<?php echo $res['minimum_order']; ?></p>
-                        		<p><?php echo $res['address']; ?></p>
+
+                                <?php
+                                    if ($res['minimum_order'] != NULL) {
+                                        echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order']; 
+                                    }
+                                ?>
+                        		
+                                <p><?php echo $res['address']; ?></p>
                             </div>
                         </div>
                         <div class="row">

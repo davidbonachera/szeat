@@ -121,7 +121,11 @@ if ($_GET) {
                                         <p>
                                             <?php __($res['address']); ?>
                                             <br>
-                                            <strong>Minimum Order:</strong> RMB<?php echo $res['minimum_order']; ?>
+                                            <?php
+                                                if ($res['minimum_order'] != NULL) {
+                                                    echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order']; 
+                                                }
+                                            ?>
                                         </p>
                                     </div>
                                 </div>
