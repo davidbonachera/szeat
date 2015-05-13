@@ -28,6 +28,10 @@ if ($_POST) {
 		$data["phone"] 				= $_POST["phone"];
 		//$data["delivery_time"] 		= $_POST["delivery_time"];
 		$data["description"] 		= $_POST["description"];
+
+    $data["minimum_order"]    = $_POST["minimum_order"];
+    $data["delivery_fee"]    = $_POST["delivery_fee"];
+
 		//$data["facebook"] 		= $_POST["facebook"];
 		//$data["twitter"] 			= $_POST["twitter"];
 		$data["comission_type"] 	= $_POST["comission_type"];
@@ -164,6 +168,18 @@ if ($_POST) {
                                           <input class="input-xlarge focused" id="phone" name="phone" type="text" value="">
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="minimum_order">Minimum Order</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="minimum_order" name="minimum_order" type="text" value="">
+                                        </div>
+                                      </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="delivery_fee">Delivery Fee</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="delivery_fee" name="delivery_fee" type="text" value="">
+                                        </div>
+                                      </div>                                      
                                       <!--
                                       <div class="control-group">
                                         <label class="control-label" for="delivery_time">* Delivery Time</label>
