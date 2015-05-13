@@ -4,11 +4,27 @@
     <?php } ?>
     
     <div class="block-page your-order fixedWidth179" id="yourOrder">
+
         <h2>Your order</h2>
         <ul>
-            <?php if (isset($_SESSION['user']['items'])) { ?>
-            	<?php $totalItemPrice = 0; ?>
-				<?php foreach ($_SESSION['user']['items'] as $key=>$item) { ?>
+            <?php 
+
+
+            if (isset($_SESSION['user']['items'])) { 
+
+
+                if (($res['delivery_fee']!=null)||($res['delivery_fee']==0)){
+                    $totalItemPrice = $res['delivery_fee'];
+                    $_SESSION['user']['delivery_fee'] = $res['delivery_fee'];
+                } else {
+                    $totalItemPrice = 0;
+                    unset($_SESSION['user']['delivery_fee']);
+                }
+            	
+
+
+
+				foreach ($_SESSION['user']['items'] as $key=>$item) { ?>
                 	<?php $ir = $db->query_first("SELECT * FROM menu_items WHERE id={$item['id']} AND status=1"); ?>
                     <?php if ($db->affected_rows > 0) { ?>
 						<?php 
@@ -32,8 +48,23 @@
                     <?php } // $db->affected_rows > 0 ?>
                 <?php } // endforeach 
 
+                
+
+                if ($res['delivery_fee'] != null) {
+                    echo '
+
+                    <li>
+                        <p>Delivery fee</p>
+                        <span>1x</span>
+                        <span>RMB</span>
+                        <i>'.$res['delivery_fee'].'</i>
+                    </li>
+
+                    ';
+                }
+
                             
-                        ?>
+                ?>
                 <li>
                     <p>Subtotal:</p>
                     <span>&nbsp;</span>

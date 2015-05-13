@@ -57,11 +57,14 @@ if (isset($_GET['restaurant'])) {
                             <div class="span5 product-name">
                                 <h2><?php echo $res['name']; ?></h2>
 
-                                <?php
-                                    if ($res['minimum_order'] != NULL) {
-                                        echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order']; 
-                                    }
-                                ?>
+                                                                                        <?php
+                                                if ($res['minimum_order'] != NULL) {
+                                                    echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
+                                                }
+                                                if ($res['delivery_fee'] != NULL) {
+                                                    echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
+                                                }
+                                            ?>
                         		
                                 <p><?php echo $res['address']; ?></p>
                             </div>

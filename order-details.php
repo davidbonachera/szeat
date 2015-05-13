@@ -94,6 +94,25 @@ if (!isset($_SESSION['user']['items']) || sizeof($_SESSION['user']['items']) < 1
                                     <?php $total_price += number_format($itemPrice*$item['quantity'],2); ?>
 								<?php } // $db->affected_rows > 0 ?>
                             <?php } // endforeach ?>
+
+
+                            <?php
+                               
+                                if (isset($_SESSION['user']['delivery_fee'])) {
+                                    echo '<div class="full-order-price-row">
+
+                                    <span class="first-element">Delivery Fee</span>
+                                    <span class="second-element">RMB</span>
+                                    <span class="third-element">'.$_SESSION['user']['delivery_fee'].'</span>
+
+
+                                    </div>';
+
+                                    $total_price += $_SESSION['user']['delivery_fee'];
+                                }
+
+                            ?>
+
                         <?php } // end isset ?>
                         
                         <div class="full-order-price-row final">

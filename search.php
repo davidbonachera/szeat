@@ -119,13 +119,16 @@ if ($_GET) {
                                 	<div class="span5 product-name-list">
                                     	<h2><a href="restaurant.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php __($res['name']); ?></a></h2>
                                         <p>
-                                            <?php __($res['address']); ?>
-                                            <br>
                                             <?php
                                                 if ($res['minimum_order'] != NULL) {
-                                                    echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order']; 
+                                                    echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
+                                                }
+                                                if ($res['delivery_fee'] != NULL) {
+                                                    echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
                                                 }
                                             ?>
+                                            <br>
+                                            <?php __($res['address']); ?>
                                         </p>
                                     </div>
                                 </div>

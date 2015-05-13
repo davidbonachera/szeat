@@ -144,13 +144,17 @@ if ($db->affected_rows > 0) {
                 	<div class="span6 product-name">
                     	<h2><?php echo $res['name']; ?></h2>
                         <p>
-                            <?php __($res['address']); ?>
-                            <br>
+                            
+                            
                             <?php
-                            if ($res['minimum_order'] != NULL) {
-                                echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order']; 
-                            }
+                                if ($res['minimum_order'] != NULL) {
+                                    echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
+                                }
+                                if ($res['delivery_fee'] != NULL) {
+                                    echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
+                                }
                             ?>
+                            <?php __($res['address']); ?>
                         </p>
                     </div>
                 </div>

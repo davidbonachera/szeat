@@ -244,11 +244,24 @@ if ($_POST) {
                     </div>
                     <div class="order-summery order-informaiton">
                     	<h3>Order details</h3>
+                    	
+
+
+                    	<?php 
+
+                    	if (isset($_SESSION['user']['delivery_fee'])) {
+                    		echo '<p>Delivery fee: RMB '.$_SESSION['user']['delivery_fee'].'</p>';
+                    	}
+                    	?>
+
                         <table width="368">
                            <tbody>
                                 <?php $items = $db->query("SELECT * FROM order_items WHERE order_id={$orderID}"); ?>
-                                <?php $total_price = 0; ?>
-                                <?php if ($db->affected_rows > 0) { ?>
+                                <?php $total_price = 0; 
+                                if (isset($_SESSION['user']['delivery_fee'])) {
+                    				$total_price += $_SESSION['user']['delivery_fee'];
+                    			}
+                                if ($db->affected_rows > 0) { ?>
                                 	<?php while($item=$db->fetch_array($items)) { ?>
                                     	<?php $ir = $db->query_first("SELECT * FROM menu_items WHERE id={$item['menu_item_id']}"); ?>
 										<?php if ($db->affected_rows > 0) { ?>
