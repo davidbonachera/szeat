@@ -6,5 +6,6 @@
     <title><?php echo _title; ?><?php echo checkFeild(_tagline) ? ' - '._tagline:NULL; ?></title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/chosen.min.css"/>
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/custom.css" />
     <meta name="google" value="notranslate">

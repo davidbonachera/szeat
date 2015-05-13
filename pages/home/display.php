@@ -13,9 +13,11 @@
             
         <div id="startbox" class="col-xs-12">
 
-            <form method="get" action="search.php" id="searchForm">
+            <form method="get" action="index.php" id="searchForm">
 
                 <div class="form-group">
+
+                    <input name="page" value="search" />
                     
                     <div class="col-md-3">
                         <label class="control-label"><?php echo ($xml->$lang->where == "" ? $xml->en->where : $xml->$lang->where); ?></label>
