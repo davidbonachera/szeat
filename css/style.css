@@ -363,32 +363,23 @@ a:focus{
 }
 
 /*===search-result===*/
+
 .change-location{
 	overflow:hidden;
 	
 }
 .change-location a{
 	text-decoration:underline;
-	float:right;
 	color:#0078ff;
 	font-size:14px;
 }
 .change-location label{
 	margin-left: 14px;
-	float:right;
+	/*float:right;*/
 	font-size:14px;
 	color:#343333;
 }
 
-.change-location-form{
-	margin-left: 18px;
-	float:right;
-}
-
-.change-location-form select{
-	width:150px;
-	margin-top:10px;
-}
 .styled{
 	margin-left:-5px;
 	margin-top:-3px;
@@ -1237,14 +1228,6 @@ th{
 .red A {
 	color:#E51B24 !important;
 	text-decoration:none;
-}
-
-.HomePageError {
-	display:none;
-	color:#E11A23;
-	margin-top:80px;
-	text-align:center;
-	border:1px dotted #E11A23;
 }
 
 .error {

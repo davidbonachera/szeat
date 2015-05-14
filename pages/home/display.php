@@ -17,7 +17,7 @@
 
                 <div class="form-group">
 
-                    <input name="page" value="search" />
+                    <input hidden name="page" value="search" />
                     
                     <div class="col-md-3">
                         <label class="control-label"><?php echo ($xml->$lang->where == "" ? $xml->en->where : $xml->$lang->where); ?></label>
@@ -53,6 +53,7 @@
                     </div>
 
                     <div class="col-md-3">
+
                         <input id="homesubmit" class="btn btn-yellow" type="submit" value="<?php echo ($xml->$lang->search == "" ? $xml->en->search : $xml->$lang->search); ?>">
 
                     </div>

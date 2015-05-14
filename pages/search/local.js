@@ -18,3 +18,4 @@ $(".cuisine-types a").click(function () {
 });
 
 
+// $(".chosen-select").chosen({"disable_search_threshold": 100,search_contains: true});

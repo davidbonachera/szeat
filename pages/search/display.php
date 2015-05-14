@@ -1,33 +1,46 @@
-<div class="container main">
-	<div class="row">
+<div class="container">
+
     	<div class="col-sm-12">
+
         	<div class="page-header">
-            	<a href="index.php">Home</a>
-                <img src="img/title-icon.png" alt="" />
-                <a href="#"><span id="cuisineCount"><?php echo checkFeild($cuisineName) ? countCuisines($cuisines):$resultCount; ?></span> <span id="cuisineName"><?php echo $cuisineName; ?></span> takeaways serving <?php echo isset($buildingName) ? $buildingName.(isset($areaName) ? ' in '.$areaName:NULL):NULL; ?></a>
-            	<div class="change-location pull-right">
-                    <article class="change-location-form">
-                    	<form method="get" action="" id="sortForm">
-                        	<?php foreach ($_GET as $key=>$val) { ?>
-                            	<?php if ($key!="sort") { ?>
-                                	<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $val; ?>" />
-                                <?php } ?>
-                            <?php } ?>
-                            <select name="sort" id="sort" class="" onchange="this.form.submit()">
+
+                <div class="col-sm-8">
+
+            	    <a href="index.php">Home</a>
+                    <img src="img/title-icon.png" alt="" />
+                    <a href="#"><span id="cuisineCount"><?php echo checkFeild($cuisineName) ? countCuisines($cuisines):$resultCount; ?></span> <span id="cuisineName"><?php echo $cuisineName; ?></span> takeaways serving <?php echo isset($buildingName) ? $buildingName.(isset($areaName) ? ' in '.$areaName:NULL):NULL; ?></a>
+
+            	</div>
+
+                <div class="col-sm-4">
+                    
+                    <form method="get" action="" class="pull-right form-inline" id="sortForm">
+                        <div class="form-group">
+                            <label style="margin-right:1em;">Sort by</label>
+                            
+                            <?php
+                                foreach ($_GET as $key=>$val) {    
+                                    if ($key!="sort") {
+                                        echo '<input type="hidden" name="'.$key.'" value="'.$val.'" />';
+                                    }
+                                } 
+                            ?>
+
+                            <select name="sort" id="sort" class="chosen-select form-control" onchange="this.form.submit()">
                                 <option value="">Select</option>
-                                <option value="best" 	<?php echo $_GET['sort']=='best' 	? 'selected':NULL; ?>>Best Match</option>
-                                <option value="new"	 	<?php echo $_GET['sort']=='new' 	? 'selected':NULL; ?>>Newest First</option>
-                                <option value="rating" 	<?php echo $_GET['sort']=='rating' 	? 'selected':NULL; ?>>User Rating</option>
-                                <option value="name" 	<?php echo $_GET['sort']=='name' 	? 'selected':NULL; ?>>Restaurant Name</option>
+                                <option value="best"    <?php echo $_GET['sort']=='best'    ? 'selected':NULL; ?>>Best Match</option>
+                                <option value="new"     <?php echo $_GET['sort']=='new'     ? 'selected':NULL; ?>>Newest First</option>
+                                <option value="rating"  <?php echo $_GET['sort']=='rating'  ? 'selected':NULL; ?>>User Rating</option>
+                                <option value="name"    <?php echo $_GET['sort']=='name'    ? 'selected':NULL; ?>>Restaurant Name</option>
                             </select>
-                        </form>
-                    </article> 
-                    <label>Sort by</label>
-                    <a href="index.php">change location</a>
+                        </div>
+                    </form>
+                    
                 </div>
+            
             </div>
         </div>
-    </div>
+    
     <div class="row">
     	<?php require_once('includes/sidebar-search.php'); ?>
         <div class="col-sm-9 product-list">
