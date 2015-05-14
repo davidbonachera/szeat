@@ -125,7 +125,7 @@ a:focus{
 	color:#343333;
 }
 .product-name h2{
-	font-size:24px;
+	font-size:22px;
 	}
 .product-name p{
 	font-size:14px;
@@ -210,10 +210,6 @@ a:focus{
 	display:block;
 }
 
-.my-span-order{
-	width:169px;		
-}
-
 .your-order ul{
 	list-style:none;
 	color:#535353;
@@ -274,11 +270,13 @@ a:focus{
 .menu ul{
 	list-style:none;
 	margin:13px;
+	padding-left: 0;
 	font-size:12px;
 	color:#535353;
 	margin-bottom:20px;
 	position:relative;
 }
+
 .menu ul .price{
 	position: absolute;
 	right: 110px;
@@ -595,14 +593,6 @@ a:focus{
 		padding-left:230px;
 	}
 }
-.gray-bg-container{
-	background-color: #f6f6f0;
-	border: 1px solid #e5e5e5;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	padding: 15px;
-}
 
 .starsImagine{
 	.rating{
@@ -612,93 +602,85 @@ a:focus{
 		margin-left:7px;
 	}
 }
-.fixedWidth179 {
-	width:179px;
+
+.your-order h2{
+	color:#5d5c5c;
+	font-size:18px;
+	font-weight:bold;
+	font-weight:600;
+	margin-bottom:25px;
 }
-.your-order{
-	h2{
-		color:#5d5c5c;
-		font-size:18px;
-		font-weight:bold;
-		font-weight:600;
-		margin-bottom:25px;
-	}
-	.gray-button{
-		margin-left:30px;
-		margin-bottom:18px;
-	}
-	.leave-comment{
-		margin-left:30px;
-		border-top:solid 1px #dfe0dd;
-		padding-top:15px;
-		margin-right:27px;
-		h3{
-			font-size:14px;
-			line-height:14px;
-			margin-bottom:12px;		
-		}
-		textarea{
-			background-color:#FFF;
-			border: solid 1px #cfd1d1;
-			resize:none;
-			overflow:hidden;
-			width:362px;
-			height:94px;
-			padding:3px;
-			font-size:12px;
-			font-family:Arial, Helvetica, sans-serif;
-			border-radius: 0px;
-		}
-	}
+.your-order .gray-button{
+	margin-left:30px;
+	margin-bottom:18px;
+}
+.your-order .leave-comment{
+	margin-left:30px;
+	border-top:solid 1px #dfe0dd;
+	padding-top:15px;
+	margin-right:27px;
+}
+.your-order .leave-comment h3{
+	font-size:14px;
+	line-height:14px;
+	margin-bottom:12px;		
+}
+
+.your-order .leave-comment textarea{
+	background-color:#FFF;
+	border: solid 1px #cfd1d1;
+	resize:none;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	border-radius: 3px;
 }
 
 .full-order-price-container{
 	margin-left: 38px;
-	border-right: #dbdbd6 1px solid;
 	margin-right: 15px;
 	margin-bottom:40px;
-	.full-order-price-row{
-		border-bottom:dotted 1px #dbdbd6;
-		padding-left:10px;
-		color:#525250;
-		font-size:11px;
-		padding-bottom:2px;
-		padding-top:4px;
-		line-height:11px;
-		position:relative;
-		overflow:hidden;
-		span{
-			float:left;		
-		}
-		.first-element{
-			width:235px;		
-		}
-		.second-element{
-			width:30px;
-			text-align:center;		
-		}
-		.third-element{
-			width:65px;
-			text-align:right;
-		}
-		.delete-button{
-			position:absolute;
-			background: url(../img/order-delete.png) no-repeat 0 0 ;
-			top:1px;
-			right:5px;
-			width:10px;
-			height:10px;			
-		}
-		&.final{
-			font-weight:600;
-			.first-element{
-				margin-left:-3px;
-				margin-right:3px;
-			}
-		}
-	}
-
 }
+.full-order-price-container .full-order-price-row{
+	border-bottom:dotted 1px #dbdbd6;
+	padding-left:10px;
+	color:#525250;
+	padding-bottom:2px;
+	padding-top:4px;
+	position:relative;
+	overflow:hidden;
+}
+.full-order-price-container .full-order-price-row span{
+	float:left;		
+}
+.full-order-price-container .full-order-price-row .first-element{
+	padding-right: 1em;
+	width:235px;		
+}
+.full-order-price-container .full-order-price-row .second-element{
+	width:30px;
+	text-align:center;		
+}
+.full-order-price-container .full-order-price-row .third-element{
+	width:65px;
+	text-align:right;
+}
+.full-order-price-container .full-order-price-row .delete-button{
+	position:absolute;
+	background: url(../img/order-delete.png) no-repeat 0 0 ;
+	top:8px;
+	right:5px;
+	width:10px;
+	height:10px;			
+}
+
+.full-order-price-container .full-order-price-row &.final{
+	font-weight:600;
+}
+.full-order-price-container .full-order-price-row &.final.first-element{
+	margin-left:-3px;
+	margin-right:3px;
+}
+
 .gray-button{
 	border:solid 1px #afafaf;
 	-webkit-border-radius: 5px;
@@ -738,122 +720,133 @@ a:focus{
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus{
 	box-shadow:none;
 }
-.order-informaiton{
-	td{
-		padding:0px;	
-	}
-}
-.your-info{
-	h2{
-		font-size:18px;
-		color:#c81f28;
-		line-height:18px;
-		margin-bottom:25px;
-		margin-left:35px;
-		font-weight:600;
-	}
-	.your-info-registration{
-		margin-left:40px;
-		padding-bottom:20px;
-		margin-bottom:20px;
-		border-bottom: 1px solid #DFE0DD;
-		margin-right:40px;
-		overflow:hidden;
-		&:last-child{
-			border-bottom: none;
-			label{
-				font-size:11.4px !important;
-			}
-		}
-		h3{
-			color:#464545;
-			font-weight:600;
-			font-size:14px;
-			line-height:14px;
-			margin-bottom:15px;
-		}
-		strong{
-			color:#464545;
-			font-weight: normal;
-			font-size:14px;
-			line-height:14px;
-			margin-bottom:20px;
-			display:block;
-		}
-		.registration-row{
-			overflow:hidden;
-			label{
-				cursor:default;
-				float:left;		
-				line-height:27px;
-				font-size:14px;
-				margin-left:4px;
-				font-weight:600;
-				color:#717070;
-			}
-			input{
-				float:right;
-				border-radius:0px;
-				width:186px;
-				border-color:#abadb3;
-				height:14px;
-			}
-			select{
-				float:right;
-				border-radius:0px;
-				width:200px;
-				border-color:#abadb3;
-				height:24px;
-				padding-top:0px;
-				padding-bottom:0px;
-				padding-right:0px;
-				outline-style:none;
-			}
-			input[type=checkbox]{
-				float:left;
-				width:auto;
-				margin-right:5px;
-				margin-left:4px;
-				margin-top: 2px;
-			}
-			p{
-				float:left;
-				width:325px;
-				font-size:12px;
-				line-height:16px;
-				color:#4f4f4f;
-				a{
-					color:#bf1a14;
-					&:hover{
-						color:#bf1a14;
-					}
-				}
-			}
-			&.checkbox-row{
-				margin-top:10px;			
-			}
-		}
-		.forgot-password{
-			float:right;
-			width:200px;
-			display:block;
-			color:#c81f28;
-			font-size:10px;
-			line-height:10px;
-			margin-top:-5px;
-			font-weight:600;
-			clear:both;
-		}
-		.yellow-button{
-			width:100px;
-			clear:both;
-			margin-top:20px;
-			float:right;
-		}
-	
-	}
 
+.order-informaiton td{
+	padding:0px;	
 }
+
+.your-info h2 {
+	font-size:18px;
+	color:#c81f28;
+	line-height:18px;
+	margin-bottom:25px;
+	margin-left:35px;
+	font-weight:600;
+}
+
+.your-info .your-info-registration {
+	margin-left:40px;
+	padding-bottom:20px;
+	margin-bottom:20px;
+	margin-right:40px;
+	overflow:hidden;
+}
+
+.your-info .your-info-registration:last-child {
+	border-bottom: none;
+}
+
+.your-info .your-info-registration:last-child label{
+	font-size:11.4px !important;
+}
+
+.your-info .your-info-registration h3 {
+	color:#464545;
+	font-weight:600;
+	font-size:14px;
+	line-height:14px;
+	margin-bottom:15px;
+}
+
+.your-info .your-info-registration strong {
+	color:#464545;
+	font-weight: normal;
+	font-size:14px;
+	line-height:14px;
+	margin-bottom:20px;
+	display:block;
+}
+
+.your-info .your-info-registration .registration-row {
+	overflow: hidden;
+}
+
+.your-info .your-info-registration .registration-row label {
+	cursor:default;
+	float:left;		
+	line-height:27px;
+	font-size:14px;
+	margin-left:4px;
+	font-weight:600;
+	color:#717070;
+}
+
+.your-info .your-info-registration .registration-row input {
+	float:right;
+	border-radius:0px;
+	width:200px;
+	border-color:#abadb3;
+}
+
+.your-info .your-info-registration .registration-row select {
+	float:right;
+	border-radius:0px;
+	width:200px;
+	border-color:#abadb3;
+	height:24px;
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-right:0px;
+	outline-style:none;
+}
+
+.your-info .your-info-registration .registration-row input[type=checkbox] {
+	float:left;
+	width:auto;
+	margin-right:5px;
+	margin-left:4px;
+	margin-top: 2px;
+}
+
+.your-info .your-info-registration .registration-row p {
+	float:left;
+	width:325px;
+	font-size:12px;
+	line-height:16px;
+	color:#4f4f4f;
+}
+
+.your-info .your-info-registration .registration-row p a {
+	color:#bf1a14;
+}
+
+.your-info .your-info-registration .registration-row p a:hover {
+	color:#bf1a14;
+}
+
+.your-info .your-info-registration .registration-row p.checkbox-row {
+	margin-top:10px;
+}
+
+.your-info .your-info-registration .forgot-password {
+	float:right;
+	width:200px;
+	display:block;
+	color:#c81f28;
+	font-size:10px;
+	line-height:10px;
+	margin-top:-5px;
+	font-weight:600;
+	clear:both;
+}
+
+.your-info .your-info-registration .forgot-password .yellow-button {
+	width:100px;
+	clear:both;
+	margin-top:20px;
+	float:right;
+}
+
 
 .yellow-button{
 	font-family:Arial, Helvetica, sans-serif;
@@ -1259,4 +1252,9 @@ th{
     margin-left:auto !important;
 	margin-right:auto !important;
     width: 115px !important;
+}
+
+.well {
+	/*margin-right: 1em;*/
+	/*width: 45%;*/
 }

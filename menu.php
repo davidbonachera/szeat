@@ -66,59 +66,9 @@ if ($db->affected_rows > 0) {
     <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
 	<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-		$(document).ready(function(){
-			$.fn.prettyPhoto({
-				default_width: 400,
-				default_height: 130,
-				animation_speed: 'fast', 	/* fast/slow/normal */
-				show_title: false, 			/* true/false */
-				theme: 'facebook', 			/* light_rounded / dark_rounded / light_square / dark_square / facebook */
-				modal: false, 				/* If set to true, only the close button will close the window */
-				overlay_gallery: false, 	/* If set to true, a gallery will overlay the fullscreen image on mouse over */
-				keyboard_shortcuts: false, 	/* Set to false if you open forms inside prettyPhoto */
-				social_tools: '' 			/* html or false to disable */
-			});
-			<?php if ($deliveryAvailable==false) { ?>
-				$.prettyPhoto.open('#inlineContent','','');
-			<?php } ?>
-			// $.prettyPhoto.close();
-		});
-		$(window).scroll(function(){
-			$("#categoriesMenu").css({
-				position: 'relative',
-				top: 0
-			});
-			
-			$("#yourOrder").css({
-				position: 'relative',
-				top: 0
-			});
-			
-			var scrollTop 		= $(document).scrollTop();
-			var contentOffset 	= $('#categoriesMenu').offset().top;
-			var contentHeight 	= $('#categoriesMenu').outerHeight();
-			
-			var menuCategoriesOffset 	= $("#categoriesMenu").offset().top;
-			var menuCategoriesHeight 	= $("#categoriesMenu").outerHeight();
-			var menuCategoriesTooLow 	= contentOffset + contentHeight - scrollTop < menuCategoriesHeight;
-			var menuCategoriesTooHigh 	= scrollTop > menuCategoriesOffset;
-			
-			if (menuCategoriesTooLow || menuCategoriesTooHigh) {
-				$("#categoriesMenu").css('position', 'fixed');
-				$("#yourOrder").css('position', 'fixed');
-			}
-			if (menuCategoriesTooLow) {
-				$("#categoriesMenu").css('position', 'fixed');
-				$("#yourOrder").css('position', 'fixed');
-				// $("#categoriesMenu").css('top', contentOffset + contentHeight - scrollTop - menuCategoriesHeight);
-			}
-		});
+		
 	</script>
-	<?php if (strstr($_SERVER['HTTP_USER_AGENT'],"Chrome")) { ?>
-	<style type="text/css">
-        .menu ul strong {margin-left:50px;}
-    </style>
-    <?php } ?>
+	
 </head>
 
 <body>

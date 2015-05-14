@@ -33,6 +33,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
 <script type="text/javascript" src="js/custom-form-elements.js"></script>
+<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 <?php if(file_exists('pages/'.$page.'/local.js')) {
         echo '<script type="text/javascript" src="pages/'.$page.'/local.js"></script>';
     }

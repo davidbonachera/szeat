@@ -86,9 +86,9 @@
                             </div>
                         </div>
                         <div class="text-center col-sm-3 product-button-list">
-                        	<div class="view-menu"><button class="btn btn-yellow" href="menu.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>">View menu</button></div>
+                        	<div class="view-menu"><a class="btn btn-yellow" href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>">View menu</a></div>
                             <?php $rating = ratings($res['restaurant_id']); ?>
-                            <b>User Rating:</b><br>(<a href="restaurant.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>#ratings"><?php echo $rating['count']; ?> ratings</a>)
+                            <b>User Rating:</b><br>(<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>#ratings"><?php echo $rating['count']; ?> ratings</a>)
                             
 
                             <div class="rating">

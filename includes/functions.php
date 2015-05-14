@@ -6,10 +6,10 @@ if (isset($_GET['add_item'])) {
 		
 		$restaurant = urlText($_GET['restaurant']);
 		if ($orderPage) {
-			header("Location: order-details.php");
+			header("Location: index.php?page=order-details");
 			exit;
 		} else {
-			header("Location: menu.php?restaurant={$restaurant}&id={$_GET['id']}");
+			header("Location: index.php?page=menu&restaurant={$restaurant}&id={$_GET['id']}");
 			exit;
 		}
 		
@@ -22,11 +22,11 @@ if (isset($_GET['add_item'])) {
 
 		$restaurant = urlText($_GET['restaurant']);
 		if ($orderPage) {
-			header("Location: order-details.php");
+			header("Location: index.php?page=order-details");
 			exit;
 		} else {
 			$restaurantID = $db->escape($_GET['id']);
-			header("Location: menu.php?restaurant={$restaurant}&id=".$restaurantID);
+			header("Location: index.php?page=menu&restaurant={$restaurant}&id=".$restaurantID);
 			exit;
 		}
 	}
@@ -38,11 +38,11 @@ if (isset($_GET['add_item'])) {
 		
 		$restaurant = urlText($_GET['restaurant']);
 		if ($orderPage) {
-			header("Location: order-details.php");
+			header("Location: index.php?page=order-details");
 			exit;
 		} else {
 			$restaurantID = $db->escape($_GET['id']);
-			header("Location: menu.php?restaurant={$restaurant}&id=".$restaurantID);
+			header("Location: index.php?page=menu&restaurant={$restaurant}&id=".$restaurantID);
 			exit;
 		}
 	}

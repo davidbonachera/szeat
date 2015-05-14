@@ -1,14 +1,13 @@
-<div class="span2 my-span-order">
+<div class="col-sm-3">
     <?php if (isset($_SESSION['error']) && $_SESSION['error']==true) { ?>
     	<div class="error"><?php echo $_SESSION['msg']; ?></div>
     <?php } ?>
     
-    <div class="block-page your-order fixedWidth179" id="yourOrder">
+    <div class="block-page">
 
         <h2>Your order</h2>
         <ul>
             <?php 
-
 
             if (isset($_SESSION['user']['items'])) { 
 
@@ -21,9 +20,6 @@
                     unset($_SESSION['user']['delivery_fee']);
                 }
             	
-
-
-
 				foreach ($_SESSION['user']['items'] as $key=>$item) { ?>
                 	<?php $ir = $db->query_first("SELECT * FROM menu_items WHERE id={$item['id']} AND status=1"); ?>
                     <?php if ($db->affected_rows > 0) { ?>
@@ -43,7 +39,7 @@
                             <span><?php echo _priceSymbol; ?></span>
                             <?php $itemPriceCalculated = number_format($itemPrice*$item['quantity'],2); ?>
                             <?php $totalItemPrice += $itemPriceCalculated; ?>
-                            <i><?php echo $itemPriceCalculated; ?><a href="menu.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>&remove_item=<?php echo $item['id']; ?>&size=<?php echo $item['size']; ?>"><img src="img/order-delete.png" alt=""  /></a></i>
+                            <i><?php echo $itemPriceCalculated; ?><a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>&remove_item=<?php echo $item['id']; ?>&size=<?php echo $item['size']; ?>"><img src="img/order-delete.png" alt=""  /></a></i>
                         </li>
                     <?php } // $db->affected_rows > 0 ?>
                 <?php } // endforeach 
@@ -85,7 +81,7 @@
         ?>
 
         <div class="order-button">
-            <div class="view-menu"><a class="yellow-button" href="<?php echo (($deliveryAvailable==false)||($spendEnough!=true)) ? "":"order-details.php"; ?>">Order Now</a></div>
+            <div class="view-menu"><a class="btn btn-yellow" href="<?php echo (($deliveryAvailable==false)||($spendEnough!=true)) ? "":"index.php?page=order-details"; ?>">Order Now</a></div>
         </div>
     </div>
 </div>
