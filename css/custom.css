@@ -10,14 +10,14 @@
 }
 
 .redwarning {
-	color: #c9121a;
+	color: #e31e24;
 	padding-left: 1em;
 	padding-right: 1em;
 }
 
 #homesub {
 	font-family: 'love_ya_like_a_sisterregular';
-	color: #c9121a;
+	color: #e31e24;
 }
 
 
@@ -150,7 +150,7 @@ body {
 	border-radius: 3px;
 	padding-top: 3em;
 	padding-bottom: 1em;
-	background: #c9121a;
+	background: #e31e24;
 }
 
 #startbox label {

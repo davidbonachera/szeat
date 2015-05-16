@@ -24,9 +24,6 @@ h1, h2, h3, h4, h5, p{
 	padding:0px;
 }
 
-a:focus{
-	outline-style:none;
-}
 
 .header{
 	/*background:url(../img/header-bg.png) top center repeat-x;*/
@@ -38,6 +35,39 @@ a:focus{
 .header h1{
 	padding-top:32px;
 }
+
+#headerlogo {
+	max-width:140px;
+	margin-top:-7px;
+}
+
+/*desktop header*/
+@media (min-width: 768px) {
+
+	.header {
+		height: 120px;
+		padding-top: 0.5em;
+
+	}
+
+	.navbar-right .dropdown-menu {
+		right: auto;
+	}
+
+	#headerlogo {
+		max-width: none;
+		height: 80px;
+		margin-top:-7px;
+
+	}
+
+	.navbar-default {
+		border: 0;
+	}
+
+}
+
+
 
 .log-in{
 	width:115px;
