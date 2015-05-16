@@ -10,30 +10,44 @@
         </div>
         
     	<!-- main content -->
-        <div class="row">
+        <div class="row myfonts">
         	<div class="col-sm-12">
-            	<div class="block-page acountd-details">
-                    <ul class="nav nav-tabs" id="myTab">
-                        <li class="active"><a href="#my-acountd-details">My Account Details</a></li>
-                        <li><a href="#my-recent-orders">My Recent Orders </a></li>
-                        <li><a href="#my-ratings">My Ratings</a></li>
-                    </ul>
-                    <?php $uData = $db->query_first("SELECT * FROM users WHERE id={$_SESSION['user']['id']}"); ?>
-                  	<div class="tab-content">
-                        <div class="tab-pane active" id="my-acountd-details">
-                        	<div class="row">
-                                <form method="post" action="">
-                                    <div class="col-sm-6 detalis-forms">
-                                        <h3>Your Details:</h3>
-                                        <div>
-                                            <label>Name:</label>
-                                            <input type="text" name="name" value="<?php echo $uData['name']; ?>"  />
+            	
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active"><a href="#my-acountd-details">My Account Details</a></li>
+                    <li><a href="#my-recent-orders">My Recent Orders </a></li>
+                    <li><a href="#my-ratings">My Ratings</a></li>
+                </ul>
+
+                <?php $uData = $db->query_first("SELECT * FROM users WHERE id={$_SESSION['user']['id']}"); ?>
+              	<div class="tab-content">
+                    <div class="tab-pane active" id="my-acountd-details">
+                    	<div class="row">
+                            <form method="post" action="" class="form form-horizontal">
+                                <div class="col-sm-6">
+
+                                    <h2 class="page-header">Personal Info</h2>
+
+
+                                    <div class="form-group form-horizontal">
+                                        <label class="control-label col-sm-4">Name:</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="text" name="name" value="<?php echo $uData['name']; ?>"  />
                                         </div>
-                                        <div>
-                                            <label>Phone number:</label>
-                                            <input type="text" name="phone" value="<?php echo $uData['phone']; ?>" />
+                                    </div>
+
+                                    <div class="form-group form-horizontal">
+                                        <label class="control-label col-sm-4">Phone:</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="text" name="phone" value="<?php echo $uData['phone']; ?>"  />
                                         </div>
-                                        <button id="change_password" type="button" class="gray-button">Change Password</button>
+                                    </div>
+
+                                    <div class="form-group" style="margin-top:1em;">
+                                        <div class="col-md-offset-4 col-md-1">
+                                            <button id="change_password" type="button" class="btn btn-info">Change Password</button>
+                                        </div>
+                                    </div>                                    
                                         
                                         <div class="clearfix">&nbsp;</div>
                                         <?php if (isset($_SESSION['msg'])) { ?>
@@ -42,51 +56,66 @@
                                             </div>
                                         <?php } // isset $_SESSION['msg'] ?>
                                     </div>
-                                    <div class="col-sm-5 detalis-forms">
-                                        <h3>Delivery Address:</h3>
-                                        <div>
-                                            <label> Your Area:</label>
-                                            <select name="area" id="area">
-                                                <option hidden="">Select</option>
-                                                <?php $areas = $db->query("SELECT * FROM areas WHERE status=1 ORDER BY title ASC"); ?>
-                                                <?php while ($r=$db->fetch_array($areas)) { ?>
+                                    <div class="col-sm-5">
+
+                                        <h2 class="page-header">Delivery Details</h2>
+
+                                        <div class="form-group form-horizontal">
+                                            <label class="control-label col-sm-4">Your Area:</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control" id="area" name="area">
+                                                    <option hidden="">Select</option>
+                                                    <?php $areas = $db->query("SELECT * FROM areas WHERE status=1 ORDER BY title ASC"); ?>
+                                                    <?php while ($r=$db->fetch_array($areas)) { ?>
                                                     <option value="<?php echo $r['id']; ?>" <?php echo $r['id']==$uData['area_id'] ? 'selected':NULL; ?>>
                                                         <?php __($r['title']); ?>
                                                     </option>
-                                                <?php } // while $areas loop ?>
-                                            </select>
+                                                 <?php } // while $areas loop ?>
+                                                </select>
+                                            </div>
+                                         </div>
+
+                                        <div class="form-group form-horizontal">
+                                            <label class="control-label col-sm-4">Your Building:</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control" id="building" name="building">
+                                                    <option hidden="hidden">Select</option>
+                                                    <?php $cuisines = $db->query("SELECT * FROM buildings WHERE status=1 ORDER BY title ASC"); ?>
+                                                    <?php while ($r=$db->fetch_array($cuisines)) { ?>
+                                                        <option value="<?php echo $r['id']; ?>" <?php echo $r['id']==$uData['building_id'] ? 'selected':NULL; ?>>
+                                                            <?php __($r['title']); ?>
+                                                        </option>
+                                                    <?php } // while $areas loop ?>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <label>Your Building:</label>
-                                            <select name="building" id="building">
-                                                <option hidden="hidden">Select</option>
-                                                <?php $cuisines = $db->query("SELECT * FROM buildings WHERE status=1 ORDER BY title ASC"); ?>
-                                                <?php while ($r=$db->fetch_array($cuisines)) { ?>
-                                                    <option value="<?php echo $r['id']; ?>" <?php echo $r['id']==$uData['building_id'] ? 'selected':NULL; ?>>
-                                                        <?php __($r['title']); ?>
-                                                    </option>
-                                                <?php } // while $areas loop ?>
-                                            </select>
+
+                                        <div class="form-group form-horizontal">
+                                            <label class="control-label col-sm-4">Block / Apt:</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" type="text" name="apartment" placeholder="Building 6, Apt. 10 E" value="<?php echo $uData['apartment']; ?>"/>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <label>Your Block / Apt #:</label>
-                                            <input type="text" name="apartment" placeholder="Building 6, Apt. 10 E" value="<?php echo $uData['apartment']; ?>"/>
+
+                                        <div class="form-group" style="margin-top:1em;">
+                                            <div class="col-md-offset-1 col-md-1">
+                                                <button type="submit" class="btn btn-yellow">Save Changes</button>
+                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-yellow">Save changes</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="tab-pane" id="my-recent-orders">
-                            <h3 class="page-header">Order Overview</h3>
-                            <table width="1030">
+                            <h2 class="page-header">Order Overview</h2>
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="15%" align="left">Date </th>
-                                        <th width="15%" align="left">Order Number</th>
-                                        <th width="15%" align="left">Restaurant</th>
-                                        <th width="15%" align="left">Price</th>
-                                        <th width="40%" align="left">Rating</th>
+                                        <th align="left">Date </th>
+                                        <th align="left">Order Number</th>
+                                        <th align="left">Restaurant</th>
+                                        <th align="left">Price</th>
+                                        <th align="left">Rating</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -102,8 +131,8 @@
 										<?php while($order=$db->fetch_array($oq)) { ?>
                                             <tr>
                                                 <td><?php echo date("m/d/Y",strtotime($order['date'])); ?></td>
-                                                <td class="red"><a href="page=order-summary&order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
-                                                <td nowrap><?php echo getData('restaurants','name',$order['restaurant_id']); ?> &nbsp; </td>
+                                                <td><a href="page=order-summary&order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
+                                                <td><?php echo getData('restaurants','name',$order['restaurant_id']); ?> &nbsp; </td>
                                                 <td><?php echo $order['price']; ?> <?php echo _priceSymbol; ?></td>
                                                 <td><?php 
 														$rating = $db->query_first("SELECT * FROM ratings WHERE order_id={$order['id']}");
@@ -145,15 +174,15 @@
                             <?php } // sizeof ?>
                         </div>
                         <div class="tab-pane" id="my-ratings">
-                        	<h3 class="page-header">Ratings</h3>
-                            <table width="1030" style="min-height:70px;">
+                        	<h2 class="page-header">Ratings</h2>
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="15%" align="left">Date </th>
-                                        <th width="15%" align="left">Order number</th>
-                                        <th width="15%" align="left">Restaurant</th>
-                                        <th width="15%" align="left">Rating</th>
-                                        <th width="40%" align="left">Review</th>
+                                        <th align="left">Date </th>
+                                        <th align="left">Order number</th>
+                                        <th align="left">Restaurant</th>
+                                        <th align="left">Rating</th>
+                                        <th align="left">Review</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -169,8 +198,8 @@
 										<?php while($rating=$db->fetch_array($rq)) { ?>
                                             <tr>
                                                 <td><?php echo date("m/d/Y",strtotime($rating['date'])); ?></td>
-                                                <td class="red"><a href="order-summary.php?order=<?php echo $rating['order_id']; ?>"><?php echo $rating['order_id']; ?></a></td>
-                                                <td nowrap><?php echo getData('restaurants','name',$rating['restaurant_id']); ?> &nbsp; </td>
+                                                <td><a href="order-summary.php?order=<?php echo $rating['order_id']; ?>"><?php echo $rating['order_id']; ?></a></td>
+                                                <td><?php echo getData('restaurants','name',$rating['restaurant_id']); ?> &nbsp; </td>
                                                 <td><span class="rating">
 														<?php 
                                                             for($i=$rating['ratings']; $i<=4; $i++) { 
@@ -209,6 +238,6 @@
                     </div>
                     
                 </div>
-            </div></div>
+            </div>
         </div>
     	<!-- end of main content -->

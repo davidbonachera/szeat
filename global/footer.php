@@ -8,20 +8,20 @@
                 $half  = round($total/2);
 
                 if ($db->affected_rows > 0) { 
-                        echo '<div class="col-sm-2">';
-                            echo '<ul>';
-                                while($pr=$db->fetch_array($pages)) {
-                                    isset($count) ? $count++:$count=1; ?>
-                                    <li><a href="page.php?name=<?php echo urlText($pr['title']); ?>"><?php __($pr['title']); ?></a></li>
-                                    <?php if ($count==$half) { ?>
-                                        </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                        <ul>
-                                    <?php }
-                                }
-                            echo '</ul>';
-                        echo '</div>';
+                    echo '<div class="col-sm-2">';
+                        echo '<ul>';
+                            while($pr=$db->fetch_array($pages)) {
+                                isset($count) ? $count++:$count=1; ?>
+                                <li><a href="index.php?page=page&id=<?php echo urlText($pr['id']); ?>"><?php __($pr['title']); ?></a></li>
+                                <?php if ($count==$half) { ?>
+                                    </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <ul>
+                                <?php }
+                            }
+                        echo '</ul>';
+                    echo '</div>';
                 }
 
                 ?>

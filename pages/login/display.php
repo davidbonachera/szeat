@@ -18,103 +18,154 @@
                 </div>
                 <div class="clearfix">&nbsp;</div>
             <?php } // isset $_SESSION['msg'] ?>
-        	<!-- your-order -->
-        	<div class="col-sm-6">
-            	<div class="your-info gray-bg-container">
-                	<h2>Name and Address</h2>
-                    <!-- your-info-registration -->
-                    <div class="your-info-registration">
-                        <form action="" method="post">
-                        	<h3>Existing Member</h3>
-                            <div class="registration-row">
-                            	<label>E-mail Address:</label>
-                                <input type="email" name="email" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['email'])) ? $_POST['email']:NULL; ?>" />
-                            </div>
-                            <div class="registration-row">
-                            	<label>Password:</label>
-                                <input type="password" name="password" autocomplete="off" />
-                            </div>
-                            <a href="index.php?page=forgot-password" class="forgot-password">Forgotten your password?</a>
-                            <button type="submit" class="btn btn-yellow">Login</button>
+        	
 
-                        </form>
-                	</div>
-                    <!-- end of your-info-registration -->
+            <!-- your-order -->
+        	<div class="col-sm-6 myfonts">
+
+                <div class="well">
+
+                    <form action="" method="post" class="form-horizontal">
+                        <h2>Existing Member</h2>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">E-mail Address:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="email" name="email" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['email'])) ? $_POST['email']:NULL; ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Password:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="password" name="password" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-8">
+                                <a href="index.php?page=forgot-password" class="forgot-password">Forgotten your password?</a>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top:1em;">
+                            <div class="col-md-offset-4 col-md-1">
+                                <button type="submit" class="btn btn-yellow">Login</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
                 </div>
+
             </div>
-        	<!--end of your-order -->
             
-        	<!-- your-info -->
-        	<div class="col-sm-6">
-            	<div class="your-info gray-bg-container">
-                    <div class="your-info-registration">
-                        <form action="" method="post">
-                        	<h3>New Member</h3>
-                            <div class="registration-row">
-                            	<label>Name:</label>
-                                <input type="text" name="name" id="name" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['name'])) ? $_POST['name']:NULL; ?>" />
+        	<div class="col-sm-6 myfonts">
+                <div class="well">
+                    <form action="" method="post" class="form-horizontal"> 
+                            
+                        <h2>New Member</h2>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Name:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" name="name">
                             </div>
-                            <div class="registration-row">
-                            	<label>Phone:</label>
-                                <input type="text" name="phone" id="phone" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['phone'])) ? $_POST['phone']:NULL; ?>" />
+                        </div>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Phone:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" name="phone">
                             </div>
-                            <div class="registration-row">
-                            	<label>Your Area:</label>
-                                <select name="area" id="area">
-                                	<option hidden="hidden" value="">Select</option>
-									<?php $areas = $db->query("SELECT * FROM areas WHERE status=1 ORDER BY title ASC"); ?>
+                        </div>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Your Area:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="area" name="area">
+                                    <option hidden="hidden">Select</option>
+                                    <?php $areas = $db->query("SELECT * FROM areas WHERE status=1 ORDER BY title ASC"); ?>
                                     <?php while ($r=$db->fetch_array($areas)) { ?>
-                                        <option value="<?php echo $r['id']; ?>" <?php echo (isset($_POST) && $_SESSION['error']==true && $_POST['area']==$r['id']) ? 'selected':NULL; ?>>
-											<?php __($r['title']); ?>
-                                        </option>
+                                        <option value="<?php echo $r['id']; ?>"><?php __($r['title']); ?></option>
                                     <?php } // while $areas loop ?>
                                 </select>
                             </div>
-                            <div class="registration-row">
-                            	<label>Your Building:</label>
-                                <select name="building" id="building">
-                                	<option hidden="hidden" value="">Select</option>
-									<?php $cuisines = $db->query("SELECT * FROM buildings WHERE status=1 ORDER BY title ASC"); ?>
+                        </div>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Your Building:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="building" name="building">
+                                    <option hidden="hidden">Select</option>
+                                    <?php $cuisines = $db->query("SELECT * FROM buildings WHERE status=1 ORDER BY title ASC"); ?>
                                     <?php while ($r=$db->fetch_array($cuisines)) { ?>
-                                        <option value="<?php echo $r['id']; ?>" <?php echo (isset($_POST) && $_SESSION['error']==true && $_POST['building']==$r['id']) ? 'selected':NULL; ?>>
-											<?php __($r['title']); ?>
-                                        </option>
+                                        <option value="<?php echo $r['id']; ?>"><?php __($r['title']); ?></option>
                                     <?php } // while $areas loop ?>
                                 </select>
                             </div>
-                            <div class="registration-row">
-                            	<label>Your Block/ Apt #:</label>
-                                <input type="text" name="apartment" id="apartment" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['apartment'])) ? $_POST['apartment']:NULL; ?>" />
+                        </div>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Block / Apt:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" name="apartment">
                             </div>
-                            <div class="registration-row">
-                            	<label>E-mail address:</label>
-                                <input type="email" name="email1" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['email1'])) ? $_POST['email1']:NULL; ?>" />
+                        </div>
+
+
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Email address:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="email" name="email1">
                             </div>
-                            <div class="registration-row">
-                            	<label>Re-enter Email addres:</label>
-                                <input type="email" name="email2" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['email2'])) ? $_POST['email2']:NULL; ?>" />
+                        </div>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Re-enter email address:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="email" name="email2">
                             </div>
-                            <div class="registration-row">
-                            	<label>Password:</label>
-                                <input type="password" name="password1" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['password1'])) ? $_POST['password1']:NULL; ?>" />
+                        </div>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Password:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="password" name="password1">
                             </div>
-                            <div class="registration-row">
-                            	<label>Re-enter Password:</label>
-                                <input type="password" name="password2" value="<?php echo (isset($_POST) && $_SESSION['error']==true && isset($_POST['password2'])) ? $_POST['password2']:NULL; ?>" />
+                        </div>
+
+                        <div class="form-group form-horizontal">
+                            <label class="control-label col-sm-4">Re-enter password:</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="password" name="password2">
                             </div>
-                            <div class="registration-row checkbox-row">
-                            	<input type="checkbox" name="newsletter" value="1" <?php echo ($_POST) ? ($_POST['newsletter']==1 ? 'checked':NULL):'checked'; ?> />
-                                <p>I would like to sign up to the SHENZHEN EAT newsletter (via email and mobile) for the chance to win free takeaway for a year.</p>
-                           	</div> 
-                            <div class="registration-row checkbox-row">
-                            	<input type="checkbox" name="terms" value="1" <?php echo (isset($_POST) && $_SESSION['error']==true && $_POST['terms']==1) ? 'checked':NULL; ?> />
-                                <p>I accept the <a href="#">terms and conditions</a>, <a href="#">privacy policy</a> & <a href="#">cookies policy</a></p>
-                           	</div> 
-                            <button name="submit" type="submit" class="btn btn-yellow">Next</button>
-                        </form>
-                	</div>
-                    <!-- end of your-info-registration -->
-                </div>
+                        </div>
+
+
+                        <div class="col-xs-12">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="newsletter" checked="checked" value="1">I would like to sign up to the SHENZHEN EAT newsletter (via email and mobile) for the chance to win free takeaway for a year.</label>
+                            </div>
+                        </div>
+                    
+                        <div class="col-xs-12">
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="terms" value="1">I accept the <a href="#">terms and conditions</a>, <a href="#">privacy policy</a> &amp; <a href="#">cookies policy</a>.</label>
+                            </div>
+                        </div>
+
+                        <textarea class="notesbox" name="notes" id="notes" style="display:none;"><?php echo isset($_SESSION['user']['notes']) ? $_SESSION['user']['notes']:NULL; ?></textarea>
+                        
+                        <div class="form-group" style="margin-top:1em;">
+                            <div class="col-md-offset-1 col-md-1">
+                                <button type="submit" class="btn btn-yellow">Next</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>                
             </div>
         	<!-- end of your-info -->
         </div>

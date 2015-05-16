@@ -27,11 +27,14 @@
                                     <li><a href="logout.php" style="color:#343333;"><?php echo ($xml->$lang->logout == "" ? $xml->en->logout : $xml->$lang->logout); ?></a></li>
                                 </ul>                      
                             <?php } else { ?>
-                                <a href="login.php"><?php echo ($xml->$lang->signup == "" ? $xml->en->signup : $xml->$lang->signup); ?></a>
-                                <a class="btn btn-custom navbar-btn" href="login.php" role="button"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo ($xml->$lang->login == "" ? $xml->en->login : $xml->$lang->login); ?></a>                                
+                                <a href="index.php?page=login"><?php echo ($xml->$lang->signup == "" ? $xml->en->signup : $xml->$lang->signup); ?></a>
+                                <a class="btn btn-custom navbar-btn" href="index.php?page=login" role="button"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo ($xml->$lang->login == "" ? $xml->en->login : $xml->$lang->login); ?></a>
                             <?php } ?>
-                            <a href="index.php?<?php echo 'page='.$page.'&';?>lang=en"><img src="img/uk-flag.png" style="max-height:44px;" /></a>
-                            <a href="index.php?<?php echo 'page='.$page.'&';?>lang=cn"><img src="img/china-flag.png" style="max-height:44px;" /></a>  
+<!--                             <a href="index.php?<?php echo 'page='.$page.'&';?>lang=en"><img src="img/uk-flag.png" style="max-height:44px;" /></a>
+                            <a href="index.php?<?php echo 'page='.$page.'&';?>lang=cn"><img src="img/china-flag.png" style="max-height:44px;" /></a>   -->
+
+                            <a href="index.php?lang=en"><img src="img/uk-flag.png" style="max-height:44px;" /></a>
+                            <a href="index.php?lang=cn"><img src="img/china-flag.png" style="max-height:44px;" /></a>  
                         </div>              
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

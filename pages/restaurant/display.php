@@ -49,9 +49,9 @@
         </div>
 
         <div class="col-sm-3 starsImagine">
-            <div class="view-menu"><a class="btn btn-yellow" href="#">View menu</a></div>
-            <?php $rating = ratings($res['id']); ?>
-            <p class="user-rating">User rating (<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>#ratings"><?php echo $rating['count']; ?> ratings</a>)</p>
+            <div class="view-menu"><a class="btn btn-yellow" href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>">View menu</a></div>
+            <?php $rating = ratings($res['restaurant_id']); ?>
+            <p class="user-rating">User rating (<a href="#ratings"><?php echo $rating['count']; ?> ratings</a>)</p>
             <span class="rating">
                 <?php 
                     for($i=$rating['rating']; $i<=4; $i++) { 
@@ -73,7 +73,7 @@
                 <h2>More About <?php __($res['name']); ?></h2>
                 <p>
                     <?php echo $res['description']; ?>
-                    <a href="menu.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php __($res['name']); ?> Menu</a>
+                    <a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php __($res['name']); ?> Menu</a>
                 </p>
             </div>
         </div>
