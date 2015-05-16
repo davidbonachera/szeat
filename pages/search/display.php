@@ -50,11 +50,11 @@
                 <li class="<?php foreach ($cuisineIds as $cuisine) echo $cuisine.' '; ?>">
                 	<div class="row product-strock">
                 		<div class="col-sm-2">	
-                        	<a href="restaurant.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><img class="img-responsive" src="timthumb.php?w=111&zc=0&src=./<?php echo checkFeild($res['thumbnail']) ? $res['thumbnail']:'images/no_image_thumb.gif'; ?>" alt="" /></a>
+                        	<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><img class="img-responsive" src="timthumb.php?w=111&zc=0&src=./<?php echo checkFeild($res['thumbnail']) ? $res['thumbnail']:'images/no_image_thumb.gif'; ?>" alt="" /></a>
                         </div>
                         <div class="col-sm-7">
                         	<div class="product-name-list">
-                            	<h2><a href="restaurant.php?restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php __($res['name']); ?></a></h2>
+                            	<h2><a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php __($res['name']); ?></a></h2>
                                 
                                     <?php
                                         if ($res['minimum_order'] != NULL) {

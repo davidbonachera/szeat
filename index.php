@@ -4,6 +4,7 @@
     require_once('class/config.inc.php');
     require_once('global/global_vars.php');
     require_once("class/Pagination.class.php");
+    require_once("class/class.phpmailer.php");
     require_once('includes/functions.php');
 
     require_once('global/global_meta.php');

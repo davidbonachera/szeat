@@ -22,7 +22,7 @@ $(document).ready(function(){
 	}
 });
 $('#change_password').click(function() {
-	window.location = "change-password.php";
+	window.location = "index.php?page=change-password";
 });
 function getURLParameter(name) {
 	return decodeURI(

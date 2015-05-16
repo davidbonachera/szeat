@@ -102,7 +102,7 @@
 										<?php while($order=$db->fetch_array($oq)) { ?>
                                             <tr>
                                                 <td><?php echo date("m/d/Y",strtotime($order['date'])); ?></td>
-                                                <td class="red"><a href="order-summary.php?order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
+                                                <td class="red"><a href="page=order-summary&order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
                                                 <td nowrap><?php echo getData('restaurants','name',$order['restaurant_id']); ?> &nbsp; </td>
                                                 <td><?php echo $order['price']; ?> <?php echo _priceSymbol; ?></td>
                                                 <td><?php 
@@ -116,11 +116,11 @@
 																		echo '<span class="star rated"></span>';
 																echo '</span>';
 															} else {
-																echo '<a href="rate-takeaway.php?order='.$order['id'].'">Pending Approval</a>';
+																echo '<a href="index.php?page=rate-takeaway&order='.$order['id'].'">Pending Approval</a>';
 															}
 														} else {
 													?>
-                                                    	<a href="rate-takeaway.php?order=<?php echo $order['id']; ?>">Rate Now</a>
+                                                    	<a href="index.php?page=rate-takeaway&order=<?php echo $order['id']; ?>">Rate Now</a>
                                                     <?php } ?>
 												</td>
                                             </tr>

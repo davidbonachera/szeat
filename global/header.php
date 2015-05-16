@@ -22,7 +22,7 @@
                             <?php if (isset($_SESSION['user']['id'])) { ?>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo getData('users','name',$_SESSION['user']['id']); ?> <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="account-details.php" style="color:#343333;"><?php echo ($xml->$lang->myacc == "" ? $xml->en->myacc : $xml->$lang->myacc); ?></a></li>
+                                    <li><a href="index.php?page=account-details" style="color:#343333;"><?php echo ($xml->$lang->myacc == "" ? $xml->en->myacc : $xml->$lang->myacc); ?></a></li>
                                     <li class="divider"></li>
                                     <li><a href="logout.php" style="color:#343333;"><?php echo ($xml->$lang->logout == "" ? $xml->en->logout : $xml->$lang->logout); ?></a></li>
                                 </ul>                      
