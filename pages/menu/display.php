@@ -33,16 +33,15 @@
                 </div>
                 
                 <div class="product-type-list">
-                    	<strong>Type of Food: </strong>
-                        <?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['id']} AND r.status=1 AND c.status=1"); ?>
-                        <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = $rcr['title']; ?>
-				       <?php echo implode(", ",$cuisines); ?>
-					
-                        <br>
-                    	<strong>Delivery Time: </strong>
-						<?php $del_hours = deliveryHours($res['id'], true); ?>
-						<?php __($del_hours['start']); ?> - <?php __($del_hours['end']); ?>
-                    
+                	<strong>Type of Food: </strong>
+                    <?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['id']} AND r.status=1 AND c.status=1"); ?>
+                    <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = $rcr['title']; ?>
+			       <?php echo implode(", ",$cuisines); ?>
+				
+                    <br>
+                	<strong>Delivery Time: </strong>
+					<?php $del_hours = deliveryHours($res['id'], true); ?>
+					<?php __($del_hours['start']); ?> - <?php __($del_hours['end']); ?>
                 </div>
             </div>
 
