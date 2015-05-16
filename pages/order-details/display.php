@@ -22,9 +22,11 @@
     </div>
 
     <div class="row">
-    	<div class="col-sm-6 myfonts">
+    	<div class="col-sm-6">
             <div class="well">
-            	<h2>Your Order</h2>
+                
+                <div class="myfonts"><h2>Your Order</h2></div>
+            	
                 <div class="full-order-price-container">
                 	<?php $total_price = 0; ?>
                 	<?php if (isset($_SESSION['user']['items'])) { ?>

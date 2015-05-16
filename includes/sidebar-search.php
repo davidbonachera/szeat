@@ -1,7 +1,7 @@
 <div class="col-sm-3 cuisine-types">
-    <h2>Cuisine types</h2>
-    <!-- <p>What do you fancy?<br /> -->
-	<!-- Pick a cuisine:</p> -->
+    <div class="myfonts">
+        <h2>Cuisine types</h2>
+    </div>
     <script>
     $(document).ready(function(){
             <?php if (checkFeild($cuisines)) { ?>
