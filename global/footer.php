@@ -14,10 +14,6 @@
                             <li><a href="index.php?page=page&id=<?php echo urlText($pr['id']); ?>"><?php __($pr['title']); ?></a></li>
 
 
-                            <?php // echo ($xml->$lang->tagline == "" ? $xml->en->tagline : $xml->$lang->tagline); ?>
-
-
-
                             <?php if ($count==$half) { ?>
                                 </ul>
                                 </div>
