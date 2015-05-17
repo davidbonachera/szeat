@@ -32,20 +32,21 @@ if ($_POST) {
 	if (checkFeild($_POST["name"]) && checkFeild($_POST["address"]) && checkFeild($_POST["comission_type"]) && checkFeild($_POST["comission_value"])) {
 
 		$data["name"] 				= $_POST["name"];
+		$data["name_cn"] 				= $_POST["name_cn"];
 		$data["address"] 			= $_POST["address"];
+		$data["address_cn"] 			= $_POST["address_cn"];
 		$data["phone"] 				= $_POST["phone"];
-		$data["minimum_order"] 		= $_POST["minimum_order"];
-		$data["delivery_fee"] 		= $_POST["delivery_fee"];
-		//$data["delivery_time"] 		= $_POST["delivery_time"];
+		$data["minimum_order"] 		= (int)$_POST["minimum_order"];
+		$data["delivery_fee"] 		= (int)$_POST["delivery_fee"];
 		$data["description"] 		= $_POST["description"];
-		//$data["facebook"] 		= $_POST["facebook"];
-		//$data["twitter"] 			= $_POST["twitter"];
+		$data["description_cn"] 		= $_POST["description_cn"];
 		$data["comission_type"] 	= $_POST["comission_type"];
 		$data["comission_value"] 	= $_POST["comission_value"];
 		$data["black_list"] 		= $_POST["black_list"];
 		$data["notes"] 				= $_POST["notes"];
 		$data["mailing_address"] 	= $_POST["mailing_address"];
 		$data["status"] 			= $_POST["status"];
+		$data["status_cn"] 			= $_POST["status_cn"];
 		
 		if (checkFeild($_FILES['thumbnail']['name'])) {
 			$file 			= new FileUpload();
@@ -162,17 +163,34 @@ $query = $db->query_first("SELECT * FROM restaurants WHERE id='$id'");
                                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                                     <fieldset>
                                       <div class="control-group">
-                                        <label class="control-label" for="name">* Restaurant Name</label>
+                                        <label class="control-label" for="name">* English Restaurant Name</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="name" name="name" type="text" value="<?php echo $query['name']; ?>">
                                         </div>
                                       </div>
+
                                       <div class="control-group">
-                                        <label class="control-label" for="address">* Address</label>
+                                        <label class="control-label" for="name_cn">Chinese Restaurant Name</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="name_cn" name="name_cn" type="text" value="<?php echo $query['name_cn']; ?>">
+                                        </div>
+                                      </div>
+
+
+                                      <div class="control-group">
+                                        <label class="control-label" for="address">* English Address</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="address" name="address" type="text" value="<?php echo $query['address']; ?>">
                                         </div>
                                       </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label" for="address_cn">Chinese Address</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="address_cn" name="address_cn" type="text" value="<?php echo $query['address_cn']; ?>">
+                                        </div>
+                                      </div>
+
                                        <div class="control-group">
                                         <label class="control-label" for="phone">Phone No.</label>
                                         <div class="controls">
@@ -182,13 +200,13 @@ $query = $db->query_first("SELECT * FROM restaurants WHERE id='$id'");
                                        <div class="control-group">
                                         <label class="control-label" for="minimum_order">Minimum Order</label>
                                         <div class="controls">
-                                          <input class="input-xlarge focused" id="minimum_order" name="minimum_order" type="text" value="<?php echo $query['minimum_order']; ?>">
+                                          <input class="input-xlarge focused" id="minimum_order" name="minimum_order" value="<?php echo $query['minimum_order']; ?>" type="number" maxlength="3">
                                         </div>
                                       </div>
                                        <div class="control-group">
                                         <label class="control-label" for="delivery_fee">Delivery Fee</label>
                                         <div class="controls">
-                                          <input class="input-xlarge focused" id="delivery_fee" name="delivery_fee" type="text" value="<?php echo $query['delivery_fee']; ?>">
+                                          <input class="input-xlarge focused" id="delivery_fee" name="delivery_fee" value="<?php echo $query['delivery_fee']; ?>" type="number" maxlength="3">
                                         </div>
                                       </div>                              
                                       <!--
@@ -201,11 +219,20 @@ $query = $db->query_first("SELECT * FROM restaurants WHERE id='$id'");
                                       </div>
                                       -->
                                       <div class="control-group hidden-phone">
-                                          <label class="control-label" for="description">* Description</label>
+                                          <label class="control-label" for="description">* English Description</label>
                                           <div class="controls">
                                             <textarea class="cleditor" id="description" name="description" rows="3"><?php echo $query['description']; ?></textarea>
                                           </div>
                                       </div>
+
+                                      <div class="control-group hidden-phone">
+                                          <label class="control-label" for="description_cn">Chinese Description</label>
+                                          <div class="controls">
+                                            <textarea class="cleditor" id="description_cn" name="description_cn" rows="3"><?php echo $query['description_cn']; ?></textarea>
+                                          </div>
+                                      </div>
+
+
                                       <div class="control-group">
                                         <label class="control-label">Thumbnail</label>
                                         <div class="controls">
@@ -338,7 +365,7 @@ $query = $db->query_first("SELECT * FROM restaurants WHERE id='$id'");
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label">Status</label>
+                                        <label class="control-label">English Status</label>
                                         <div class="controls">
                                           <label class="radio">
                                             <input type="radio" name="status" id="status1" value="1" <?php echo $query['status']==1 ? 'checked':NULL; ?>>
@@ -351,6 +378,24 @@ $query = $db->query_first("SELECT * FROM restaurants WHERE id='$id'");
                                           </label>
                                         </div>
                                       </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label">Chinese Status</label>
+                                        <div class="controls">
+                                          <label class="radio">
+                                            <input type="radio" name="status_cn" id="status_cn1" value="1" <?php echo $query['status_cn']==1 ? 'checked':NULL; ?>>
+                                            Enable
+                                          </label>
+                                          <div style="clear:both"></div>
+                                          <label class="radio">
+                                            <input type="radio" name="status_cn" id="status_cn2" value="0" <?php echo $query['status_cn']==0 ? 'checked':NULL; ?>>
+                                            Disable
+                                          </label>
+                                        </div>
+                                      </div>
+
+
+
                                       <div class="form-actions">
                                         <button id="submit" name="submit" type="submit" class="btn btn-primary">Save changes</button>
                                         <button class="btn" id="cancelButton">Cancel</button>

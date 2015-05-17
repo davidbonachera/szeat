@@ -24,10 +24,10 @@
                 <i><?php __($res['address']); ?></i>
                 <p>
                     <?php
-                    if ($res['minimum_order'] != NULL) {
+                    if ($res['minimum_order'] >0) {
                         echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
                     }
-                    if ($res['delivery_fee'] != NULL) {
+                    if ($res['delivery_fee'] >0) {
                         echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
                     }
                     ?>

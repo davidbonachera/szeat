@@ -132,7 +132,10 @@
                                             <tr>
                                                 <td><?php echo date("m/d/Y",strtotime($order['date'])); ?></td>
                                                 <td><a href="page=order-summary&order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
-                                                <td><?php echo getData('restaurants','name',$order['restaurant_id']); ?> &nbsp; </td>
+                                                
+                                                <?php ($lang=='cn'?$name='name_cn':$name='name'); ?>
+                                                <td><?php echo (getData('restaurants',$name,$order['restaurant_id'])==""?getData('restaurants','name',$order['restaurant_id']):getData('restaurants',$name,$order['restaurant_id'])); ?> &nbsp; </td>
+
                                                 <td><?php echo $order['price']; ?> <?php echo _priceSymbol; ?></td>
                                                 <td><?php 
 														$rating = $db->query_first("SELECT * FROM ratings WHERE order_id={$order['id']}");

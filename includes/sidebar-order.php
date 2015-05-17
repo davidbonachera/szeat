@@ -12,7 +12,7 @@
             if (isset($_SESSION['user']['items'])) { 
 
 
-                if (($res['delivery_fee']!=null)||($res['delivery_fee']==0)){
+                if ($res['delivery_fee']>0){
                     $totalItemPrice = $res['delivery_fee'];
                     $_SESSION['user']['delivery_fee'] = $res['delivery_fee'];
                 } else {
@@ -21,7 +21,7 @@
                 }
             	
 				foreach ($_SESSION['user']['items'] as $key=>$item) { ?>
-                	<?php $ir = $db->query_first("SELECT * FROM menu_items WHERE id={$item['id']} AND status=1"); ?>
+                	<?php $ir = $db->query_first("SELECT * FROM menu_items WHERE id={$item['id']} AND $status=1"); ?>
                     <?php if ($db->affected_rows > 0) { ?>
 						<?php 
 							if ($item['size'] > 0) { 
@@ -34,7 +34,7 @@
 							}
 						?>
                         <li>
-                            <p><?php __($ir['name']); ?>  <?php echo $itemValue; ?></p>
+                            <p><?php echo ($lang=='cn'?($ir['name_cn']==""?$ir['name']:$ir['name_cn']):$ir['name']); ?>  <?php echo $itemValue; ?></p>
                             <span><?php echo $item['quantity']; ?>x</span>
                             <span><?php echo _priceSymbol; ?></span>
                             <?php $itemPriceCalculated = number_format($itemPrice*$item['quantity'],2); ?>
@@ -46,7 +46,7 @@
 
                 
 
-                if ($res['delivery_fee'] != null) {
+                if ($res['delivery_fee'] >0) {
                     echo '
 
                     <li>
@@ -58,8 +58,7 @@
 
                     ';
                 }
-
-                            
+          
                 ?>
                 <li>
                     <p>Subtotal:</p>

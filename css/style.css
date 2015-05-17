@@ -363,7 +363,7 @@ h1, h2, h3, h4, h5, p{
 .menu ul span {
 	background:url(../img/category-list.png) 20px 5px no-repeat;
 	padding-left:32px;
-	width:54px;
+	/*width:54px;*/
 	float:left;
 	display:block;
 	float:left;

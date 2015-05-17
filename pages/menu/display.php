@@ -18,14 +18,14 @@
 
             <div class="col-sm-7">
             	<div class="product-name">
-                	<h2><?php echo $res['name']; ?></h2>
-                    <i><?php __($res['address']); ?></i>
+                	<h2><?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?></h2>
+                    <i><?php echo ($lang=='cn'?($res['address_cn']==""?$res['address']:$res['address_cn']):$res['address']); ?></i>
                     <p>
                         <?php
-                        if ($res['minimum_order'] != NULL) {
+                        if ($res['minimum_order'] >0) {
                             echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
                         }
-                        if ($res['delivery_fee'] != NULL) {
+                        if ($res['delivery_fee'] >0) {
                             echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
                         }
                         ?>
@@ -35,7 +35,7 @@
                 <div class="product-type-list">
                 	<strong>Type of Food: </strong>
                     <?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['id']} AND r.status=1 AND c.status=1"); ?>
-                    <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = $rcr['title']; ?>
+                    <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = ($lang=='cn'?($rcr['title_cn']==""?$rcr['title']:$rcr['title_cn']):$rcr['title']); ?>
 			       <?php echo implode(", ",$cuisines); ?>
 				
                     <br>
@@ -68,9 +68,9 @@
                     <h2>Categories</h2>
                     <p>Skip to your favourite section by clicking on a menu category: <span></span></p>
                     <ul>
-                    	<?php $cats = $db->query("SELECT * FROM menu_categories WHERE restaurant_id={$res['id']} AND status=1 ORDER BY prior ASC"); ?>
+                    	<?php $cats = $db->query("SELECT * FROM menu_categories WHERE restaurant_id={$res['id']} AND $status=1 ORDER BY prior ASC"); ?>
                         <?php while($cr=$db->fetch_array($cats)) { ?>
-	                        <li><a href="#<?php echo $cr['id']; ?>"><?php echo $cr['title']; ?></a></li>
+	                        <li><a href="#<?php echo $cr['id']; ?>"><?php echo ($lang=='cn'?($cr['title_cn']==""?$cr['title']:$cr['title_cn']):$cr['title']); ?></a></li>
                         <?php } // while $cats loop ?>
                      </ul>
                 </div>
@@ -79,19 +79,19 @@
             <div class="col-sm-6">
             	<div class="block-page menu">
                 	<h2>Menu</h2>
-					<?php $cats = $db->query("SELECT * FROM menu_categories WHERE restaurant_id={$res['id']} AND status=1 ORDER BY prior ASC"); ?>
+					<?php $cats = $db->query("SELECT * FROM menu_categories WHERE restaurant_id={$res['id']} AND $status=1 ORDER BY prior ASC"); ?>
                     <?php while($cat=$db->fetch_array($cats)) { ?>
                     <a name="<?php echo $cat['id']; ?>"></a>
-                    <span><?php echo $cat['title']; ?></span>
-                    <p><?php echo $cat['description']; ?></p>
+                    <span><?php echo ($lang=='cn'?($cat['title_cn']==""?$cat['title']:$cat['title_cn']):$cat['title']); ?></span>
+                    <p><?php echo ($lang=='cn'?($cat['description_cn']==""?$cat['description']:$cat['description_cn']):$cat['description']); ?></p>
                     <ul>
                     	<div class="price">Price</div>
-                    	<?php $items = $db->query("SELECT * FROM menu_items WHERE menu_cat_id={$cat['id']} AND status=1 ORDER BY item_number"); ?>
+                    	<?php $items = $db->query("SELECT * FROM menu_items WHERE menu_cat_id={$cat['id']} AND $status=1 ORDER BY item_number"); ?>
                         <?php while($item=$db->fetch_array($items)) { ?>
                         <li>
                         	<div class="item-info-container">
-                                <p><b><?php echo $item['item_number']; ?>.</b> <?php echo $item['name']; ?></p>
-                                <strong><?php echo $item['description']; ?></strong>
+                                <p><b><?php echo $item['item_number']; ?>.</b> <?php echo ($lang=='cn'?($item['name_cn']==""?$item['name']:$item['name_cn']):$item['name']); ?></p>
+                                <strong><?php echo ($lang=='cn'?($item['description_cn']==""?$item['description']:$item['description_cn']):$item['description']); ?></strong>
                             </div>
                             <div class="strock">
 								<?php if ($item['price']!='0.00') { ?>
@@ -106,7 +106,7 @@
 								 <?php if ($db->affected_rows > 0) { ?>
                                     <?php while($menuItem_Size=$db->fetch_array($menuItem_Sizes)) { ?>
                                         <div class="block">
-                                            <span><?php echo $menuItem_Size['value']; ?></span>
+                                            <span><?php echo ($lang=='cn'?($menuItem_Size['value_cn']==""?$menuItem_Size['value']:$menuItem_Size['value_cn']):$menuItem_Size['value']); ?></span>
                                             <i><?php echo $menuItem_Size['price']; ?><a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&add_item=<?php echo $menuItem_Size['menu_item_id']; ?>&size=<?php echo $menuItem_Size['id']; ?>&id=<?php echo $res['id']; ?>"><img src="img/add.png" alt="" /></a></i>
                                       <b><?php echo _priceSymbol; ?></b>
                                         </div>

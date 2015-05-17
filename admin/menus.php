@@ -37,8 +37,11 @@ if ($_POST) {
 			$data['restaurant_id'] 	= $id;
 			$data['title'] 			= ucwords(strtolower($_POST['title']));
 			$data['description'] 	= htmlentities($_POST['description']);
+			$data['title_cn'] 			= ucwords(strtolower($_POST['title_cn']));
+			$data['description_cn'] 	= htmlentities($_POST['description_cn']);
 			$data['prior']			= is_numeric($_POST['prior']) ? $_POST['prior']:0;
 			$data["status"] 		= 1;
+			$data["status_cn"] 		= 1;
 			$data["date"] 			= _nowdt;
 			
 			if ($db->query_insert("menu_categories",$data)) {
@@ -64,10 +67,12 @@ if ($_POST) {
 			$data['menu_cat_id'] 	= $_POST['menu_cat_id'];
 			$data['item_number'] 	= $_POST['item_number'];
 			$data['name'] 			= ucwords(strtolower($_POST['name']));
+			$data['name_cn'] 			= ucwords(strtolower($_POST['name_cn']));
 			$data['description'] 	= $_POST['description'];
-			//$data['value'] 		= $_POST['value'];
+			$data['description_cn'] 	= $_POST['description_cn'];			
 			$data['price'] 			= $_POST['price'];
 			$data["status"] 		= 1;
+			$data["status_cn"] 		= 1;
 			$data["date"] 			= _nowdt;
 			
 			if ($db->query_insert("menu_items",$data)) {
@@ -119,6 +124,21 @@ if (isset($_GET['c_id'])) {
 			header("Location: menus.php?id=$id");
 			exit();
 		}
+	}elseif (isset($_GET['status_cn'])) {
+		
+		$data['status_cn'] = $_GET['status_cn'];
+		
+		if ($db->query_update("menu_categories", $data, "id='$dhID'")) {
+			$_SESSION['msg'] = "Category status successfully changed.";
+			$_SESSION['error'] = false;
+			header("Location: menus.php?id=$id");
+			exit();
+		} else {
+			$_SESSION['msg'] = "Menu status can't be changed.";
+			$_SESSION['error'] = true;
+			header("Location: menus.php?id=$id");
+			exit();
+		}
 	}
 } elseif (isset($_GET['m_id'])) {
 	$dhID = addslashes($_GET['m_id']);
@@ -138,6 +158,21 @@ if (isset($_GET['c_id'])) {
 	} elseif (isset($_GET['status'])) {
 		
 		$data['status'] = $_GET['status'];
+		
+		if ($db->query_update("menu_items", $data, "id='$dhID'")) {
+			$_SESSION['msg'] = "Menu Item status successfully changed.";
+			$_SESSION['error'] = false;
+			header("Location: menus.php?id=$id");
+			exit();
+		} else {
+			$_SESSION['msg'] = "Menu Item status can't be changed.";
+			$_SESSION['error'] = true;
+			header("Location: menus.php?id=$id");
+			exit();
+		}
+	} elseif (isset($_GET['status_cn'])) {
+		
+		$data['status_cn'] = $_GET['status_cn'];
 		
 		if ($db->query_update("menu_items", $data, "id='$dhID'")) {
 			$_SESSION['msg'] = "Menu Item status successfully changed.";
@@ -208,17 +243,30 @@ if (isset($_GET['c_id'])) {
                                 	<input type="hidden" name="form" id="form" value="category" />
                                     <fieldset>
                                       <div class="control-group">
-                                        <label class="control-label" for="title">* Title</label>
+                                        <label class="control-label" for="title">* English Title</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="title" name="title" type="text" value="">
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label" for="description">Description</label>
+                                        <label class="control-label" for="title_cn">Chinese Title</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="title_cn" name="title_cn" type="text" value="">
+                                        </div>
+                                      </div>                                      
+                                      <div class="control-group">
+                                        <label class="control-label" for="description">English Description</label>
                                         <div class="controls">
                                           <textarea class="input-xlarge focused" id="description" name="description" rows="3"></textarea>
                                         </div>
                                       </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label" for="description_cn">Chinese Description</label>
+                                        <div class="controls">
+                                          <textarea class="input-xlarge focused" id="description_cn" name="description_cn" rows="3"></textarea>
+                                        </div>
+                                      </div>                                      
                                       <div class="control-group">
                                         <label class="control-label" for="prior">* Sort Order</label>
                                         <div class="controls">
@@ -251,11 +299,14 @@ if (isset($_GET['c_id'])) {
                                       <tr>
                                       	  <th class="hidden"></th>
                                           <th>Title</th>
+                                          <th>Chinese Title</th>
                                           <th>Description</th>
+                                          <th>Chinese Description</th>                                          
                                           <th>Sort Order</th>
                                           <th>Items</th>
                                           <th>Date</th>
-                                          <th>Status</th>
+                                          <th>English Status</th>
+                                          <th>Chinese Status</th>
                                           <th>Actions</th>
                                       </tr>
                                   </thead>   
@@ -266,7 +317,9 @@ if (isset($_GET['c_id'])) {
                                             <tr>
                                             	<td class="hidden"><?php echo $r['prior']; ?></td>
                                                 <td><?php echo $r['title']; ?></td>
+                                                <td><?php echo $r['title_cn']; ?></td>
                                                 <td><?php echo $r['description']; ?></td>
+                                                <td><?php echo $r['description_cn']; ?></td>
                                                 <td><?php echo $r['prior']; ?></td>
                                                 <td><?php echo recordsCounter('menu_items','menu_cat_id',$r['id']); ?></td>
                                                 <td><?php echo date("M d, Y",strtotime($r['date'])); ?></td>
@@ -276,12 +329,20 @@ if (isset($_GET['c_id'])) {
                                                     </span>
                                                 </td>
                                                 <td class="center">
+                                                    <span class="label <?php echo $r['status_cn']==1 ? 'label-success' : NULL; ?>">
+                                                    	<?php echo $r['status_cn']==1 ? 'Active' : 'Inactive'; ?>
+                                                    </span>
+                                                </td>                                                
+                                                <td class="center">
                                                 	<a class="btn btn-info" href="menu-category-edit.php?id=<?php echo $id; ?>&c_id=<?php echo $r["id"]; ?>" title="Edit">
                                                         <i class="icon-edit icon-white"></i>  
                                                     </a>
                                                     <a class="btn btn-inverse" href="?id=<?php echo $id; ?>&c_id=<?php echo $r["id"]; ?>&status=<?php echo $r['status']==1 ? 0:1; ?>" title="Change Status">
                                                         <i class="icon-eye-<?php echo $r['status']==1 ? 'open':'close'; ?> icon-white"></i> 
                                                     </a>
+                                                    <a class="btn btn-warning" href="?id=<?php echo $id; ?>&c_id=<?php echo $r["id"]; ?>&status_cn=<?php echo $r['status_cn']==1 ? 0:1; ?>" title="Change Status">
+                                                        <i class="icon-eye-<?php echo $r['status_cn']==1 ? 'open':'close'; ?> icon-white"></i> 
+                                                    </a>                                                    
                                                     <a class="btn btn-danger" href="?id=<?php echo $id; ?>&c_id=<?php echo $r["id"]; ?>&delete" title="Delete">
                                                         <i class="icon-trash icon-white"></i> 
                                                     </a>
@@ -328,17 +389,29 @@ if (isset($_GET['c_id'])) {
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label" for="name">* Name</label>
+                                        <label class="control-label" for="name">* English Name</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="name" name="name" type="text" value="">
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="name_cn">Chinese Name</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="name_cn" name="name_cn" type="text" value="">
+                                        </div>
+                                      </div>                                      
                                       <div class="control-group">
                                         <label class="control-label" for="description">Description</label>
                                         <div class="controls">
                                           <textarea class="input-xlarge focused" id="description" name="description" rows="3"></textarea>
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="description_cn">Chinese Description</label>
+                                        <div class="controls">
+                                          <textarea class="input-xlarge focused" id="description_cn" name="description_cn" rows="3"></textarea>
+                                        </div>
+                                      </div>                                      
                                       <!--
                                       <div class="control-group">
                                         <label class="control-label" for="value">* Quantity</label>
@@ -379,11 +452,14 @@ if (isset($_GET['c_id'])) {
                                   <thead>
                                       <tr>
                                       	  <th>#</th>
-                                          <th>Name</th>
+                                          <th>English Name</th>
+                                          <th>Chinese Name</th>
                                           <th>Category</th>
                                           <th>Description</th>
+                                          <th>Description_cn</th>
                                           <th>Price</th>
-                                          <th>Status</th>
+                                          <th>English Status</th>
+                                          <th>Chinese Status</th>
                                           <th>Actions</th>
                                       </tr>
                                   </thead>   
@@ -394,8 +470,10 @@ if (isset($_GET['c_id'])) {
                                             <tr>
                                             	<td><?php echo $r['item_number']; ?></td>
                                                 <td><?php echo $r['name']; ?></td>
+                                                <td><?php echo $r['name_cn']; ?></td>
                                                 <td><?php echo getData('menu_categories','title',$r['menu_cat_id']); ?></td>
                                                 <td class="smallFont"><?php echo $r['description']; ?></td>
+                                                <td class="smallFont"><?php echo $r['description_cn']; ?></td>
                                                 <td><?php echo _priceSymbol; ?><?php echo $r['price']; ?></td>
                                                 <td class="center">
                                                     <span class="label <?php echo $r['status']==1 ? 'label-success' : NULL; ?>">
@@ -403,12 +481,20 @@ if (isset($_GET['c_id'])) {
                                                     </span>
                                                 </td>
                                                 <td class="center">
+                                                    <span class="label <?php echo $r['status_cn']==1 ? 'label-success' : NULL; ?>">
+                                                    	<?php echo $r['status_cn']==1 ? 'Active' : 'Inactive'; ?>
+                                                    </span>
+                                                </td>                                                
+                                                <td class="center">
                                                 	<a class="btn btn-info" href="menu-item-edit.php?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>" title="Edit">
                                                         <i class="icon-edit icon-white"></i>  
                                                     </a>
                                                     <a class="btn btn-inverse" href="?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>&status=<?php echo $r['status']==1 ? 0:1; ?>" title="Change Status">
                                                         <i class="icon-eye-<?php echo $r['status']==1 ? 'open':'close'; ?> icon-white"></i> 
                                                     </a>
+                                                    <a class="btn btn-warning" href="?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>&status_cn=<?php echo $r['status_cn']==1 ? 0:1; ?>" title="Change Status">
+                                                        <i class="icon-eye-<?php echo $r['status_cn']==1 ? 'open':'close'; ?> icon-white"></i> 
+                                                    </a>                                                    
                                                     <a class="btn btn-danger" href="?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>&delete" title="Delete">
                                                         <i class="icon-trash icon-white"></i> 
                                                     </a>

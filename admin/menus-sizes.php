@@ -38,6 +38,7 @@ if ($_POST) {
 		$data['restaurant_id'] 	= $restaurantID;
 		$data['menu_item_id'] 	= $id;
 		$data['value'] 			= $_POST['value'];
+		$data['value_cn'] 			= $_POST['value_cn'];
 		$data['price'] 			= $_POST['price'];
 		$data["status"] 		= 1;
 		$data["date"] 			= _nowdt;
@@ -76,6 +77,21 @@ if (isset($_GET['s_id'])) {
 	} elseif (isset($_GET['status'])) {
 		
 		$data['status'] = $_GET['status'];
+		
+		if ($db->query_update("menu_item_sizes", $data, "id='$dhID'")) {
+			$_SESSION['msg'] = "Size status successfully changed.";
+			$_SESSION['error'] = false;
+			header("Location: menus-sizes.php?menu_item=$id");
+			exit();
+		} else {
+			$_SESSION['msg'] = "Size status can't be changed.";
+			$_SESSION['error'] = true;
+			header("Location: menus-sizes.php?menu_item=$id");
+			exit();
+		}
+	}elseif (isset($_GET['status_cn'])) {
+		
+		$data['status_cn'] = $_GET['status_cn'];
 		
 		if ($db->query_update("menu_item_sizes", $data, "id='$dhID'")) {
 			$_SESSION['msg'] = "Size status successfully changed.";
@@ -146,11 +162,17 @@ if (isset($_GET['s_id'])) {
                                 	<input type="hidden" name="form" id="form" value="menu" />
                                     <fieldset>
                                       <div class="control-group">
-                                        <label class="control-label" for="value">* Quantity</label>
+                                        <label class="control-label" for="value">* English Name / Quantity</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="value" name="value" type="text" value="">
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="value_cn">Chinese Name / Quantity</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="value_cn" name="value_cn" type="text" value="">
+                                        </div>
+                                      </div>                                      
                                       <div class="control-group">
                                         <label class="control-label" for="price">* Price</label>
                                         <div class="controls">
@@ -183,9 +205,11 @@ if (isset($_GET['s_id'])) {
                                   <thead>
                                       <tr>
                                           <th>Menu Item</th>
-                                          <th>Quantity</th>
+                                          <th>English Name</th>
+                                          <th>Chinese Name</th>
                                           <th>Price</th>
-                                          <th>Status</th>
+                                          <th>English Status</th>
+                                          <th>Chinese Status</th>
                                           <th>Actions</th>
                                       </tr>
                                   </thead>   
@@ -196,6 +220,7 @@ if (isset($_GET['s_id'])) {
                                             <tr>
                                                 <td><?php echo getData('menu_items','name',$r['menu_item_id']); ?></td>
                                                 <td><?php echo $r['value']; ?></td>
+                                                <td><?php echo $r['value_cn']; ?></td>
                                                 <td><?php echo _priceSymbol; ?><?php echo $r['price']; ?></td>
                                                 <td class="center">
                                                     <span class="label <?php echo $r['status']==1 ? 'label-success' : NULL; ?>">
@@ -203,9 +228,17 @@ if (isset($_GET['s_id'])) {
                                                     </span>
                                                 </td>
                                                 <td class="center">
+                                                    <span class="label <?php echo $r['status_cn']==1 ? 'label-success' : NULL; ?>">
+                                                    	<?php echo $r['status_cn']==1 ? 'Active' : 'Inactive'; ?>
+                                                    </span>
+                                                </td>                                                
+                                                <td class="center">
                                                     <a class="btn btn-inverse" href="?menu_item=<?php echo $id; ?>&s_id=<?php echo $r["id"]; ?>&status=<?php echo $r['status']==1 ? 0:1; ?>" title="Change Status">
                                                         <i class="icon-eye-<?php echo $r['status']==1 ? 'open':'close'; ?> icon-white"></i> 
                                                     </a>
+                                                    <a class="btn btn-warning" href="?menu_item=<?php echo $id; ?>&s_id=<?php echo $r["id"]; ?>&status_cn=<?php echo $r['status_cn']==1 ? 0:1; ?>" title="Change Status">
+                                                        <i class="icon-eye-<?php echo $r['status_cn']==1 ? 'open':'close'; ?> icon-white"></i> 
+                                                    </a>                                                    
                                                     <a class="btn btn-danger" href="?menu_item=<?php echo $id; ?>&s_id=<?php echo $r["id"]; ?>&delete" title="Delete">
                                                         <i class="icon-trash icon-white"></i> 
                                                     </a>

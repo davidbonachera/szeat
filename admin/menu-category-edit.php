@@ -45,7 +45,9 @@ if ($_POST) {
 		
 		$data['restaurant_id'] 	= $id;
 		$data['title'] 			= ucwords(strtolower($_POST['title']));
+		$data['title_cn'] 			= ucwords(strtolower($_POST['title_cn']));
 		$data['description'] 	= htmlentities($_POST['description']);
+		$data['description_cn'] 	= htmlentities($_POST['description_cn']);
 		$data['prior']			= is_numeric($_POST['prior']) ? $_POST['prior']:0;
 
 		if ($db->query_update("menu_categories", $data, "id='$cid'")) {
@@ -117,17 +119,29 @@ $query = $db->query_first("SELECT * FROM menu_categories WHERE id='$cid'");
                                 	<input type="hidden" name="form" id="form" value="category" />
                                     <fieldset>
                                       <div class="control-group">
-                                        <label class="control-label" for="title">* Title</label>
+                                        <label class="control-label" for="title">* English Title</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="title" name="title" type="text" value="<?php echo $query['title']; ?>">
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label" for="description">Description</label>
+                                        <label class="control-label" for="title_cn">Chinese Title</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="title_cn" name="title_cn" type="text" value="<?php echo $query['title_cn']; ?>">
+                                        </div>
+                                      </div>                                      
+                                      <div class="control-group">
+                                        <label class="control-label" for="description">English Description</label>
                                         <div class="controls">
                                           <textarea class="input-xlarge focused" id="description" name="description" rows="3"><?php echo $query['description']; ?></textarea>
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="description_cn">Chinese Description</label>
+                                        <div class="controls">
+                                          <textarea class="input-xlarge focused" id="description_cn" name="description_cn" rows="3"><?php echo $query['description_cn']; ?></textarea>
+                                        </div>
+                                      </div>                                      
                                       <div class="control-group">
                                         <label class="control-label" for="prior">* Sort Order</label>
                                         <div class="controls">

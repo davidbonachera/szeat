@@ -21,29 +21,29 @@
 ?>
 <?php
 if ($_POST) {
+
 	if (checkFeild($_POST["name"]) && checkFeild($_POST["address"]) && checkFeild($_POST["comission_type"]) && checkFeild($_POST["comission_value"])) {
 
-		$data["name"] 				= $_POST["name"];
-		$data["address"] 			= $_POST["address"];
-		$data["phone"] 				= $_POST["phone"];
-		//$data["delivery_time"] 		= $_POST["delivery_time"];
-		$data["description"] 		= $_POST["description"];
-
-    $data["minimum_order"]    = $_POST["minimum_order"];
-    $data["delivery_fee"]    = $_POST["delivery_fee"];
-
-		//$data["facebook"] 		= $_POST["facebook"];
-		//$data["twitter"] 			= $_POST["twitter"];
-		$data["comission_type"] 	= $_POST["comission_type"];
-		$data["comission_value"] 	= $_POST["comission_value"];
-		$data["black_list"] 		= $_POST["black_list"];
-		$data["notes"] 				= $_POST["notes"];
-		$data["mailing_address"] 	= $_POST["mailing_address"];
-		$data["status"] 			= $_POST["status"];
-		$data["date"] 				= _nowdt;
+    $data["name"] 				  = $_POST["name"];
+    $data["name_cn"]        = $_POST["name_cn"];
+    $data["address"] 			  = $_POST["address"];
+    $data["address_cn"]     = $_POST["address_cn"];
+    $data["phone"] 				  = $_POST["phone"];
+    $data["description"] 		= $_POST["description"];
+    $data["description_cn"] = $_POST["description_cn"];
+    $data["minimum_order"]  = (int)$_POST["minimum_order"];
+    $data["delivery_fee"]   = (int)$_POST["delivery_fee"];
+    $data["comission_type"] = $_POST["comission_type"];
+    $data["comission_value"]= $_POST["comission_value"];
+    $data["black_list"] 		= $_POST["black_list"];
+    $data["notes"] 				  = $_POST["notes"];
+    $data["mailing_address"]= $_POST["mailing_address"];
+    $data["status"] 			  = $_POST["status"];
+    $data["status_cn"]      = $_POST["status_cn"];
+    $data["date"] 				  = _nowdt;
 		
 		if (checkFeild($_FILES['thumbnail']['name'])) {
-			$file 			= new FileUpload();
+			$file 			  = new FileUpload();
 			$file_name 		= rand(1234567890,time());
 			$file->File 	= $_FILES['thumbnail'];
 			$file->Path 	= "../resources/restaurants/";
@@ -151,33 +151,45 @@ if ($_POST) {
                                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
                                     <fieldset>
                                       <div class="control-group">
-                                        <label class="control-label" for="name">* Restaurant Name</label>
+                                        <label class="control-label" for="name">* English Restaurant Name</label>
                                         <div class="controls">
-                                          <input class="input-xlarge focused" id="name" name="name" type="text" value="">
+                                          <input class="input-xlarge focused" id="name" name="name" type="text">
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label" for="address">* Address</label>
+                                        <label class="control-label" for="name_cn">Chinese Restaurant Name</label>
                                         <div class="controls">
-                                          <input class="input-xlarge focused" id="address" name="address" type="text" value="">
+                                          <input class="input-xlarge focused" id="name_cn" name="name_cn" type="text">
+                                        </div>
+                                      </div>                                      
+                                      <div class="control-group">
+                                        <label class="control-label" for="address">* English Address</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="address" name="address" type="text">
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="address_cn">Chinese Address</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="address_cn" name="address_cn" type="text">
+                                        </div>
+                                      </div>                                      
                                       <div class="control-group">
                                         <label class="control-label" for="phone">Phone No.</label>
                                         <div class="controls">
-                                          <input class="input-xlarge focused" id="phone" name="phone" type="text" value="">
+                                          <input class="input-xlarge focused" id="phone" name="phone" type="text">
                                         </div>
                                       </div>
                                       <div class="control-group">
                                         <label class="control-label" for="minimum_order">Minimum Order</label>
                                         <div class="controls">
-                                          <input class="input-xlarge focused" id="minimum_order" name="minimum_order" type="text" value="">
+                                          <input class="input-xlarge focused" id="minimum_order" name="minimum_order" type="number" maxlength="3">
                                         </div>
                                       </div>
                                       <div class="control-group">
                                         <label class="control-label" for="delivery_fee">Delivery Fee</label>
                                         <div class="controls">
-                                          <input class="input-xlarge focused" id="delivery_fee" name="delivery_fee" type="text" value="">
+                                          <input class="input-xlarge focused" id="delivery_fee" name="delivery_fee" type="number" maxlength="3">
                                         </div>
                                       </div>                                      
                                       <!--
@@ -190,11 +202,17 @@ if ($_POST) {
                                       </div>
                                       -->
                                       <div class="control-group hidden-phone">
-                                          <label class="control-label" for="description">* Description</label>
+                                          <label class="control-label" for="description">* English Description</label>
                                           <div class="controls">
                                             <textarea class="cleditor" id="description" name="description" rows="3"></textarea>
                                           </div>
                                       </div>
+                                      <div class="control-group hidden-phone">
+                                          <label class="control-label" for="description_cn">Chinese Description</label>
+                                          <div class="controls">
+                                            <textarea class="cleditor" id="description_cn" name="description_cn" rows="3"></textarea>
+                                          </div>
+                                      </div>                                      
                                       <div class="control-group">
                                         <label class="control-label">Thumbnail</label>
                                         <div class="controls">
@@ -202,27 +220,13 @@ if ($_POST) {
                                           <p class="help-block">Image representing the restaurant</p>
                                         </div>
                                       </div>
-                                      <!--
-                                      <div class="control-group">
-                                        <label class="control-label" for="facebook">* Facebook</label>
-                                        <div class="controls">
-                                          <input class="input-xlarge focused" id="facebook" name="facebook" type="text" value="">
-                                        </div>
-                                      </div>
-                                      <div class="control-group">
-                                        <label class="control-label" for="twitter">* Twitter</label>
-                                        <div class="controls">
-                                          <input class="input-xlarge focused" id="twitter" name="twitter" type="text" value="">
-                                        </div>
-                                      </div>
-                                      -->
                                       <div class="control-group">
                                         <label class="control-label" for="comission_value">* Comission per order</label>
                                         <div class="controls">
                                           <div class="input-append">
                                             <input class="input-xlarge focused" id="comission_value" name="comission_value" type="text" value="">
                                             <select id="comission_type" name="comission_type" style="width:120px;">
-                                                <option value="percent">Percentage</option>
+                                                <option selected value="percent">Percentage</option>
                                                 <option value="fixed">Fixed Price</option>
                                             </select>
                                           </div>
@@ -296,7 +300,7 @@ if ($_POST) {
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label">Status</label>
+                                        <label class="control-label">English Status</label>
                                         <div class="controls">
                                           <label class="radio">
                                             <input type="radio" name="status" id="status1" value="1" checked="">
@@ -309,6 +313,20 @@ if ($_POST) {
                                           </label>
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label">Chinese Status</label>
+                                        <div class="controls">
+                                          <label class="radio">
+                                            <input type="radio" name="status_cn" id="status_cn1" value="1" checked="">
+                                            Enable
+                                          </label>
+                                          <div style="clear:both"></div>
+                                          <label class="radio">
+                                            <input type="radio" name="status_cn" id="status_cn2" value="0">
+                                            Disable
+                                          </label>
+                                        </div>
+                                      </div>                                      
                                       <div class="form-actions">
                                         <button id="submit" name="submit" type="submit" class="btn btn-primary">Save changes</button>
                                         <button class="btn" id="cancelButton">Cancel</button>

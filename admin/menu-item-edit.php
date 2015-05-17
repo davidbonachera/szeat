@@ -47,7 +47,9 @@ if ($_POST) {
 		$data['menu_cat_id'] 	= $_POST['menu_cat_id'];
 		$data['item_number'] 	= $_POST['item_number'];
 		$data['name'] 			= ucwords(strtolower($_POST['name']));
+    $data['name_cn']       = ucwords(strtolower($_POST['name_cn']));
 		$data['description'] 	= $_POST['description'];
+    $data['description_cn']  = $_POST['description_cn'];
 		//$data['value'] 			= $_POST['value'];
 		$data['price'] 			= $_POST['price'];
 		$data["status"] 		= 1;
@@ -143,17 +145,29 @@ $query = $db->query_first("SELECT * FROM menu_items WHERE id='$mid'");
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label" for="name">* Name</label>
+                                        <label class="control-label" for="name">* English Name</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="name" name="name" type="text" value="<?php echo $query['name']; ?>">
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label" for="description">Description</label>
+                                        <label class="control-label" for="name_cn">Chinese Name</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="name_cn" name="name_cn" type="text" value="<?php echo $query['name']; ?>">
+                                        </div>
+                                      </div>                                      
+                                      <div class="control-group">
+                                        <label class="control-label" for="description">English Description</label>
                                         <div class="controls">
                                           <textarea class="input-xlarge focused" id="description" name="description" rows="3"><?php echo $query['description']; ?></textarea>
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="description_cn">Chinese Description</label>
+                                        <div class="controls">
+                                          <textarea class="input-xlarge focused" id="description_cn" name="description_cn" rows="3"><?php echo $query['description_cn']; ?></textarea>
+                                        </div>
+                                      </div>                                      
                                       <!--
                                       <div class="control-group">
                                         <label class="control-label" for="value">* Quantity</label>
