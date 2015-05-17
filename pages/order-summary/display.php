@@ -12,10 +12,10 @@
         </div>
         
     	<!-- main content -->
-        <div class="row myfonts">
+        <div class="row">
         	<div class="col-md-8 well">
                 <div class="order-summery table-sorter">
-                	<h2>Order summary</h2>
+                	<div class="myfonts"><h2>Order summary</h2></div>
                     <?php $orderQ = $db->query("SELECT * FROM orders WHERE user_id='{$_SESSION['user']['id']}' AND id='$orderID' ORDER BY date DESC, id DESC LIMIT 5"); ?>
                     <?php if ($db->affected_rows > 0) { ?>
                     <table width="368">
@@ -40,10 +40,12 @@
                     <?php if (isset($_GET['order'])) { ?>
                         <a href="order-summary.php?order=<?php echo $orderID; ?>&reorder=true" class="yellow-button reorder">Reorder</a>
                     <?php } ?>
+
                     <a href="#" class="btn btn-yellow print" onclick="window.print(); return false;">Print</a>
+
                 </div>
                 <div class="order-summery order-informaiton">
-                	<h2>Order details</h2>
+                	<div class="myfonts"><h2>Order details</h2></div>
                 	
 
 
@@ -93,13 +95,17 @@
                     </table>
                 </div>
                 <div class="order-summery">
-                	<h2>Delivery information</h2>
+                	<div class="myfonts"><h2>Delivery information</h2></div>
                     <?php $user = $db->query_first("SELECT * FROM users WHERE id={$_SESSION['user']['id']}"); ?>
                    	<p><?php __($user['name']); ?></p>
+                    
                     <p> Tel: <?php __($user['phone']); ?></p>
                     <p> <?php echo getData("areas","title",$user['area_id']); ?></p>
+
+
                     <p> <?php echo getData("buildings","title",$user['building_id']); ?></p>
                     <p> <?php __($user['apartment']); ?></p>
+
                 </div>
             </div>
         </div>

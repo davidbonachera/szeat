@@ -33,6 +33,9 @@ if ($_POST) {
 
 		$data["title"] 			= $_POST["title"];
 		$data["status"] 		= $_POST["status"];
+
+		$data["title_cn"] 			= $_POST["title_cn"];
+		$data["status_cn"] 		= $_POST["status_cn"];		
 	
 		$db->query_update("areas", $data, "id='$id'");
 		if($db->affected_rows > 0){
@@ -108,14 +111,22 @@ $query = $db->query_first("SELECT * FROM areas WHERE id='$id'");
                                 <form class="form-horizontal" method="post">
                                     <fieldset>
                                       <div class="control-group">
-                                        <label class="control-label" for="title">* Title</label>
+                                        <label class="control-label" for="title">* English Title</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="title" name="title" type="text" value="<?php echo $query['title']; ?>">
                                         </div>
                                       </div>
                                       
+
                                       <div class="control-group">
-                                        <label class="control-label">Status</label>
+                                        <label class="control-label" for="title_cn">Chinese Title</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="title_cn" name="title_cn" type="text" value="<?php echo $query['title_cn']; ?>">
+                                        </div>
+                                      </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label">English Status</label>
                                         <div class="controls">
                                           <label class="radio">
                                             <input type="radio" name="status" id="status1" value="1" <?php echo $query['status']==1 ? 'checked':NULL; ?>>
@@ -128,6 +139,23 @@ $query = $db->query_first("SELECT * FROM areas WHERE id='$id'");
                                           </label>
                                         </div>
                                       </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label">Chinese Status</label>
+                                        <div class="controls">
+                                          <label class="radio">
+                                            <input type="radio" name="status_cn" id="status_cn1" value="1" <?php echo $query['status_cn']==1 ? 'checked':NULL; ?>>
+                                            Enable
+                                          </label>
+                                          <div style="clear:both"></div>
+                                          <label class="radio">
+                                            <input type="radio" name="status_cn" id="status_cn2" value="0" <?php echo $query['status_cn']==0 ? 'checked':NULL; ?>>
+                                            Disable
+                                          </label>
+                                        </div>
+                                      </div>
+
+
                                       <div class="form-actions">
                                         <button id="submit" name="submit" type="submit" class="btn btn-primary">Save changes</button>
                                         <button class="btn" id="cancelButton">Cancel</button>

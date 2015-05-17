@@ -46,7 +46,22 @@ if (isset($_GET['id']) && checkFeild($_GET['id'])) {
 			header("Location: buildings.php");
 			exit();
 		}
-	}
+	}elseif (isset($_GET['status_cn'])) {
+        
+        $data['status_cn'] = $_GET['status_cn'];
+        
+        if ($db->query_update("buildings", $data, "id='$id'")) {
+            $_SESSION['msg'] = "Building status successfully changed.";
+            $_SESSION['error'] = false;
+            header("Location: buildings.php");
+            exit();
+        } else {
+            $_SESSION['msg'] = "Building status can't be changed.";
+            $_SESSION['error'] = true;
+            header("Location: buildings.php");
+            exit();
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -104,11 +119,13 @@ if (isset($_GET['id']) && checkFeild($_GET['id'])) {
                                 <table class="table table-striped table-bordered bootstrap-datatable datatable">
                                   <thead>
                                       <tr>
-                                          <th>Building Name</th>
+                                          <th>English Building Name</th>
+                                          <th>Chinese Building Name</th>
                                           <th>Area</th>
                                           <th>Users</th>
                                           <th>Created</th>
-                                          <th>Status</th>
+                                          <th>English Status</th>
+                                          <th>Chinese Status</th>                                          
                                           <th>Actions</th>
                                       </tr>
                                   </thead>   
@@ -118,6 +135,7 @@ if (isset($_GET['id']) && checkFeild($_GET['id'])) {
 										<?php while($r=$db->fetch_array($query)) { ?>
                                             <tr>
                                                 <td><?php echo $r['title']; ?></td>
+                                                <td><?php echo $r['title_cn']; ?></td>
                                                 <td><?php echo getData('areas','title',$r['area_id']); ?></td>
                                                 <td><?php echo recordsCounter('users','building_id',$r['id']); ?></td>
                                                 <td class="center"><?php echo date("Y/m/d",strtotime($r['date'])); ?></td>
@@ -127,12 +145,21 @@ if (isset($_GET['id']) && checkFeild($_GET['id'])) {
                                                     </span>
                                                 </td>
                                                 <td class="center">
+                                                    <span class="label <?php echo $r['status_cn']==1 ? 'label-success':NULL; ?>">
+                                                        <?php echo $r['status_cn']==1 ? 'Active':'Inactive'; ?>
+                                                    </span>
+                                                </td>                                                
+                                                <td class="center">
                                                     <a class="btn btn-info" href="buildings-edit.php?id=<?php echo $r['id']; ?>" title="Edit">
                                                         <i class="icon-edit icon-white"></i>  
                                                     </a>
                                                     <a class="btn btn-inverse" href="?id=<?php echo $r["id"]; ?>&status=<?php echo $r['status']==1 ? 0:1; ?>" title="Change Status">
                                                         <i class="icon-eye-<?php echo $r['status']==1 ? 'open':'close'; ?> icon-white"></i> 
                                                     </a>
+
+                                                    <a class="btn btn-warning" href="?id=<?php echo $r["id"]; ?>&status_cn=<?php echo $r['status_cn']==1 ? 0:1; ?>" title="Change Status">
+                                                        <i class="icon-eye-<?php echo $r['status_cn']==1 ? 'open':'close'; ?> icon-white"></i> 
+                                                    </a>                                                    
                                                     
                                                     <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $r['id']; ?>" title="Delete">
                                                         <i class="icon-trash icon-white"></i>

@@ -1,34 +1,34 @@
 <footer class="footer">
         <div class="container">
                         
-        <?php
+            <?php
 
-            $status = ($lang=='cn'?'status_cn':'status');
-            $pages = $db->query("SELECT * FROM pages WHERE $status=1 ORDER BY id");
+                
+                $pages = $db->query("SELECT * FROM pages WHERE $status=1 ORDER BY id");
 
-            $total = $db->affected_rows;
-            $half  = round($total/2);
+                $total = $db->affected_rows;
+                $half  = round($total/2);
 
-            if ($db->affected_rows > 0) { 
-                echo '<div class="col-sm-2">';
-                    echo '<ul>';
-                        while($pr=$db->fetch_array($pages)) {
-                            isset($count) ? $count++:$count=1; ?>
+                if ($db->affected_rows > 0) { 
+                    echo '<div class="col-sm-2">';
+                        echo '<ul>';
+                            while($pr=$db->fetch_array($pages)) {
+                                isset($count) ? $count++:$count=1; ?>
 
-                            <li><a href="index.php?page=page&id=<?php echo urlText($pr['id']); ?>"><?php echo ($lang=='cn'?($pr['title_cn']==""?$pr['title']:$pr['title_cn']):$pr['title']); ?></a></li>
+                                <li><a href="index.php?page=page&id=<?php echo urlText($pr['id']); ?>"><?php echo ($lang=='cn'?($pr['title_cn']==""?$pr['title']:$pr['title_cn']):$pr['title']); ?></a></li>
 
-                            <?php if ($count==$half) { ?>
-                                </ul>
-                                </div>
-                                <div class="col-sm-6">
-                                <ul>
-                            <?php }
-                        }
-                    echo '</ul>';
-                echo '</div>';
-            }
+                                <?php if ($count==$half) { ?>
+                                    </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <ul>
+                                <?php }
+                            }
+                        echo '</ul>';
+                    echo '</div>';
+                }
 
-        ?>
+            ?>
 
             <div class="col-sm-4">
                 <div class="soc-link">

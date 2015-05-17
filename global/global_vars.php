@@ -11,3 +11,6 @@ if (isset($_GET['lang'])) {
 		$lang = 'en';
 	}
 }
+
+
+$status = ($lang=='cn'?'status_cn':'status');

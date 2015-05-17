@@ -132,10 +132,10 @@
                                     <div class="col-md-8">
                                         <select class="form-control" id="area" name="area">
                                             <option hidden="">Select</option>
-                                            <?php $areas = $db->query("SELECT * FROM areas WHERE status=1 ORDER BY title ASC"); ?>
+                                            <?php $areas = $db->query("SELECT * FROM areas WHERE $status=1 ORDER BY title ASC"); ?>
                                             <?php while ($r=$db->fetch_array($areas)) { ?>
                                                 <option value="<?php echo $r['id']; ?>" <?php echo $r['id']==$uData['area_id'] ? 'selected':NULL; ?>>
-                                                    <?php __($r['title']); ?>
+                                                    <?php echo ($lang=='cn'?($r['title_cn']==""?$r['title']:$r['title_cn']):$r['title']); ?>
                                                 </option>
                                             <?php } // while $areas loop ?>
                                         </select>
@@ -147,10 +147,10 @@
                                     <div class="col-md-8">
                                         <select class="form-control" id="building" name="building">
                                             <option hidden="hidden">Select</option>
-                                            <?php $cuisines = $db->query("SELECT * FROM buildings WHERE status=1 ORDER BY title ASC"); ?>
+                                            <?php $cuisines = $db->query("SELECT * FROM buildings WHERE $status=1 ORDER BY title ASC"); ?>
                                             <?php while ($r=$db->fetch_array($cuisines)) { ?>
                                                 <option value="<?php echo $r['id']; ?>" <?php echo $r['id']==$uData['building_id'] ? 'selected':NULL; ?>>
-                                                    <?php __($r['title']); ?>
+                                                    <?php echo ($lang=='cn'?($r['title_cn']==""?$r['title']:$r['title_cn']):$r['title']); ?>
                                                 </option>
                                             <?php } // while $areas loop ?>
                                         </select>

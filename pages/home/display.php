@@ -18,14 +18,18 @@
                 <div class="form-group">
 
                     <input hidden name="page" value="search" />
-                    
+
+                    <?php 
+                        $status = ($lang=='cn'?'status_cn':'status');
+                    ?>
+
                     <div class="col-md-3">
                         <label class="control-label"><?php echo ($xml->$lang->where == "" ? $xml->en->where : $xml->$lang->where); ?></label>
                         <select name="area" id="area" class="chosen-select form-control">
                             <option value=""><?php echo ($xml->$lang->selectArea == "" ? $xml->en->selectArea : $xml->$lang->selectArea); ?></option>
-                            <?php $areas = $db->query("SELECT * FROM areas WHERE status=1 ORDER BY title ASC"); ?>
+                            <?php $areas = $db->query("SELECT * FROM areas WHERE $status=1 ORDER BY title ASC"); ?>
                             <?php while ($r=$db->fetch_array($areas)) { ?>
-                            <option value="<?php echo $r['id']; ?>"><?php __($r['title']); ?></option>
+                                <option value="<?php echo $r['id']; ?>"><?php echo ($lang=='cn'?($r['title_cn']==""?$r['title']:$r['title_cn']):$r['title']); ?></option>
                             <?php } // while $areas loop ?>
                         </select>
                     </div>
@@ -34,9 +38,9 @@
                         <label class="control-label"><?php echo ($xml->$lang->building == "" ? $xml->en->building : $xml->$lang->building); ?></label>
                         <select name="building" id="building" class="chosen-select form-control">
                             <option value=""><?php echo ($xml->$lang->selectBuilding == "" ? $xml->en->selectBuilding : $xml->$lang->selectBuilding); ?></option>
-                            <?php $buildings = $db->query("SELECT * FROM buildings WHERE status=1 ORDER BY title ASC"); ?>
+                            <?php $buildings = $db->query("SELECT * FROM buildings WHERE $status=1 ORDER BY title ASC"); ?>
                             <?php while ($r=$db->fetch_array($buildings)) { ?>
-                                <option value="<?php echo $r['id']; ?>"><?php __($r['title']); ?></option>
+                                <option value="<?php echo $r['id']; ?>"><?php echo ($lang=='cn'?($r['title_cn']==""?$r['title']:$r['title_cn']):$r['title']); ?></option>
                             <?php } // while $buildings loop ?>
                         </select>
                     </div>
@@ -47,7 +51,7 @@
                             <option value=""><?php echo ($xml->$lang->showAll == "" ? $xml->en->showAll : $xml->$lang->showAll); ?></option>
                             <?php $cuisines = $db->query("SELECT * FROM cuisines WHERE status=1 ORDER BY title ASC"); ?>
                             <?php while ($r=$db->fetch_array($cuisines)) { ?>
-                                <option value="<?php echo $r['id']; ?>"><?php __($r['title']); ?></option>
+                                <option value="<?php echo $r['id']; ?>"><?php echo ($lang=='cn'?($r['title_cn']==""?$r['title']:$r['title_cn']):$r['title']); ?></option>
                             <?php } // while $areas loop ?>
                         </select>
                     </div>
