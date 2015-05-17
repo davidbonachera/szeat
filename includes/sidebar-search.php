@@ -11,9 +11,9 @@
     </script>
     <ul style="margin:0;padding:0;margin-top:20px;">
     	<li><a id="all" class="types-selected">All <strong><?php echo countCuisines('all'); ?></strong></a></li>
-        <?php $cuisines = $db->query("SELECT * FROM cuisines WHERE status=1 ORDER BY title"); ?>
+        <?php $cuisines = $db->query("SELECT * FROM cuisines WHERE $status=1 ORDER BY title"); ?>
         <?php while ($cr=$db->fetch_array($cuisines)) { ?>
-        	<li><a id="<?php echo $cr['id']; ?>"><span><?php __($cr['title']); ?></span> <strong><?php echo countCuisines($cr['id']); ?></strong></a></li>
+        	<li><a id="<?php echo $cr['id']; ?>"><span><?php echo urlText($pr['id']); ?><?php echo ($lang=='cn'?($cr['title_cn']==""?$cr['title']:$cr['title_cn']):$cr['title']); ?></span> <strong><?php echo countCuisines($cr['id']); ?></strong></a></li>
         <?php } // while $cuisines loop ?>
      </ul>
 </div>

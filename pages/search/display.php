@@ -54,19 +54,19 @@
                         </div>
                         <div class="col-sm-7">
                         	<div class="product-name-list">
-                            	<h2><a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php __($res['name']); ?></a></h2>
+                            	<h2><a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php echo urlText($pr['id']); ?><?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?></a></h2>
+                                <i><?php echo ($lang=='cn'?($res['address_cn']==""?$res['address']:$res['address_cn']):$res['address']); ?></i>
+                                <?php
+                                    if ($res['minimum_order'] >0) {
+                                        echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
+                                    }
+                                    if ($res['delivery_fee'] >0) {
+                                        echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
+                                    }
+                                ?>
                                 
-                                    <?php
-                                        if ($res['minimum_order'] >0) {
-                                            echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
-                                        }
-                                        if ($res['delivery_fee'] >0) {
-                                            echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
-                                        }
-                                    ?>
-                                    
-                                    <i><?php __($res['address']); ?></i>
-                                    <br><br>    
+                                
+                                <br><br>    
                                 
                             </div>
                             <div class="product-type-list">
@@ -74,7 +74,8 @@
                             	<strong>Type of Food: </strong>
 								<?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['restaurant_id']} AND r.status=1 AND c.status=1"); ?>
                                 <?php $cuisines2 = array(); ?>
-                                <?php while ($rcr=$db->fetch_array($rc)) $cuisines2[] = $rcr['title']; ?>
+                                <?php //while ($rcr=$db->fetch_array($rc)) $cuisines2[] = $rcr['title']; ?>
+                                <?php while ($rcr=$db->fetch_array($rc)) $cuisines2[] = ($lang=='cn'?($rcr['title_cn']==""?$rcr['title']:$rcr['title_cn']):$rcr['title']); ?>
                                 <?php echo implode(", ",$cuisines2); ?>
                                 
                                 <br>

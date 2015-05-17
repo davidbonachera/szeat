@@ -20,8 +20,8 @@
 
         <div class="col-sm-7">
             <div class="product-name">
-                <h2><?php echo $res['name']; ?></h2>
-                <i><?php __($res['address']); ?></i>
+                <h2><?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?></h2>
+                <i><?php echo ($lang=='cn'?($res['address_cn']==""?$res['address']:$res['address_cn']):$res['address']); ?></i>
                 <p>
                     <?php
                     if ($res['minimum_order'] >0) {
@@ -38,7 +38,8 @@
             <div class="product-type-list">
                 <strong>Type of Food: </strong>
                 <?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['restaurant_id']} AND r.status=1 AND c.status=1"); ?>
-                <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = $rcr['title']; ?>
+                <?php //while ($rcr=$db->fetch_array($rc)) $cuisines[] = $rcr['title']; ?>
+                <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = ($lang=='cn'?($rcr['title_cn']==""?$rcr['title']:$rcr['title_cn']):$rcr['title']); ?>
                <?php echo implode(", ",$cuisines); ?>
             
                 <br>
@@ -70,10 +71,10 @@
     <div class="row">
         <div class="col-md-8">
             <div class="block-page more-about">
-                <h2>More About <?php __($res['name']); ?></h2>
+                <h2>More about <?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?></h2>
                 <p>
                     <?php echo $res['description']; ?>
-                    <a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php __($res['name']); ?> Menu</a>
+                    <a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?> Menu</a>
                 </p>
             </div>
         </div>
@@ -85,7 +86,15 @@
                     <?php $del_hours = deliveryHours($res['restaurant_id']); ?>
                     <?php if (sizeof($del_hours) > 0) { ?>
                         <?php foreach ($del_hours as $dr) { ?>
-                            <li class="clearfix"><label><?php echo ucfirst(strtolower($dr['day'])); ?></label> <?php echo $dr['start']; ?> - <?php echo $dr['end']; ?></li>
+                        <?php // echo $dr['day']; ?>
+                            <?php if ($dr['day']=='MONDAY') $chinkDay = '星期一'; ?>
+                            <?php if ($dr['day']=='TUESDAY') $chinkDay = '星期二'; ?>
+                            <?php if ($dr['day']=='WEDNESDAY') $chinkDay = '星期三'; ?>
+                            <?php if ($dr['day']=='THURSDAY') $chinkDay = '星期四'; ?>
+                            <?php if ($dr['day']=='FRIDAY') $chinkDay = '星期五'; ?>
+                            <?php if ($dr['day']=='SATURDAY') $chinkDay = '星期六'; ?>
+                            <?php if ($dr['day']=='SUNDAY') $chinkDay = '星期天'; ?>
+                            <li class="clearfix"><label><?php echo ($lang=='cn'?$chinkDay:ucfirst(strtolower($dr['day']))); ?></label> <?php echo $dr['start']; ?> - <?php echo $dr['end']; ?></li>
                         <?php } // foreach $del_hours ?>
                     <?php } // sizeof($del_hours) ?>
                 </ul>
@@ -95,7 +104,7 @@
 
     <div class="row">
         <div class="col-md-10 castomer-reviews">
-            <h2><a name="ratings"></a>Customer reviews on <?php __($res['name']); ?></h2>
+            <h2><a name="ratings"></a>Customer reviews on <?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?></h2>
             <?php $ratings = $db->query("SELECT * FROM ratings WHERE restaurant_id={$res['restaurant_id']} AND status=1 ORDER BY date DESC, id DESC"); ?>
             <?php while ($rr=$db->fetch_array($ratings)) { ?>
             <div class="customer-reviews">

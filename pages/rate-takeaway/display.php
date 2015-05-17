@@ -29,13 +29,16 @@
                             <tr>
                                 <td><?php echo date("m/d/Y",strtotime($order['date'])); ?></td>
                                 <td class="red"><a href="order-summary.php?order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
-                                <td nowrap><?php echo getData('restaurants','name',$order['restaurant_id']); ?> &nbsp; </td>
+                                
+                                <?php ($lang=='cn'?$name='name_cn':$name='name'); ?>
+                                <td nowrap><?php echo (getData('restaurants',$name,$order['restaurant_id'])==""?getData('restaurants','name',$order['restaurant_id']):getData('restaurants',$name,$order['restaurant_id'])); ?> &nbsp; </td>
+
                                 <td><?php echo $order['price']; ?> <?php echo _priceSymbol; ?></td>
                             </tr>
                         </tbody>
                     </table>
                     <p>
-                    	Did you enjoy the service and food 
+                    	Did you enjoy the service and food
                         you received from the restaurant? 
                         Let other Shenzen Eat'ers know!
                     </p>
