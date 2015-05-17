@@ -32,10 +32,12 @@ if ($_POST) {
 	if (checkFeild($_POST["title"]) && checkFeild($_POST["content"])) {
 
 		$data["title"] 			= $_POST["title"];
+    $data["title_cn"]      = $_POST["title_cn"];
 		$data["keywords"] 		= $_POST["keywords"];
 		$data["description"]	= $_POST["description"];
-		$data["content"] 		= $_POST["content"];
-		$data["status"] 		= $_POST["status"];
+		$data["content_cn"] 		= $_POST["content_cn"];
+    $data["status"]    = $_POST["status"];
+		$data["status_cn"] 		= $_POST["status_cn"];
 	
 		$db->query_update("pages", $data, "id='$id'");
 		if($db->affected_rows > 0){
@@ -116,6 +118,13 @@ $query = $db->query_first("SELECT * FROM pages WHERE id='$id'");
                                           <input class="input-xlarge focused" id="title" name="title" type="text" value="<?php echo $query['title']; ?>">
                                         </div>
                                       </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label" for="title_cn">Chinese Title</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="title_cn" name="title_cn" type="text" value="<?php echo $query['title_cn']; ?>">
+                                        </div>
+                                      </div>                                      
                                       
                                       <div class="control-group">
                                         <label class="control-label" for="keywords">Keywords</label>
@@ -137,6 +146,13 @@ $query = $db->query_first("SELECT * FROM pages WHERE id='$id'");
                                             <textarea class="cleditor" id="content" name="content" rows="3"><?php echo $query['content']; ?></textarea>
                                           </div>
                                       </div>
+
+                                      <div class="control-group hidden-phone">
+                                          <label class="control-label" for="content_cn">Chinese Content</label>
+                                          <div class="controls">
+                                            <textarea class="cleditor" id="content_cn" name="content_cn" rows="3"><?php echo $query['content_cn']; ?></textarea>
+                                          </div>
+                                      </div>                                      
                                       
                                       <div class="control-group">
                                         <label class="control-label">Status</label>
@@ -152,6 +168,24 @@ $query = $db->query_first("SELECT * FROM pages WHERE id='$id'");
                                           </label>
                                         </div>
                                       </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label">Chinese Status</label>
+                                        <div class="controls">
+                                          <label class="radio">
+                                            <input type="radio" name="status_cn" id="status_cn1" value="1" <?php echo $query['status_cn']==1 ? 'checked':NULL; ?>>
+                                            Enable
+                                          </label>
+                                          <div style="clear:both"></div>
+                                          <label class="radio">
+                                            <input type="radio" name="status_cn" id="status_cn2" value="0" <?php echo $query['status_cn']==0 ? 'checked':NULL; ?>>
+                                            Disable
+                                          </label>
+                                        </div>
+                                      </div>
+
+
+
                                       <div class="form-actions">
                                         <button id="submit" name="submit" type="submit" class="btn btn-primary">Save changes</button>
                                         <button class="btn" id="cancelButton">Cancel</button>

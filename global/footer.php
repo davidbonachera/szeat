@@ -2,7 +2,10 @@
         <div class="container">
                         
         <?php
-            $pages = $db->query("SELECT * FROM pages WHERE status=1 ORDER BY id");
+
+            $status = ($lang=='cn'?'status_cn':'status');
+            $pages = $db->query("SELECT * FROM pages WHERE $status=1 ORDER BY id");
+
             $total = $db->affected_rows;
             $half  = round($total/2);
 
@@ -11,8 +14,8 @@
                     echo '<ul>';
                         while($pr=$db->fetch_array($pages)) {
                             isset($count) ? $count++:$count=1; ?>
-                            <li><a href="index.php?page=page&id=<?php echo urlText($pr['id']); ?>"><?php __($pr['title']); ?></a></li>
 
+                            <li><a href="index.php?page=page&id=<?php echo urlText($pr['id']); ?>"><?php echo ($lang=='cn'?($pr['title_cn']==""?$pr['title']:$pr['title_cn']):$pr['title']); ?></a></li>
 
                             <?php if ($count==$half) { ?>
                                 </ul>

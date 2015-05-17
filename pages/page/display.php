@@ -11,15 +11,15 @@ if (isset($_GET['id'])) {
             <div class="page-header">
                 <a href="index.php">Home</a>
                 <img src="img/title-icon.png" alt="" />
-                <a href="#"><?php echo $page['title']; ?></a>
+                <a href="#"><?php echo ($lang=='cn'?($page['title_cn']==""?$page['title']:$page['title_cn']):$page['title']); ?></a>
             </div>
         </div>
     </div>
     <div class="row myfonts">
         <div class="page-block col-md-10 well">
-            <h2><?php echo $page['title']; ?></h2>
+            <h2><?php echo ($lang=='cn'?($page['title_cn']==""?$page['title']:$page['title_cn']):$page['title']); ?></h2>
             <div class="innerContent">
-                <?php echo $page['content']; ?>
+                <?php echo ($lang=='cn'?($page['content_cn']==""?$page['content']:$page['content_cn']):$page['content']); ?>
             </div>
         </div>
         <div class="col-md-2">
@@ -38,6 +38,3 @@ if (isset($_GET['id'])) {
 	exit;
 }
 ?>
-
-
-

@@ -24,10 +24,13 @@ if ($_POST) {
 	if (checkFeild($_POST["title"]) && checkFeild($_POST["content"])) {
 
 		$data["title"] 			= $_POST["title"];
+        $data["title_cn"]      = $_POST["title_cn"];
 		$data["keywords"] 		= $_POST["keywords"];
 		$data["description"]	= $_POST["description"];
 		$data["content"] 		= $_POST["content"];
+        $data["content_cn"]    = $_POST["content_cn"];
 		$data["status"] 		= $_POST["status"];
+        $data["status_cn"]     = $_POST["status_cn"];
 		$data["date"] 			= _nowdt;
 	
 		$pid = $db->query_insert("pages", $data);
@@ -99,13 +102,26 @@ if ($_POST) {
                             <div class="box-content">
                                 <form class="form-horizontal" method="post">
                                     <fieldset>
-                                      <div class="control-group">
-                                        <label class="control-label" for="title">* Title</label>
-                                        <div class="controls">
-                                          <input class="input-xlarge focused" id="title" name="title" type="text" value="">
+
+                                    
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="title">* English Title</label>
+                                            <div class="controls">
+                                                <input class="input-xlarge focused" id="title" name="title" type="text" value="">
+                                            </div>
                                         </div>
-                                      </div>
-                                      
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="title_cn">Chinese Title </label>
+                                            <div class="controls">
+                                                <input class="input-xlarge focused" id="title_cn" name="title_cn" type="text" value="">
+                                            </div>
+                                        </div>
+
+                                    
+
+
                                       <div class="control-group">
                                         <label class="control-label" for="keywords">Keywords</label>
                                         <div class="controls">
@@ -121,26 +137,37 @@ if ($_POST) {
                                       </div>
                                       
                                       <div class="control-group hidden-phone">
-                                          <label class="control-label" for="content">* Content</label>
+                                          <label class="control-label" for="content">* English Content</label>
                                           <div class="controls">
                                             <textarea class="cleditor" id="content" name="content" rows="3"></textarea>
                                           </div>
                                       </div>
-                                      
-                                      <div class="control-group">
-                                        <label class="control-label">Status</label>
+
+                                    <div class="control-group hidden-phone">
+                                        <label class="control-label" for="content_cn">Chinese Content</label>
                                         <div class="controls">
-                                          <label class="radio">
-                                            <input type="radio" name="status" id="status1" value="1" checked="">
-                                            Enable
-                                          </label>
-                                          <div style="clear:both"></div>
-                                          <label class="radio">
-                                            <input type="radio" name="status" id="status2" value="0">
-                                            Disable
-                                          </label>
+                                            <textarea class="cleditor" id="content_cn" name="content_cn" rows="3"></textarea>
                                         </div>
-                                      </div>
+                                    </div>
+                                      
+                                    <div class="control-group">
+                                        <label class="control-label">English Status</label>
+                                        <div class="controls">
+                                            <label class="radio"><input type="radio" name="status" id="status1" value="1" checked="">Enable</label>
+                                            <div style="clear:both"></div>
+                                            <label class="radio"><input type="radio" name="status" id="status2" value="0">Disable</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label">Chinese Status</label>
+                                        <div class="controls">
+                                            <label class="radio"><input type="radio" name="status_cn" id="status_cn1" value="1" checked="">Enable</label>
+                                            <div style="clear:both"></div>
+                                            <label class="radio"><input type="radio" name="status_cn" id="status_cn2" value="0">Disable</label>
+                                        </div>
+                                    </div>                                    
+
                                       <div class="form-actions">
                                         <button id="submit" name="submit" type="submit" class="btn btn-primary">Save changes</button>
                                         <button class="btn" id="cancelButton">Cancel</button>
