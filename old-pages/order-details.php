@@ -207,7 +207,7 @@ if (!isset($_SESSION['user']['items']) || sizeof($_SESSION['user']['items']) < 1
                         <h2>Name and Address</h2>
                         <!-- your-info-registration -->
                         <div class="your-info-registration">
-                            <form action="login.php?redirect=<?php echo urldecode('order-details.php'); ?>" method="post">
+                            <form action="index.php?page=login&redirect=<?php echo urldecode('order-details.php'); ?>" method="post">
                                 <h3>Existing Member</h3>
                                 <div class="registration-row">
                                     <label>E-mail Address:</label>

@@ -10,6 +10,7 @@ if (isset($_GET['id'])) {
 	}
 	
 	$_SESSION['user']['restaurant']['name'] = $res['name'];
+	$_SESSION['user']['restaurant']['name_cn'] = $res['name_cn'];
 	$_SESSION['user']['restaurant']['id'] 	= $res['id'];
 	
 } elseif (isset($_GET['restaurant'])) {
@@ -23,6 +24,7 @@ if (isset($_GET['id'])) {
 	}
 	
 	$_SESSION['user']['restaurant']['name'] = $res['name'];
+	$_SESSION['user']['restaurant']['name_cn'] = $res['name_cn'];
 	$_SESSION['user']['restaurant']['id'] 	= $res['id'];
 } else {
 	header("Location: index.php");

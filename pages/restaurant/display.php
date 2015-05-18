@@ -5,9 +5,10 @@
         	<div class="page-header">
             	<a href="index.php">Home</a>
                 <img src="img/title-icon.png" alt="" />
-                <a href="#"> <?php echo getData('areas','title', $res['area_id']); ?></a>
+                <?php ($lang=='cn'?$title='title_cn':$title='title'); ?>
+                <a href="#"><?php echo (getData('areas',$title,$res['area_id'])==""?getData('areas','title',$res['area_id']):getData('areas',$title,$res['area_id'])); ?></a>
                 <img src="img/title-icon.png" alt="" />
-                <a href="#"><?php echo $res['name']; ?></a>
+                <a href="#"><?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?></a>
             </div>
         </div>
     </div>

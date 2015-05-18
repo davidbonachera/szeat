@@ -4,7 +4,7 @@
             	<div class="page-header">
                 	<a href="index.php">Home</a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>"><?php echo $res['name']; ?></a>
+                    <a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>"><?php echo ($lang=='cn' ? ($_SESSION['user']['restaurant']['name_cn']=="" ? $_SESSION['user']['restaurant']['name'] : $_SESSION['user']['restaurant']['name_cn']) : $_SESSION['user']['restaurant']['name']); ?></a>
                     <img src="img/title-icon.png" alt="" />
                     <a href="#">Menu</a>
                 </div>

@@ -8,7 +8,7 @@
 
             	    <a href="index.php">Home</a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="#"><span id="cuisineCount"><?php echo checkFeild($cuisineName) ? countCuisines($cuisines):$resultCount; ?></span> <span id="cuisineName"><?php echo $cuisineName; ?></span> takeaways serving <?php echo isset($buildingName) ? $buildingName.(isset($areaName) ? ' in '.$areaName:NULL):NULL; ?></a>
+                    <a href="#"><span id="cuisineCount"><?php echo checkFeild($cuisineName) ? countCuisines($cuisines):$resultCount; ?></span> <span id="cuisineName"><?php echo ($lang=='cn'?($chinesecuisineName=""?$cuisineName:$chinesecuisineName):$cuisineName); ?></span> takeaways serving <?php echo isset($buildingName) ? ($lang=='cn'?($chinesebuildingName==""? $buildingName : $chinesebuildingName) : $buildingName).(isset($areaName) ? ' in '.($lang=='cn'?($chineseareaName==""?$areaName:$chineseareaName):$areaName):NULL):NULL; ?></a>
 
             	</div>
 

@@ -1,9 +1,5 @@
 <?php 
 
-// require_once('class/config.inc.php');
-// require_once("class/Pagination.class.php");
-// require_once('includes/functions.php');
-
 if ($_GET) {
 	$area 		= $db->escape($_GET['area']);
 	$building 	= $db->escape($_GET['building']);
@@ -11,14 +7,17 @@ if ($_GET) {
 	
 	if (checkFeild($area)) {
 		$areaName = getData('areas','title',$area);
+		$chineseareaName = getData('areas','title_cn',$area);
 		$where = "WHERE ra.area_id=$area";
 	}
 	if (checkFeild($building)) {
 		$buildingName = getData('buildings','title',$building);
+		$chinesebuildingName = getData('buildings','title_cn',$building);
 		$where = isset($where) ? $where." AND rb.building_id=$building":"WHERE rb.building_id=$building";
 	}
 	if (checkFeild($cuisines)) {
 		$cuisineName = getData('cuisines','title',$cuisines);
+		$chinesecuisineName = getData('cuisines','title_cn',$cuisines);
 	} else {
 		$cuisineName = NULL;
 	}
@@ -53,4 +52,3 @@ if ($_GET) {
 	header("Location: index.php");
 	exit;
 }
-?>

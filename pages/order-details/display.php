@@ -7,7 +7,7 @@
             <a href="#">Search results</a>
             <img src="img/title-icon.png" alt="" />
             <?php if (isset($_SESSION['user']['restaurant']['name'])) { ?>
-                <a href="index.php?page=restaurant&restaurant=<?php echo urlText($_SESSION['user']['restaurant']['name']); ?>&id=<?php echo $_SESSION['user']['restaurant']['id']; ?>"><?php __($_SESSION['user']['restaurant']['name']); ?></a>
+                <a href="index.php?page=restaurant&restaurant=<?php echo urlText($_SESSION['user']['restaurant']['name']); ?>&id=<?php echo $_SESSION['user']['restaurant']['id']; ?>"><?php echo ($lang=='cn' ? ($_SESSION['user']['restaurant']['name_cn']=="" ? $_SESSION['user']['restaurant']['name'] : $_SESSION['user']['restaurant']['name_cn']) : $_SESSION['user']['restaurant']['name']); ?></a>
                 <img src="img/title-icon.png" alt="" />
                 <a href="index.php?page=menu&restaurant=<?php echo urlText($_SESSION['user']['restaurant']['name']); ?>&id=<?php echo $_SESSION['user']['restaurant']['id']; ?>">Menu</a>
                 <img src="img/title-icon.png" alt="" />
@@ -189,7 +189,7 @@
 
                     <div>
                         
-                        <form action="index.php?page=login?redirect=<?php echo urldecode('index.php?page=order-details'); ?>" method="post" class="form-horizontal">
+                        <form action="index.php?page=login&redirect=<?php echo urldecode('index.php?page=order-details'); ?>" method="post" class="form-horizontal">
                             <h2>Existing Member</h2>
 
                             <div class="form-group form-horizontal">
