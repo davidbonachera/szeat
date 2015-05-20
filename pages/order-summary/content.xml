@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <en>
-
+    	<home>Home</home>
+    	<myorders>My Orders</myorders>
+    	<order>Order</order>
+    	<ordersum>Order Summary</ordersum>
+    	<date>Date</date>	
+    	<ordanum>Order number</ordanum>	
+    	<resto>Restaurant</resto>
+    	<reorder>Reorder</reorder>
+		<total>Total</total>
+		<info>Delivery information</info>
+		<print>Print</print>
+		<dets>Order Details</dets>
     </en>
     <cn>
-
+    	<home>主页</home>
+    	<myorders>我的订单</myorders>
+    	<order>订单</order>
+    	<ordersum>订单总览</ordersum>
+    	<date>Date</date>	
+    	<ordanum>订单编号</ordanum>	
+    	<resto>餐厅</resto>
+    	<reorder>再次订购以往订单</reorder>
+    	<print>打印</print>
+		<total>总价</total>
+		<info>送餐信息</info>
+		<dets>订单详细信息</dets>
     </cn>
 </document>

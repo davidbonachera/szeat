@@ -1,6 +1,6 @@
 <div class="col-sm-3 cuisine-types">
     <div class="myfonts">
-        <h2>Cuisine types</h2>
+        <h2><?php echo ($xml->$lang->cuisintypes == "" ? $xml->en->cuisintypes : $xml->$lang->cuisintypes); ?></h2>
     </div>
     <script>
     $(document).ready(function(){

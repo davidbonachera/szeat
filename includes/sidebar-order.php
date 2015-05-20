@@ -5,7 +5,7 @@
     
     <div class="block-page">
 
-        <h2>Your order</h2>
+        <h2><?php echo ($xml->$lang->urorder==""?$xml->en->urorder:$xml->$lang->urorder); ?></h2>
         <ul>
             <?php 
 
@@ -61,7 +61,7 @@
           
                 ?>
                 <li>
-                    <p>Subtotal:</p>
+                    <p><?php echo ($xml->$lang->subtot==""?$xml->en->subtot:$xml->$lang->subtot); ?>:</p>
                     <span>&nbsp;</span>
                     <span style="font-weight:normal"><?php echo _priceSymbol; ?></span>
                     <i style="font-weight:normal"><?php echo number_format($totalItemPrice,2); ?></i>
@@ -80,7 +80,7 @@
         ?>
 
         <div class="order-button">
-            <div class="view-menu"><a class="btn btn-yellow" href="<?php echo (($deliveryAvailable==false)||($spendEnough!=true)) ? "":"index.php?page=order-details"; ?>">Order Now</a></div>
+            <div class="view-menu"><a class="btn btn-yellow" href="<?php echo (($deliveryAvailable==false)||($spendEnough!=true)) ? "":"index.php?page=order-details"; ?>"><?php echo ($xml->$lang->ordernow==""?$xml->en->ordernow:$xml->$lang->ordernow); ?></a></div>
         </div>
     </div>
 </div>

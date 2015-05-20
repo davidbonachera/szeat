@@ -1,12 +1,13 @@
+<?php $xml = simplexml_load_file("pages/menu/content.xml"); ?>
 <div class="container main">
     	<div class="row">
         	<div class="col-xs-12">
             	<div class="page-header">
-                	<a href="index.php">Home</a>
+                	<a href="index.php"><?php echo ($xml->$lang->home==""?$xml->en->home:$xml->$lang->home); ?></a>
                     <img src="img/title-icon.png" alt="" />
                     <a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>"><?php echo ($lang=='cn' ? ($_SESSION['user']['restaurant']['name_cn']=="" ? $_SESSION['user']['restaurant']['name'] : $_SESSION['user']['restaurant']['name_cn']) : $_SESSION['user']['restaurant']['name']); ?></a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="#">Menu</a>
+                    <a href="#"><?php echo ($xml->$lang->menu==""?$xml->en->menu:$xml->$lang->menu); ?></a>
                 </div>
             </div>
         </div>
@@ -23,23 +24,23 @@
                     <p>
                         <?php
                         if ($res['minimum_order'] >0) {
-                            echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
+                            echo '<strong>'.($xml->$lang->minord==""?$xml->en->minord:$xml->$lang->minord).':</strong> RMB '.$res['minimum_order'].'<br>'; 
                         }
                         if ($res['delivery_fee'] >0) {
-                            echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
+                            echo '<strong>'.($xml->$lang->dellfee==""?$xml->en->dellfee:$xml->$lang->dellfee).':</strong> RMB '.$res['delivery_fee'].'<br>'; 
                         }
                         ?>
                     </p>
                 </div>
                 
                 <div class="product-type-list">
-                	<strong>Type of Food: </strong>
+                	<strong><?php echo ($xml->$lang->typafood==""?$xml->en->typafood:$xml->$lang->typafood); ?>: </strong>
                     <?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['id']} AND r.status=1 AND c.status=1"); ?>
                     <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = ($lang=='cn'?($rcr['title_cn']==""?$rcr['title']:$rcr['title_cn']):$rcr['title']); ?>
 			       <?php echo implode(", ",$cuisines); ?>
 				
                     <br>
-                	<strong>Delivery Time: </strong>
+                	<strong><?php echo ($xml->$lang->delltime==""?$xml->en->delltime:$xml->$lang->delltime); ?>: </strong>
 					<?php $del_hours = deliveryHours($res['id'], true); ?>
 					<?php __($del_hours['start']); ?> - <?php __($del_hours['end']); ?>
                 </div>
@@ -48,7 +49,7 @@
             <div class="col-sm-3 starsImagine">
             	<!-- <div class="view-menu"><a class="yellow-button" href="#">View menu</a></div> -->
                 <?php $rating = ratings($res['id']); ?>
-                <p class="user-rating">User rating (<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>#ratings"><?php echo $rating['count']; ?> ratings</a>)</p>
+                <p class="user-rating"><?php echo ($xml->$lang->usarat==""?$xml->en->usarat:$xml->$lang->usarat); ?> (<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['id']; ?>#ratings"><?php echo $rating['count']; ?> <?php echo ($xml->$lang->ratingsnum==""?$xml->en->ratingsnum:$xml->$lang->ratingsnum); ?></a>)</p>
                 <span class="rating">
                     <?php 
                         for($i=$rating['rating']; $i<=4; $i++) { 
@@ -65,8 +66,8 @@
         <div class="row">
         	<div class="col-sm-3">
                 <div class="block-page categories">
-                    <h2>Categories</h2>
-                    <p>Skip to your favourite section by clicking on a menu category: <span></span></p>
+                    <h2><?php echo ($xml->$lang->bigcats==""?$xml->en->bigcats:$xml->$lang->bigcats); ?></h2>
+                    <p><?php echo ($xml->$lang->skippy==""?$xml->en->skippy:$xml->$lang->skippy); ?>: <span></span></p>
                     <ul>
                     	<?php $cats = $db->query("SELECT * FROM menu_categories WHERE restaurant_id={$res['id']} AND $status=1 ORDER BY prior ASC"); ?>
                         <?php while($cr=$db->fetch_array($cats)) { ?>
@@ -78,14 +79,14 @@
             
             <div class="col-sm-6">
             	<div class="block-page menu">
-                	<h2>Menu</h2>
+                	<h2><?php echo ($xml->$lang->bigmenu==""?$xml->en->bigmenu:$xml->$lang->bigmenu); ?></h2>
 					<?php $cats = $db->query("SELECT * FROM menu_categories WHERE restaurant_id={$res['id']} AND $status=1 ORDER BY prior ASC"); ?>
                     <?php while($cat=$db->fetch_array($cats)) { ?>
                     <a name="<?php echo $cat['id']; ?>"></a>
                     <span><?php echo ($lang=='cn'?($cat['title_cn']==""?$cat['title']:$cat['title_cn']):$cat['title']); ?></span>
                     <p><?php echo ($lang=='cn'?($cat['description_cn']==""?$cat['description']:$cat['description_cn']):$cat['description']); ?></p>
                     <ul>
-                    	<div class="price">Price</div>
+                    	<div class="price"><?php echo ($xml->$lang->bigprice==""?$xml->en->bigprice:$xml->$lang->bigprice); ?></div>
                     	<?php $items = $db->query("SELECT * FROM menu_items WHERE menu_cat_id={$cat['id']} AND $status=1 ORDER BY item_number"); ?>
                         <?php while($item=$db->fetch_array($items)) { ?>
                         <li>

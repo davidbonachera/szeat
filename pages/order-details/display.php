@@ -1,23 +1,24 @@
+<?php $xml = simplexml_load_file("pages/order-details/content.xml"); ?>
 <div class="container">
 
 	<div class="col-xs-12">
     	<div class="page-header">
-        	<a href="index.php">Home</a>
+        	<a href="index.php"><?php echo ($xml->$lang->home==""?$xml->en->home:$xml->$lang->home); ?></a>
             <img src="img/title-icon.png" alt="" />
-            <a href="#">Search results</a>
+            <a href="#"><?php echo ($xml->$lang->resul==""?$xml->en->resul:$xml->$lang->resul); ?></a>
             <img src="img/title-icon.png" alt="" />
             <?php if (isset($_SESSION['user']['restaurant']['name'])) { ?>
                 <a href="index.php?page=restaurant&restaurant=<?php echo urlText($_SESSION['user']['restaurant']['name']); ?>&id=<?php echo $_SESSION['user']['restaurant']['id']; ?>"><?php echo ($lang=='cn' ? ($_SESSION['user']['restaurant']['name_cn']=="" ? $_SESSION['user']['restaurant']['name'] : $_SESSION['user']['restaurant']['name_cn']) : $_SESSION['user']['restaurant']['name']); ?></a>
                 <img src="img/title-icon.png" alt="" />
-                <a href="index.php?page=menu&restaurant=<?php echo urlText($_SESSION['user']['restaurant']['name']); ?>&id=<?php echo $_SESSION['user']['restaurant']['id']; ?>">Menu</a>
+                <a href="index.php?page=menu&restaurant=<?php echo urlText($_SESSION['user']['restaurant']['name']); ?>&id=<?php echo $_SESSION['user']['restaurant']['id']; ?>"><?php echo ($xml->$lang->bigmenu==""?$xml->en->bigmenu:$xml->$lang->bigmenu); ?></a>
                 <img src="img/title-icon.png" alt="" />
             <?php } else { ?>
-                <a href="#">Restaurant</a>
+                <a href="#"><?php echo ($xml->$lang->resto==""?$xml->en->resto:$xml->$lang->resto); ?></a>
                 <img src="img/title-icon.png" alt="" />
-                <a href="#">Menu</a>
+                <a href="#"><?php echo ($xml->$lang->bigmenu==""?$xml->en->bigmenu:$xml->$lang->bigmenu); ?></a>
                 <img src="img/title-icon.png" alt="" />
             <?php } ?>
-            <a href="#">Delivery address</a>
+            <a href="#"><?php echo ($xml->$lang->delad==""?$xml->en->delad:$xml->$lang->delad); ?></a>
         </div>
     </div>
 
@@ -25,7 +26,7 @@
     	<div class="col-sm-6">
             <div class="well">
                 
-                <div class="myfonts"><h2>Your Order</h2></div>
+                <div class="myfonts"><h2><?php echo ($xml->$lang->urorder==""?$xml->en->urorder:$xml->$lang->urorder); ?></h2></div>
             	
                 <div class="full-order-price-container">
                 	<?php $total_price = 0; ?>
@@ -44,7 +45,7 @@
     								}
     							?>
                                 <div class="full-order-price-row">
-                                    <span class="first-element"><?php echo $item['quantity']; ?> x no. <?php __($ir['item_number']); ?> <?php __($ir['name']); ?> <?php echo $itemValue; ?></span>
+                                    <span class="first-element"><?php echo $item['quantity']; ?> x n.<?php __($ir['item_number']); ?>: <?php __($ir['name']); ?> <?php echo $itemValue; ?></span>
                                     <span class="second-element"><?php echo _priceSymbol; ?></span>
                                     <span class="third-element"><?php echo number_format($itemPrice*$item['quantity'],2); ?></span>
                                     <a href="index.php?page=order-details&remove_item=<?php echo $item['id']; ?>&size=<?php echo $item['size']; ?>" class="delete-button"></a>
@@ -67,7 +68,7 @@
                     <?php } // end isset ?>
                         
                     <div class="full-order-price-row final">
-                    	<span class="first-element">Total</span>
+                    	<span class="first-element"><?php echo ($xml->$lang->total==""?$xml->en->total:$xml->$lang->total); ?></span>
                     	<span class="second-element"><?php echo _priceSymbol; ?></span>
                     	<span class="third-element"><?php echo $total_price; ?></span>
                     </div>
@@ -78,14 +79,14 @@
                     
                     <div class="form-group" style="margin-top:1em;">
                         <div class="col-md-offset-3">
-                            <a href="index.php?page=menu&restaurant=<?php echo urlText($_SESSION['user']['restaurant']['name']); ?>&id=<?php echo$_SESSION['user']['restaurant']['id']; ?>" class="btn btn-info">Add additional items to your order</a>
+                            <a href="index.php?page=menu&restaurant=<?php echo urlText($_SESSION['user']['restaurant']['name']); ?>&id=<?php echo$_SESSION['user']['restaurant']['id']; ?>" class="btn btn-info"><?php echo ($xml->$lang->add==""?$xml->en->add:$xml->$lang->add); ?></a>
                         </div>
                     </div>
 
                     <div class="form-group form-horizontal">
-                        <label for="itinerary" class="control-label col-sm-4">Leave a note for the restaurant</label>
+                        <label for="itinerary" class="control-label col-sm-4"><?php echo ($xml->$lang->note==""?$xml->en->note:$xml->$lang->note); ?></label>
                         <div class="col-sm-8">
-                            <textarea name="notesDummy" id="notesDummy" class="form-control" placeholder="Leave additional notes for the restaurant here (optional)" maxlength="160"><?php echo isset($_SESSION['user']['notes']) ? $_SESSION['user']['notes']:NULL; ?></textarea>
+                            <textarea name="notesDummy" id="notesDummy" class="form-control" maxlength="160"><?php echo isset($_SESSION['user']['notes']) ? $_SESSION['user']['notes']:NULL; ?></textarea>
                         </div>
                     </div>
                 </form>
@@ -105,22 +106,22 @@
                         
                         <div id="lastminsignup">
 
-                            <h2>Recipient Name and Address</h2>
+                            <h2><?php echo ($xml->$lang->recip==""?$xml->en->recip:$xml->$lang->recip); ?></h2>
 
                             <form action="index.php?page=order-summary" method="post" class="form form-horizontal">
 
-                                <p>Please check that your delivery information is correct.</p>
+                                <p><?php echo ($xml->$lang->check==""?$xml->en->check:$xml->$lang->check); ?></p>
 
 
                                 <div class="form-group form-horizontal">
-                                    <label class="control-label col-sm-4">Name:</label>
+                                    <label class="control-label col-sm-4"><?php echo ($xml->$lang->name==""?$xml->en->name:$xml->$lang->name); ?>:</label>
                                     <div class="col-sm-8">
                                         <input class="form-control" type="text" name="name" value="<?php echo $uData['name']; ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group form-horizontal">
-                                    <label class="control-label col-sm-4">Phone:</label>
+                                    <label class="control-label col-sm-4"><?php echo ($xml->$lang->phone==""?$xml->en->phone:$xml->$lang->phone); ?>:</label>
                                     <div class="col-sm-8">
                                         <input class="form-control" type="text" name="phone" value="<?php echo $uData['phone']; ?>">
                                     </div>
@@ -128,7 +129,7 @@
 
 
                                 <div class="form-group form-horizontal">
-                                    <label class="control-label col-sm-4">Your Area:</label>
+                                    <label class="control-label col-sm-4"><?php echo ($xml->$lang->area==""?$xml->en->area:$xml->$lang->area); ?>:</label>
                                     <div class="col-md-8">
                                         <select class="form-control" id="area" name="area">
                                             <option hidden="">Select</option>
@@ -143,7 +144,7 @@
                                 </div>
 
                                 <div class="form-group form-horizontal">
-                                    <label class="control-label col-sm-4">Your Building:</label>
+                                    <label class="control-label col-sm-4"><?php echo ($xml->$lang->build==""?$xml->en->build:$xml->$lang->build); ?>:</label>
                                     <div class="col-md-8">
                                         <select class="form-control" id="building" name="building">
                                             <option hidden="hidden">Select</option>
@@ -159,7 +160,7 @@
 
 
                                 <div class="form-group form-horizontal">
-                                    <label class="control-label col-sm-4">Block / Apt:</label>
+                                    <label class="control-label col-sm-4"><?php echo ($xml->$lang->blok==""?$xml->en->blok:$xml->$lang->blok); ?>:</label>
                                     <div class="col-sm-8">
                                         <input class="form-control" type="text" name="apartment" value="<?php echo $uData['apartment']; ?>">
                                     </div>
@@ -170,7 +171,7 @@
 
                                 <div class="form-group" style="margin-top:1em;">
                                     <div class="col-md-offset-4 col-md-1">
-                                        <button type="submit" class="btn btn-yellow">Confirm</button>
+                                        <button type="submit" class="btn btn-yellow"><?php echo ($xml->$lang->confi==""?$xml->en->confi:$xml->$lang->confi); ?></button>
                                     </div>
                                 </div>
 

@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <en>
-
+    	<home>Home</home>
+    	<resul>Search results</resul>
+    	<resto>Restaurant</resto>
+		<bigmenu>Menu</bigmenu>
+		<delad>Delivery address</delad>
+		<urorder>Your Order</urorder>
+		<dellfee>Delivery Fee</dellfee>
+		<total>Total</total>
+		<add>Add additional items to your order</add>
+		<note>Leave a note for the restaurant</note>
+		<recip>Recipient Name and Address</recip>
+		<check>Please check that your delivery information is correct.</check>
+		<name>Name</name>
+		<phone>Phone</phone>
+		<area>Your Area</area>
+		<build>Your Building</build>
+		<blok>Block / Apt</blok>
+		<confi>Confirm</confi>
     </en>
     <cn>
-
+    	<home>主页</home>
+    	<resul>搜索结果</resul>
+    	<resto>餐厅</resto>
+		<bigmenu>菜单</bigmenu>
+		<delad>送餐地址</delad>
+		<urorder>您的订单</urorder>
+		<dellfee>派送费</dellfee>
+		<total>总价</total>
+		<add>继续添加菜品</add>
+		<note>如有其他需求，请给我们留言</note>
+		<recip>姓名和地址</recip>
+		<check>请检查你的送餐信息是否正确</check>
+		<name>姓名</name>
+		<phone>电话</phone>
+		<area>您的所在区域</area>
+		<build>您的小区楼栋</build>
+		<blok>您的楼栋号/房号#</blok>
+		<confi>确认</confi>
     </cn>
 </document>

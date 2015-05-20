@@ -1,3 +1,4 @@
+<?php $xml = simplexml_load_file("pages/search/content.xml"); ?>
 <div class="container">
 
     	<div class="col-sm-12">
@@ -6,9 +7,9 @@
 
                 <div class="col-sm-8">
 
-            	    <a href="index.php">Home</a>
+            	    <a href="index.php"><?php echo ($xml->$lang->home == "" ? $xml->en->home : $xml->$lang->home); ?></a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="#"><span id="cuisineCount"><?php echo checkFeild($cuisineName) ? countCuisines($cuisines):$resultCount; ?></span> <span id="cuisineName"><?php echo ($lang=='cn'?($chinesecuisineName=""?$cuisineName:$chinesecuisineName):$cuisineName); ?></span> takeaways serving <?php echo isset($buildingName) ? ($lang=='cn'?($chinesebuildingName==""? $buildingName : $chinesebuildingName) : $buildingName).(isset($areaName) ? ' in '.($lang=='cn'?($chineseareaName==""?$areaName:$chineseareaName):$areaName):NULL):NULL; ?></a>
+                    <a href="#"><span id="cuisineCount"><?php echo checkFeild($cuisineName) ? countCuisines($cuisines):$resultCount; ?></span> <span id="cuisineName"><?php echo ($lang=='cn'?($chinesecuisineName=""?$cuisineName:$chinesecuisineName):$cuisineName); ?></span> <?php echo ($xml->$lang->serving == "" ? $xml->en->serving : $xml->$lang->serving); ?> <?php echo isset($buildingName) ? ($lang=='cn'?($chinesebuildingName==""? $buildingName : $chinesebuildingName) : $buildingName).(isset($areaName) ? ' '.($xml->$lang->in == "" ? $xml->en->in : $xml->$lang->in).' '.($lang=='cn'?($chineseareaName==""?$areaName:$chineseareaName):$areaName):NULL):NULL; ?></a>
 
             	</div>
 
@@ -16,7 +17,7 @@
                     
                     <form method="get" action="" class="pull-right form-inline" id="sortForm">
                         <div class="form-group">
-                            <label style="margin-right:1em;">Sort by</label>
+                            <label style="margin-right:1em;"><?php echo ($xml->$lang->sortby == "" ? $xml->en->sortby : $xml->$lang->sortby); ?></label>
                             
                             <?php
                                 foreach ($_GET as $key=>$val) {    
@@ -27,11 +28,11 @@
                             ?>
 
                             <select name="sort" id="sort" class="chosen-select form-control" onchange="this.form.submit()">
-                                <option value="">Select</option>
-                                <option value="best"    <?php echo $_GET['sort']=='best'    ? 'selected':NULL; ?>>Best Match</option>
-                                <option value="new"     <?php echo $_GET['sort']=='new'     ? 'selected':NULL; ?>>Newest First</option>
-                                <option value="rating"  <?php echo $_GET['sort']=='rating'  ? 'selected':NULL; ?>>User Rating</option>
-                                <option value="name"    <?php echo $_GET['sort']=='name'    ? 'selected':NULL; ?>>Restaurant Name</option>
+                                <option value=""><?php echo ($xml->$lang->select == "" ? $xml->en->select : $xml->$lang->select); ?></option>
+                                <option value="best"    <?php echo $_GET['sort']=='best'    ? 'selected':NULL; ?>><?php echo ($xml->$lang->bestmatch == "" ? $xml->en->bestmatch : $xml->$lang->bestmatch); ?></option>
+                                <option value="new"     <?php echo $_GET['sort']=='new'     ? 'selected':NULL; ?>><?php echo ($xml->$lang->newestfirst == "" ? $xml->en->newestfirst : $xml->$lang->newestfirst); ?></option>
+                                <option value="rating"  <?php echo $_GET['sort']=='rating'  ? 'selected':NULL; ?>><?php echo ($xml->$lang->userrating == "" ? $xml->en->userrating : $xml->$lang->userrating); ?></option>
+                                <option value="name"    <?php echo $_GET['sort']=='name'    ? 'selected':NULL; ?>><?php echo ($xml->$lang->restoname == "" ? $xml->en->restoname : $xml->$lang->restoname); ?></option>
                             </select>
                         </div>
                     </form>
@@ -58,10 +59,10 @@
                                 <i><?php echo ($lang=='cn'?($res['address_cn']==""?$res['address']:$res['address_cn']):$res['address']); ?></i>
                                 <?php
                                     if ($res['minimum_order'] >0) {
-                                        echo '<strong>Minimum Order:</strong> RMB '.$res['minimum_order'].'<br>'; 
+                                        echo '<br><strong>'.($xml->$lang->minord == "" ? $xml->en->minord : $xml->$lang->minord).':</strong> RMB '.$res['minimum_order']; 
                                     }
                                     if ($res['delivery_fee'] >0) {
-                                        echo '<strong>Delivery Fee:</strong> RMB '.$res['delivery_fee'].'<br>'; 
+                                        echo '<br><strong>'.($xml->$lang->dellfee == "" ? $xml->en->dellfee : $xml->$lang->dellfee).':</strong> RMB '.$res['delivery_fee']; 
                                     }
                                 ?>
                                 
@@ -71,7 +72,7 @@
                             </div>
                             <div class="product-type-list">
                             	
-                            	<strong>Type of Food: </strong>
+                            	<strong><?php echo ($xml->$lang->typafood == "" ? $xml->en->typafood : $xml->$lang->typafood); ?>: </strong>
 								<?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['restaurant_id']} AND r.status=1 AND c.status=1"); ?>
                                 <?php $cuisines2 = array(); ?>
                                 <?php //while ($rcr=$db->fetch_array($rc)) $cuisines2[] = $rcr['title']; ?>
@@ -80,16 +81,16 @@
                                 
                                 <br>
                             
-                                <strong>Delivery Hours: </strong>
+                                <strong><?php echo ($xml->$lang->delltime == "" ? $xml->en->delltime : $xml->$lang->delltime); ?>: </strong>
                                 <?php $del_hours = deliveryHours($res['restaurant_id'], true); ?>
                                 <?php __($del_hours['start']); ?> - <?php __($del_hours['end']); ?>
                             
                             </div>
                         </div>
                         <div class="text-center col-sm-3 product-button-list">
-                        	<div class="view-menu"><a class="btn btn-yellow" href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>">View menu</a></div>
+                        	<div class="view-menu"><a class="btn btn-yellow" href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php echo ($xml->$lang->viewmenu == "" ? $xml->en->viewmenu : $xml->$lang->viewmenu); ?></a></div>
                             <?php $rating = ratings($res['restaurant_id']); ?>
-                            <b>User Rating:</b><br>(<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>#ratings"><?php echo $rating['count']; ?> ratings</a>)
+                            <b><?php echo ($xml->$lang->usarat == "" ? $xml->en->usarat : $xml->$lang->usarat); ?>:</b><br>(<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>#ratings"><?php echo $rating['count']; ?> <?php echo ($xml->$lang->ratingsnum == "" ? $xml->en->ratingsnum : $xml->$lang->ratingsnum); ?></a>)
                             
 
                             <div class="rating">

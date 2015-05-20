@@ -1,12 +1,13 @@
+<?php $xml = simplexml_load_file("pages/change-password/content.xml"); ?>
 <div class="container main">
     <div class="row">
         <div class="col-xs-12">
             <div class="page-header">
-                <a href="index.php">Home</a>
+                <a href="index.php"><?php echo ($xml->$lang->home==""?$xml->en->home:$xml->$lang->home); ?></a>
                 <img src="img/title-icon.png" alt="" />
-                <a href="account-details.php">Customer Dashboard</a>
+                <a href="account-details.php"><?php echo ($xml->$lang->dash==""?$xml->en->dash:$xml->$lang->dash); ?></a>
                 <img src="img/title-icon.png" alt="" />
-                <a href="#">Change Password</a>
+                <a href="#"><?php echo ($xml->$lang->cp==""?$xml->en->cp:$xml->$lang->cp); ?></a>
             </div>
         </div>
     </div>
@@ -16,24 +17,24 @@
         <!-- your-order -->
         <div class="col-md-6 well">
             <div class="your-info gray-bg-container">
-                <h2>Change Password</h2>
+                <h2><?php echo ($xml->$lang->cp==""?$xml->en->cp:$xml->$lang->cp); ?></h2>
                 <!-- your-info-registration -->
                 <div class="your-info-registration">
                     <form action="" method="post">
                         <div class="registration-row">
-                            <label>Current Password:</label>
+                            <label><?php echo ($xml->$lang->curr==""?$xml->en->curr:$xml->$lang->curr); ?>:</label>
                             <input type="password" name="currentPassword" />
                         </div>
                         <div class="registration-row">
-                            <label>New Password:</label>
+                            <label><?php echo ($xml->$lang->np==""?$xml->en->np:$xml->$lang->np); ?>:</label>
                             <input type="password" name="password1" />
                         </div>
                         <div class="registration-row">
-                            <label>Re-enter New Password:</label>
+                            <label><?php echo ($xml->$lang->rere==""?$xml->en->rere:$xml->$lang->rere); ?>:</label>
                             <input type="password" name="password2" />
                         </div>
                         <div class="clearfix"></div>
-                        <button type="submit" class="btn btn-yellow">Submit</button>
+                        <button type="submit" class="btn btn-yellow"><?php echo ($xml->$lang->sub==""?$xml->en->sub:$xml->$lang->sub); ?></button>
                         
                         <div class="clearfix">&nbsp;</div>
                         <?php if (isset($_SESSION['msg'])) { ?>

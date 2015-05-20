@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <en>
+    	<home>Home</home>
+		<minord>Minimum order</minord>
+		<typafood>Type of food</typafood>
+		<dellfee>Delivery Fee</dellfee>
+		<delltime>Delivery Time</delltime>
+		<usarat>User rating</usarat>
+		<ratingsnum>ratings</ratingsnum>
+		<viewmenu>View Menu</viewmenu>
+		<select>Select</select>
+		<moreabout>More about</moreabout>
+		<menu>menu</menu>
+		<userrev>Customer reviews on</userrev>
+		<overall>Overall</overall>
+		<date>Date</date>
+		<from>from</from>
+		<delhrs>Delivery Hours</delhrs>
 
+    	
     </en>
     <cn>
-
+		<home>主页</home>
+		
+		<minord>起订金额</minord>
+		<typafood>出品菜系</typafood>
+		<dellfee>派送费</dellfee>
+		<delltime>外送时段</delltime>
+		<usarat>用户评价</usarat>
+		<ratingsnum>个评价</ratingsnum>
+		<viewmenu>浏览菜单</viewmenu>
+		<select>选择</select>
+		<moreabout>更多关于</moreabout>
+		<menu>的菜单</menu>
+		<userrev>用户的评价对</userrev>
+		<overall>综合评分</overall>
+		<date>日期</date>
+		<from>,</from>
+		<delhrs>外送服务时段</delhrs>
     </cn>
 </document>

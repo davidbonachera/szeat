@@ -1,10 +1,11 @@
+<?php $xml = simplexml_load_file("pages/account-details/content.xml"); ?>
 <div class="container main">
     	<div class="row">
         	<div class="col-sm-12">
             	<div class="page-header">
-                	<a href="index.php">Home</a>
+                	<a href="index.php"><?php echo ($xml->$lang->home==""?$xml->en->home:$xml->$lang->home); ?></a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="#">Customer Dashboard</a>
+                    <a href="#"><?php echo ($xml->$lang->dash==""?$xml->en->dash:$xml->$lang->dash); ?></a>
                 </div>
             </div>
         </div>
@@ -14,9 +15,9 @@
         	<div class="col-sm-12">
             	
                 <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#my-acountd-details">My Account Details</a></li>
-                    <li><a href="#my-recent-orders">My Recent Orders </a></li>
-                    <li><a href="#my-ratings">My Ratings</a></li>
+                    <li class="active"><a href="#my-acountd-details"><?php echo ($xml->$lang->dets==""?$xml->en->dets:$xml->$lang->dets); ?></a></li>
+                    <li><a href="#my-recent-orders"><?php echo ($xml->$lang->recent==""?$xml->en->recent:$xml->$lang->recent); ?> </a></li>
+                    <li><a href="#my-ratings"><?php echo ($xml->$lang->rets==""?$xml->en->rets:$xml->$lang->rets); ?></a></li>
                 </ul>
 
                 <?php $uData = $db->query_first("SELECT * FROM users WHERE id={$_SESSION['user']['id']}"); ?>
@@ -26,18 +27,17 @@
                             <form method="post" action="" class="form form-horizontal">
                                 <div class="col-sm-6">
 
-                                    <h2 class="page-header">Personal Info</h2>
-
+                                    <h2 class="page-header"><?php echo ($xml->$lang->pp==""?$xml->en->pp:$xml->$lang->pp); ?></h2>
 
                                     <div class="form-group form-horizontal">
-                                        <label class="control-label col-sm-4">Name:</label>
+                                        <label class="control-label col-sm-4"><?php echo ($xml->$lang->name==""?$xml->en->name:$xml->$lang->name); ?>:</label>
                                         <div class="col-sm-8">
                                             <input class="form-control" type="text" name="name" value="<?php echo $uData['name']; ?>"  />
                                         </div>
                                     </div>
 
                                     <div class="form-group form-horizontal">
-                                        <label class="control-label col-sm-4">Phone:</label>
+                                        <label class="control-label col-sm-4"><?php echo ($xml->$lang->phone==""?$xml->en->phone:$xml->$lang->phone); ?>:</label>
                                         <div class="col-sm-8">
                                             <input class="form-control" type="text" name="phone" value="<?php echo $uData['phone']; ?>"  />
                                         </div>
@@ -45,7 +45,7 @@
 
                                     <div class="form-group" style="margin-top:1em;">
                                         <div class="col-md-offset-4 col-md-1">
-                                            <button id="change_password" type="button" class="btn btn-info">Change Password</button>
+                                            <button id="change_password" type="button" class="btn btn-info"><?php echo ($xml->$lang->cp==""?$xml->en->cp:$xml->$lang->cp); ?></button>
                                         </div>
                                     </div>                                    
                                         
@@ -58,13 +58,13 @@
                                     </div>
                                     <div class="col-sm-5">
 
-                                        <h2 class="page-header">Delivery Details</h2>
+                                        <h2 class="page-header"><?php echo ($xml->$lang->dets2==""?$xml->en->dets2:$xml->$lang->dets2); ?></h2>
 
                                         <div class="form-group form-horizontal">
-                                            <label class="control-label col-sm-4">Your Area:</label>
+                                            <label class="control-label col-sm-4"><?php echo ($xml->$lang->area==""?$xml->en->area:$xml->$lang->area); ?>:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control" id="area" name="area">
-                                                    <option hidden="">Select</option>
+                                                    <option hidden=""><?php echo ($xml->$lang->select==""?$xml->en->select:$xml->$lang->select); ?></option>
                                                     <?php $areas = $db->query("SELECT * FROM areas WHERE $status=1 ORDER BY title ASC"); ?>
                                                     <?php while ($r=$db->fetch_array($areas)) { ?>
                                                     <option value="<?php echo $r['id']; ?>" <?php echo $r['id']==$uData['area_id'] ? 'selected':NULL; ?>>
@@ -76,10 +76,10 @@
                                          </div>
 
                                         <div class="form-group form-horizontal">
-                                            <label class="control-label col-sm-4">Your Building:</label>
+                                            <label class="control-label col-sm-4"><?php echo ($xml->$lang->build==""?$xml->en->build:$xml->$lang->build); ?>:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control" id="building" name="building">
-                                                    <option hidden="hidden">Select</option>
+                                                    <option hidden="hidden"><?php echo ($xml->$lang->select==""?$xml->en->select:$xml->$lang->select); ?></option>
                                                     <?php $cuisines = $db->query("SELECT * FROM buildings WHERE $status=1 ORDER BY title ASC"); ?>
                                                     <?php while ($r=$db->fetch_array($cuisines)) { ?>
                                                         <option value="<?php echo $r['id']; ?>" <?php echo $r['id']==$uData['building_id'] ? 'selected':NULL; ?>>
@@ -91,7 +91,7 @@
                                         </div>
 
                                         <div class="form-group form-horizontal">
-                                            <label class="control-label col-sm-4">Block / Apt:</label>
+                                            <label class="control-label col-sm-4"><?php echo ($xml->$lang->blok==""?$xml->en->blok:$xml->$lang->blok); ?>:</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="text" name="apartment" placeholder="Building 6, Apt. 10 E" value="<?php echo $uData['apartment']; ?>"/>
                                             </div>
@@ -99,7 +99,7 @@
 
                                         <div class="form-group" style="margin-top:1em;">
                                             <div class="col-md-offset-1 col-md-1">
-                                                <button type="submit" class="btn btn-yellow">Save Changes</button>
+                                                <button type="submit" class="btn btn-yellow"><?php echo ($xml->$lang->sev==""?$xml->en->sev:$xml->$lang->sev); ?></button>
                                             </div>
                                         </div>
                                     </div>
@@ -111,11 +111,11 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th align="left">Date </th>
-                                        <th align="left">Order Number</th>
-                                        <th align="left">Restaurant</th>
-                                        <th align="left">Price</th>
-                                        <th align="left">Rating</th>
+                                        <th align="left"><?php echo ($xml->$lang->date==""?$xml->en->date:$xml->$lang->date); ?> </th>
+                                        <th align="left"><?php echo ($xml->$lang->ordanum==""?$xml->en->ordanum:$xml->$lang->ordanum); ?></th>
+                                        <th align="left"><?php echo ($xml->$lang->rest==""?$xml->en->rest:$xml->$lang->rest); ?></th>
+                                        <th align="left"><?php echo ($xml->$lang->price==""?$xml->en->price:$xml->$lang->price); ?></th>
+                                        <th align="left"><?php echo ($xml->$lang->retn==""?$xml->en->retn:$xml->$lang->retn); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -152,7 +152,7 @@
 															}
 														} else {
 													?>
-                                                    	<a href="index.php?page=rate-takeaway&order=<?php echo $order['id']; ?>">Rate Now</a>
+                                                    	<a href="index.php?page=rate-takeaway&order=<?php echo $order['id']; ?>"><?php echo ($xml->$lang->mownow==""?$xml->en->mownow:$xml->$lang->mownow); ?></a>
                                                     <?php } ?>
 												</td>
                                             </tr>
@@ -177,15 +177,15 @@
                             <?php } // sizeof ?>
                         </div>
                         <div class="tab-pane" id="my-ratings">
-                        	<h2 class="page-header">Ratings</h2>
+                        	<h2 class="page-header"><?php echo ($xml->$lang->sss==""?$xml->en->sss:$xml->$lang->sss); ?></h2>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th align="left">Date </th>
-                                        <th align="left">Order number</th>
-                                        <th align="left">Restaurant</th>
-                                        <th align="left">Rating</th>
-                                        <th align="left">Review</th>
+                                        <th align="left"><?php echo ($xml->$lang->date==""?$xml->en->date:$xml->$lang->date); ?> </th>
+                                        <th align="left"><?php echo ($xml->$lang->ordanum==""?$xml->en->ordanum:$xml->$lang->ordanum); ?></th>
+                                        <th align="left"><?php echo ($xml->$lang->rest==""?$xml->en->rest:$xml->$lang->rest); ?></th>
+                                        <th align="left"><?php echo ($xml->$lang->retn==""?$xml->en->retn:$xml->$lang->retn); ?></th>
+                                        <th align="left"><?php echo ($xml->$lang->revv==""?$xml->en->revv:$xml->$lang->revv); ?></th>
                                     </tr>
                                 </thead>
                                 <tbody>

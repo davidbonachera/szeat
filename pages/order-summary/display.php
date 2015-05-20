@@ -1,12 +1,13 @@
+<?php $xml = simplexml_load_file("pages/order-summary/content.xml"); ?>
 <div class="container main">
     	<div class="row">
         	<div class="col-xs-12">
             	<div class="page-header">
-                	<a href="index.php">Home</a>
+                	<a href="index.php"><?php echo ($xml->$lang->home==""?$xml->en->home:$xml->$lang->home); ?></a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="account-details.php?tab=my-recent-orders">My Orders</a>
+                    <a href="account-details.php?tab=my-recent-orders"><?php echo ($xml->$lang->myorders==""?$xml->en->myorders:$xml->$lang->myorders); ?></a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="#">Order #<?php echo $orderID; ?></a>
+                    <a href="#"><?php echo ($xml->$lang->order==""?$xml->en->order:$xml->$lang->order); ?> #<?php echo $orderID; ?></a>
                 </div>
             </div>
         </div>
@@ -15,15 +16,15 @@
         <div class="row">
         	<div class="col-md-8 well">
                 <div class="order-summery table-sorter">
-                	<div class="myfonts"><h2>Order summary</h2></div>
+                	<div class="myfonts"><h2><?php echo ($xml->$lang->ordersum==""?$xml->en->ordersum:$xml->$lang->ordersum); ?></h2></div>
                     <?php $orderQ = $db->query("SELECT * FROM orders WHERE user_id='{$_SESSION['user']['id']}' AND id='$orderID' ORDER BY date DESC, id DESC LIMIT 5"); ?>
                     <?php if ($db->affected_rows > 0) { ?>
                     <table width="368">
                         <thead>
                             <tr>
-                                <th align="left"width="25%">Date </th>
-                                <th align="left"width="25%">Order number</th>
-                                <th align="left"width="25%">Restaurant</th>
+                                <th align="left"width="25%"><?php echo ($xml->$lang->date==""?$xml->en->date:$xml->$lang->date); ?> </th>
+                                <th align="left"width="25%"><?php echo ($xml->$lang->ordanum==""?$xml->en->ordanum:$xml->$lang->ordanum); ?></th>
+                                <th align="left"width="25%"><?php echo ($xml->$lang->resto==""?$xml->en->resto:$xml->$lang->resto); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,14 +39,14 @@
                     </table>
                     <?php } // if $db->affected_rows ?>
                     <?php if (isset($_GET['order'])) { ?>
-                        <a href="order-summary.php?order=<?php echo $orderID; ?>&reorder=true" class="yellow-button reorder">Reorder</a>
+                        <a href="order-summary.php?order=<?php echo $orderID; ?>&reorder=true" class="yellow-button reorder"><?php echo ($xml->$lang->reorder==""?$xml->en->reorder:$xml->$lang->reorder); ?></a>
                     <?php } ?>
 
-                    <a href="#" class="btn btn-yellow print" onclick="window.print(); return false;">Print</a>
+                    <a href="#" class="btn btn-yellow print" onclick="window.print(); return false;"><?php echo ($xml->$lang->print==""?$xml->en->print:$xml->$lang->print); ?></a>
 
                 </div>
                 <div class="order-summery order-informaiton">
-                	<div class="myfonts"><h2>Order details</h2></div>
+                	<div class="myfonts"><h2><?php echo ($xml->$lang->dets==""?$xml->en->dets:$xml->$lang->dets); ?></h2></div>
                 	
 
 
@@ -88,14 +89,14 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th width="15%">Total:</th>
+                                <th width="15%"><?php echo ($xml->$lang->total==""?$xml->en->total:$xml->$lang->total); ?>:</th>
                                 <th width="15%"><?php echo _priceSymbol; ?>  <?php echo $total_price; ?></th>
                             </tr>
                        </tfoot>
                     </table>
                 </div>
                 <div class="order-summery">
-                	<div class="myfonts"><h2>Delivery information</h2></div>
+                	<div class="myfonts"><h2><?php echo ($xml->$lang->info==""?$xml->en->info:$xml->$lang->info); ?></h2></div>
                     <?php $user = $db->query_first("SELECT * FROM users WHERE id={$_SESSION['user']['id']}"); ?>
                    	<p><?php __($user['name']); ?></p>
                     

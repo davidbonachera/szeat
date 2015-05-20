@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <en>
-
+    	<home>Home</home>
+    	<dash>Customer Dashboard</dash>
+    	<recent>My recent orders</recent>
+		<dets>My Account Details</dets>
+		<rets>My Ratings</rets>
+		<pp>Personal Info</pp>
+		<dets2>Delivery Details</dets2>
+		<name>Name</name>
+		<phone>Phone</phone>
+		<area>Your Area</area>
+		<build>Your Building</build>
+		<blok>Block / Apt</blok>
+		<sev>Save Changes</sev>
+		<cp>Change Password</cp>
+		<oo>Order Overview</oo>
+		<date>Date</date>
+		<ordanum>Order Number</ordanum>
+		<rest>Restaurant</rest>
+		<price>Price</price>
+		<retn>Rating</retn>
+		<mownow>Rate Now</mownow>
+		<retina>Number of orders in</retina>
+		<sss>Ratings</sss>
+		<revv>Review</revv>
+		<dibb>Submit</dibb>
+		<select>Select</select>
     </en>
     <cn>
-
+    	<home>主页</home>
+    	<dash>客户主页面</dash>
+    	<recent>我的近期订单</recent>
+		<dets>我的账号信息</dets>
+		<rets>我的评价</rets>
+		<pp>我的账号信息</pp>
+		<dets2>您的详细信息</dets2>
+		<name>姓名</name>
+		<phone>电话</phone>
+		<area>您的地区</area>
+		<build>您的住宅楼名称</build>
+		<blok>楼栋号/房号</blok>
+		<sev>保存</sev>
+		<cp>更改密码</cp>
+		<oo>订单总览</oo>
+		<date>日期</date>
+		<ordanum>订单号</ordanum>
+		<rest>餐厅</rest>
+		<price>价格</price>
+		<retn>评价</retn>
+		<mownow>马上评价</mownow>
+		<retina>Number of orders in</retina>
+		<sss>评价</sss>
+		<revv>评论</revv>
+		<dibb>提交</dibb>
+		<select>选择</select>
     </cn>
 </document>

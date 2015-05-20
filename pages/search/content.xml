@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <en>
+    	<home>Home</home>
+    	<serving>takeaways serving</serving>
+    	<in>in</in>
+    	<sortby>sortby</sortby>
+    	<bestmatch>Best match</bestmatch>
+    	<newestfirst>Newest first</newestfirst>
+		<userrating>User rating</userrating>
+		<restoname>Restaurant name</restoname>
+		<cuisintypes>Cuisine types</cuisintypes>
+		<pickacuis>Pick a cuisine:</pickacuis>
+		<minord>Minimum order</minord>
+		<typafood>Type of food</typafood>
+		<dellfee>Delivery Fee</dellfee>
+		<delltime>Delivery Time</delltime>
+		<usarat>User rating</usarat>
+		<ratingsnum>ratings</ratingsnum>
+		<viewmenu>View menu</viewmenu>
+		<select>Select</select>
+		
+    	
+    </en>
+    <cn>
+		<home>主页</home>
+		<serving>个餐厅能送至</serving>
+		<in>,</in>
+		<sortby>筛选</sortby>
+    	<bestmatch>默认排序</bestmatch>
+    	<newestfirst>最新餐厅</newestfirst>
+		<userrating>用户评价</userrating>
+		<restoname>餐厅名字</restoname>
+		<cuisintypes>菜系</cuisintypes>
+		<pickacuis>选择一个菜系</pickacuis>
+		<minord>起订金额</minord>
+		<typafood>出品菜系</typafood>
+		<dellfee>派送费</dellfee>
+		<delltime>外送时段</delltime>
+		<usarat>用户评价</usarat>
+		<ratingsnum>个评价</ratingsnum>
+		<viewmenu>浏览菜单</viewmenu>
+		<select>选择</select>
+    </cn>
+</document>

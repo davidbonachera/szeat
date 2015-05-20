@@ -1,3 +1,4 @@
+<?php $xml = simplexml_load_file("pages/change-password/content.xml"); ?>
 <div class="container main">
     <div class="row">
         <div class="col-xs-12">
