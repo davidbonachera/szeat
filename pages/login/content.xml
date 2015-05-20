@@ -1,9 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <en>
-
+    	<home>Home</home>
+    	<logsign>Signup / Login</logsign>
+    	<exist>Existing Member</exist>
+    	<email>E-mail address</email>
+    	<passw>Password</passw>
+    	<forgot>Forgotten your password?</forgot>
+    	<logn>Login</logn>
+    	<newm>New Member</newm>
+    	<nem>Name</nem>
+    	<phun>Phone</phun>
+    	<arar>Your Area</arar>
+    	<build>Your Building</build>
+    	<blok>Block / Apt</blok>
+    	<emem>Email address</emem>
+    	<renta>Re-enter email address</renta>
+    	<passw>Password</passw>
+    	<reen>Re-enter password</reen>
+    	<aghee1>I would like to sign up to the SHENZHEN EAT newsletter (via email and mobile) for the chance to win free takeaway for a year.</aghee1>
+    	<aghee2>I accept the terms and conditions, privacy policy and cookies policy</aghee2>
+    	<select>Select</select>
+    	<next>Next</next>
     </en>
     <cn>
-
+		<home>主页</home>
+		<logsign>注册 / 登陆</logsign>
+		<exist>已注册用户</exist>
+    	<email>邮箱地址</email>
+    	<passw>密码</passw>
+    	<forgot>忘记了密码？</forgot>
+    	<logn>登陆</logn>
+    	<newm>新用户</newm>
+    	<nem>姓名</nem>
+    	<phun>电话</phun>
+    	<arar>您的地区</arar>
+    	<build>您的住宅楼名称</build>
+    	<blok>您的楼栋号/房号</blok>
+    	<emem>邮箱地址</emem>
+    	<renta>再次输入邮箱地址</renta>
+    	<passw>密码</passw>
+    	<reen>再次输入密码</reen>
+    	<aghee1>我愿意在SHENZHEN EAT上注册账号，接收时事通讯（通过邮件和手机）以便获得为期一年的免费点外卖的机会.</aghee1>
+    	<aghee2>我接受使用Shenzheneat的全部条款和条件，以及隐私政策和信息记录</aghee2>
+    	<select>选择</select>
+    	<next>下一步</next>
+    	
     </cn>
 </document>

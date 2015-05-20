@@ -1,8 +1,9 @@
+<?php $xml = simplexml_load_file("pages/reset-password/content.xml"); ?>
 <div class="container main">
     <div class="row">
         <div class="span12">
             <div class="page-header">
-                <a href="index.php">Home</a>
+                <a href="index.php"><?php echo ($xml->$lang->home==""?$xml->en->home:$xml->$lang->home); ?></a>
                 <img src="img/title-icon.png" alt="" />
                 <a href="login.php">Login / Signup</a>
                 <img src="img/title-icon.png" alt="" />
@@ -16,7 +17,7 @@
         <!-- your-order -->
         <div class="span6">
             <div class="your-info gray-bg-container">
-                <h2>Dear, <?php echo $check['name']; ?></h2>
+                <h2><?php echo $check['name']; ?>:</h2>
                 <!-- your-info-registration -->
                 <div class="your-info-registration">
                     <h3>Reset Your Password</h3>

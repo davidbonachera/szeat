@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <en>
+    	<home>Home</home>
+        <reset>Reset Your Password</reset>
+        <passw>Password</passw>
+    </en>
+    <cn>
+		<home>主页</home>
+    </cn>
+</document>

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <en>
-    	<cp>Change Password</cp>
-    	<curr>Current Password</curr>
-    	<np>New Password</np>
-    	<rere>Re-enter New Password</rere>
-    	<sub>Submit</sub>
-    	<dash>Customer Dashboard</dash>
+        <home>Home</home>
+        <logn>Login / Signup</logn>
+        <ferg>Forgot Password</ferg>
+        <reset>Reset Your Password</reset>
+        <email>E-mail Address</email>
+        <bak>back to login</bak>
+        <reset>Reset</reset>
     </en>
     <cn>
-		<cp>修改密码</cp>
-    	<curr>当前密码</curr>
-    	<np>新密码</np>
-    	<rere>再次输入新密码</rere>
-    	<sub>提交</sub>
-    	<dash>客户主页面</dash>
+        <home>主页</home>
+        <logn>登陆 / 注册</logn>
+        <ferg>忘记密码</ferg>
+        <reset>重设密码</reset>
+        <email>邮箱地址</email>
+        <bak>返回登陆</bak>
+        <reset>重设密码</reset>
     </cn>
 </document>
