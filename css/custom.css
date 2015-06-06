@@ -170,3 +170,28 @@ body {
 .chosen-container-single .chosen-search input {
   color: #cc3333;
 }
+
+/*
+A Bootstrap 3.1 affix sidebar template
+from http://bootply.com
+
+This CSS code should follow the 'bootstrap.css'
+in your HTML file.
+
+license: MIT
+author: bootply.com
+*/
+
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+    position: static;
+    /*margin-top:30px;*/
+    width:228px;
+  }
+  
+  #sidebar.affix {
+    position: fixed;
+    top:270px;
+    width:228px;
+  }
+}
