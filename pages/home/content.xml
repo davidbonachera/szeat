@@ -5,7 +5,7 @@
         <where>Where do you live?</where>
         <building>What building?</building>
         <foodtype>What do you fancy?</foodtype>
-        <search>Find me a food delivery!</search>
+        <search>Find me a restaurant!</search>
 
         <selectArea>Select Area</selectArea>
         <selectBuilding>Select Building</selectBuilding>
