@@ -14,3 +14,5 @@ if (isset($_GET['lang'])) {
 
 
 $status = ($lang=='cn'?'status_cn':'status');
+
+$datecountry = ($lang=='cn' ? "Y/m/d" : "d/m/Y");

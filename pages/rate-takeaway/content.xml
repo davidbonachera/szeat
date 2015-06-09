@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <en>
+        <homm>Home</homm>
+        <myorrd>My Orders</myorrd>
+    	<rateyour>Rate your takeaway experience</rateyour>
+    	<date>Date</date>
+    	<Ordernumber>Order Number</Ordernumber>
+    	<Restaurant>Restaurant</Restaurant>
+    	<Price>Price</Price>
+    	<didyou>Did you enjoy the service and food you received from the restaurant? Let other Shenzen Eat'ers know!</didyou>
+        <usethe>Use the scale below, then give us the lowdown – the restaurants appreciate the feedback too, so the more details you give, the more they can improve their service and other customers can make informed decisions.</usethe>
+        <note>Note: It can take up to 48 hours for reviews to be approved, reviews that contain offensive, abusive or racist language will not be tolerated (Use the 'Nan Rule': If you'd be embarrassed to say it while your nan was in the room, don't say it here!).</note>
+        <starrat>Star Rating</starrat>
+        <comm>Comments (optional):</comm>
+        <saven>Save</saven>
+        <urrat>Your rating</urrat>
+        <urcomm>Your comments</urcomm>        
+    </en>
+    <cn>
+        <homm>主页</homm>
+        <myorrd>我的订单</myorrd>        
+        <rateyour>评价您的外卖体验</rateyour>
+        <date>日期</date>
+        <Ordernumber>订单号</Ordernumber>
+        <Restaurant>餐厅</Restaurant>
+        <Price>价格</Price>
+        <didyou>您是否满意餐厅此次提供的服务和食物？向其他的Shenzhen Eat用户分享吧！</didyou>
+        <usethe>请给出真实的反馈——餐厅也会很感激，因为越详尽的反馈越让餐厅明白如何改进服务，并惠及您与其他用户。</usethe>
+        <note>注意：任何评论我们将在48小时内进行审核，审核范围包括是否含有攻击性、侮辱性或种族歧视性的言论（请遵守“Nan Rule奶奶的家规”：任何您不能在祖母面前谈论的尴尬词语，请不要在此使用）。</note>
+        <starrat>星标评价</starrat>
+        <comm>评论（可选）</comm>
+        <saven>保存</saven>
+        <urrat>您的评价</urrat>
+        <urcomm>评论</urcomm>    
+    </cn>
+</document>

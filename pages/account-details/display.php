@@ -107,7 +107,7 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="my-recent-orders">
-                            <h2 class="page-header">Order Overview</h2>
+                            <h2 class="page-header"><?php echo ($xml->$lang->oo==""?$xml->en->oo:$xml->$lang->oo); ?></h2>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -130,8 +130,10 @@
                                     <?php if ($db->affected_rows > 0) { ?>
 										<?php while($order=$db->fetch_array($oq)) { ?>
                                             <tr>
-                                                <td><?php echo date("m/d/Y",strtotime($order['date'])); ?></td>
-                                                <td><a href="page=order-summary&order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
+                                                
+
+                                                <td><?php echo date($datecountry,strtotime($order['date'])); ?></td>
+                                                <td><a href="index.php?page=order-summary&order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
                                                 
                                                 <?php ($lang=='cn'?$name='name_cn':$name='name'); ?>
                                                 <td><?php echo (getData('restaurants',$name,$order['restaurant_id'])==""?getData('restaurants','name',$order['restaurant_id']):getData('restaurants',$name,$order['restaurant_id'])); ?> &nbsp; </td>
@@ -200,7 +202,7 @@
                                     <?php if ($db->affected_rows > 0) { ?>
 										<?php while($rating=$db->fetch_array($rq)) { ?>
                                             <tr>
-                                                <td><?php echo date("m/d/Y",strtotime($rating['date'])); ?></td>
+                                                <td><?php echo date($datecountry,strtotime($rating['date'])); ?></td>
                                                 <td><a href="order-summary.php?order=<?php echo $rating['order_id']; ?>"><?php echo $rating['order_id']; ?></a></td>
                                                 <td><?php echo getData('restaurants','name',$rating['restaurant_id']); ?> &nbsp; </td>
                                                 <td><span class="rating">

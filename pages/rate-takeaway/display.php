@@ -1,12 +1,13 @@
+<?php $xml = simplexml_load_file("pages/rate-takeaway/content.xml"); ?>
 <div class="container main">
     	<div class="row">
         	<div class="col-xs-12">
             	<div class="page-header">
-                	<a href="index.php">Home</a>
+                	<a href="index.php"><?php echo ($xml->$lang->homm==""?$xml->en->homm:$xml->$lang->homm); ?></a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="account-details.php?tab=my-recent-orders">My Orders</a>
+                    <a href="account-details.php?tab=my-recent-orders"><?php echo ($xml->$lang->myorrd==""?$xml->en->myorrd:$xml->$lang->myorrd); ?></a>
                     <img src="img/title-icon.png" alt="" />
-                    <a href="#">Rate your takeaway experience</a>
+                    <a href="#"><?php echo ($xml->$lang->rateyour==""?$xml->en->rateyour:$xml->$lang->rateyour); ?></a>
                 </div>
             </div>
         </div>
@@ -15,19 +16,19 @@
         <div class="row">
         	<!-- <div class="span12"> -->
             	<div class="block-page your-takeaway">
-                    <h3 class="page-header">Rate your takeaway experience</h3>
+                    <h3 class="page-header"><?php echo ($xml->$lang->rateyour==""?$xml->en->rateyour:$xml->$lang->rateyour); ?></h3>
                     <table width="560">
                         <thead>
                             <tr>
-                                <th align="left"width="25%">Date </th>
-                                <th align="left"width="25%">Order number</th>
-                                <th align="left"width="25%">Restaurant</th>
-                                <th align="left"width="25%">Price</th>
+                                <th align="left"width="25%"><?php echo ($xml->$lang->date==""?$xml->en->date:$xml->$lang->date); ?> </th>
+                                <th align="left"width="25%"><?php echo ($xml->$lang->Ordernumber==""?$xml->en->Ordernumber:$xml->$lang->Ordernumber); ?></th>
+                                <th align="left"width="25%"><?php echo ($xml->$lang->Restaurant==""?$xml->en->Restaurant:$xml->$lang->Restaurant); ?></th>
+                                <th align="left"width="25%"><?php echo ($xml->$lang->Price==""?$xml->en->Price:$xml->$lang->Price); ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><?php echo date("m/d/Y",strtotime($order['date'])); ?></td>
+                                <td><?php echo date($datecountry,strtotime($order['date'])); ?></td>
                                 <td class="red"><a href="order-summary.php?order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
                                 
                                 <?php ($lang=='cn'?$name='name_cn':$name='name'); ?>
@@ -38,20 +39,13 @@
                         </tbody>
                     </table>
                     <p>
-                    	Did you enjoy the service and food
-                        you received from the restaurant? 
-                        Let other Shenzen Eat'ers know!
+                    	<?php echo ($xml->$lang->didyou==""?$xml->en->didyou:$xml->$lang->didyou); ?>
                     </p>
                     <p>
-                    	Use the scale below, then give 
-                        us the lowdown – the restaurants 
-                        appreciate the feedback too, so the 
-                        more details you give, the more they 
-                        can improve their service and other 
-                        customers can make informed decisions
+                    	<?php echo ($xml->$lang->usethe==""?$xml->en->usethe:$xml->$lang->usethe); ?>
                     </p>
                     <p>
-                    	Note:  It can take up to 48 hours for reviews to be approved, reviews that contain offensive, abusive or racist language will not be tolerated (Use the 'Nan Rule': If you'd be embarrassed to say it while your nan was in the room, don't say it here!).
+                    	<?php echo ($xml->$lang->note==""?$xml->en->note:$xml->$lang->note); ?>
                     </p>
                     
                     <div class="clearfix">&nbsp;</div>
@@ -65,22 +59,22 @@
                     <?php if ($db->affected_rows==0) { ?>
                         <div class="rate-your-star">
                             <div class="rate-take-container">
-                                <strong>Star Rating</strong>
+                                <strong><?php echo ($xml->$lang->starrat==""?$xml->en->starrat:$xml->$lang->starrat); ?></strong>
                                 <span class="rating" id="stars">
                                     <span class="star" id="star5"></span><span class="star" id="star4"></span><span class="star" id="star3"></span><span class="star" id="star2"></span><span class="star" id="star1"></span>
                                 </span>
                             </div>
                             <form action="" method="post">
-                                <label>Comments (optional):</label>
+                                <label><?php echo ($xml->$lang->comm==""?$xml->en->comm:$xml->$lang->comm); ?></label>
                                 <textarea name="comments" id="comments"></textarea>
                                 <input type="hidden" name="rating" id="rating" value="0" />
-                                <button type="submit" class="yellow-button">Save</button>
+                                <button type="submit" class="yellow-button"><?php echo ($xml->$lang->saven==""?$xml->en->saven:$xml->$lang->saven); ?></button>
                             </form>
                         </div>
                     <?php } else { // $db->affected_rows ?>
                     	<div class="rate-your-star">
                             <div class="rate-take-container">
-                                <strong>Your Rating</strong>
+                                <strong><?php echo ($xml->$lang->urrat==""?$xml->en->urrat:$xml->$lang->urrat); ?></strong>
                                 <span class="rating">
 									<?php 
                                         for($i=$cr['ratings']; $i<=4; $i++) { 
@@ -93,7 +87,7 @@
                                 </span>
                             </div>
                             <form action="" method="post">
-                                <label>Comments:</label>
+                                <label><?php echo ($xml->$lang->urcomm==""?$xml->en->urcomm:$xml->$lang->urcomm); ?></label>
                                 <p><?php echo $cr['comments']; ?></p>
                             </form>
                         </div>

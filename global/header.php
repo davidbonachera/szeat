@@ -33,8 +33,8 @@
 <!--                             <a href="index.php?<?php echo 'page='.$page.'&';?>lang=en"><img src="img/uk-flag.png" style="max-height:44px;" /></a>
                             <a href="index.php?<?php echo 'page='.$page.'&';?>lang=cn"><img src="img/china-flag.png" style="max-height:44px;" /></a>   -->
 
-                            <a href="index.php?lang=en"><img src="img/uk-flag.png" style="max-height:44px;" /></a>
-                            <a href="index.php?lang=cn"><img src="img/china-flag.png" style="max-height:44px;" /></a>  
+                            <a id="engclick"><img src="img/uk-flag.png" style="max-height:44px;" /></a>
+                            <a id="chingclick"><img src="img/china-flag.png" style="max-height:44px;" /></a>  
                         </div>              
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

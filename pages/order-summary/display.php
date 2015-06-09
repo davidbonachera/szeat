@@ -30,7 +30,7 @@
                         <tbody>
                         	<?php while($order=$db->fetch_array($orderQ)) { ?>
                                 <tr>
-                                    <td><?php echo date("m/d/Y",strtotime($order['date'])); ?></td>
+                                    <td><?php echo date($datecountry,strtotime($order['date'])); ?></td>
                                     <td class="red"><a href="order-summary.php?order=<?php echo $order['id']; ?>"><?php echo $order['id']; ?></a></td>
                                     <td nowrap><?php echo getData("restaurants","name",$order['restaurant_id']); ?></td>
                                 </tr>
@@ -39,7 +39,7 @@
                     </table>
                     <?php } // if $db->affected_rows ?>
                     <?php if (isset($_GET['order'])) { ?>
-                        <a href="order-summary.php?order=<?php echo $orderID; ?>&reorder=true" class="yellow-button reorder"><?php echo ($xml->$lang->reorder==""?$xml->en->reorder:$xml->$lang->reorder); ?></a>
+                        <a href="order-summary.php?order=<?php echo $orderID; ?>&reorder=true" class="btn btn-yellow reorder"><?php echo ($xml->$lang->reorder==""?$xml->en->reorder:$xml->$lang->reorder); ?></a>
                     <?php } ?>
 
                     <a href="#" class="btn btn-yellow print" onclick="window.print(); return false;"><?php echo ($xml->$lang->print==""?$xml->en->print:$xml->$lang->print); ?></a>

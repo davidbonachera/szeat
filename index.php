@@ -39,7 +39,14 @@
         echo '<script type="text/javascript" src="pages/'.$page.'/local.js"></script>';
     }
 ?>
-
+<script type="text/javascript" src="js/custom.js"></script>
+<?php
+    if ($lang=='cn') {
+        echo '<script type="text/javascript" src="js/custom_cn.js"></script>';
+    } else {
+        echo '<script type="text/javascript" src="js/custom_en.js"></script>';
+    }
+?>
 
 </body>
 </html>
