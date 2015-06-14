@@ -24,7 +24,7 @@ if ($_POST) {
 		if ($db->query_insert("ratings",$data)) {
 			$_SESSION['error'] = false;
 			$_SESSION['msg']   = 'Your ratings have been saved successfully.';
-			header("Location: rate-takeaway.php?order=$orderID");
+			header("Location: index.php?page=rate-takeaway&order=$orderID");
 			exit;
 		} else {
 			$_SESSION['error'] = true;

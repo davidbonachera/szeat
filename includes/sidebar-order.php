@@ -26,7 +26,8 @@
     						<?php 
     							if ($item['size'] > 0) { 
     								$itemSize  = $db->query_first("SELECT * FROM menu_item_sizes WHERE id={$item['size']}");
-    								$itemValue = $itemSize['value'];
+    								// $itemValue = $itemSize['value'];
+                                    $itemValue = ($lang == 'cn' ? ($itemSize['value_cn']==""?$itemSize['value']:$itemSize['value_cn']) : $itemSize['value']);
     								$itemPrice = $itemSize['price'];
     							} else {
     								$itemValue = $ir['value'];
@@ -34,7 +35,7 @@
     							}
     						?>
                             <li>
-                                <p><?php echo ($lang=='cn'?($ir['name_cn']==""?$ir['name']:$ir['name_cn']):$ir['name']); ?>  <?php echo $itemValue; ?></p>
+                                <p><?php echo ($lang=='cn'?($ir['name_cn']==""?$ir['name']:$ir['name_cn']):$ir['name']); ?> <?php echo $itemValue; ?></p>
                                 <span><?php echo $item['quantity']; ?>x</span>
                                 <span><?php echo _priceSymbol; ?></span>
                                 <?php $itemPriceCalculated = number_format($itemPrice*$item['quantity'],2); ?>
@@ -80,7 +81,7 @@
             ?>
 
             <div class="order-button">
-                <div class="view-menu"><a class="btn btn-yellow" href="<?php echo (($deliveryAvailable==false)||($spendEnough!=true)) ? "":"index.php?page=order-details"; ?>"><?php echo ($xml->$lang->ordernow==""?$xml->en->ordernow:$xml->$lang->ordernow); ?></a></div>
+                <div class="view-menu"><a class="btn btn-yellow" href="<?php echo (($deliveryAvailable==false)||($spendEnough!=true)) ? "" : "index.php?page=order-details"; ?>"><?php echo ($xml->$lang->ordernow==""?$xml->en->ordernow:$xml->$lang->ordernow); ?></a></div>
             </div>
         </div>
     </div>

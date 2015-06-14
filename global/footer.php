@@ -3,7 +3,6 @@
                         
             <?php
 
-                
                 $pages = $db->query("SELECT * FROM pages WHERE $status=1 ORDER BY id");
 
                 $total = $db->affected_rows;
@@ -42,3 +41,4 @@
             
         </div>
 </footer>
+

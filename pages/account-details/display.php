@@ -150,7 +150,7 @@
 																		echo '<span class="star rated"></span>';
 																echo '</span>';
 															} else {
-																echo '<a href="index.php?page=rate-takeaway&order='.$order['id'].'">Pending Approval</a>';
+																echo '<a href="index.php?page=rate-takeaway&order='.$order['id'].'">'.($xml->$lang->pending==""?$xml->en->pending:$xml->$lang->pending).'</a>';
 															}
 														} else {
 													?>
@@ -173,8 +173,14 @@
 							?>
                             <?php if (sizeof($yearsArray) > 0) { ?>
                                 <div class="namber-rate">
-                                    <h4>Number of orders in <?php echo date("Y").': '.count($yearsArray[date("Y")]); ?></h4>
-                                    <p><?php foreach ($yearsArray as $key=>$val) echo '<a href="?year='.$key.'&tab=my-recent-orders">'.$key.'</a> | '; ?></p>
+                                    <?php
+                                    if ($lang=='cn') {
+                                    ?> <h4><?php echo date("Y").'年的总订单量: '.count($yearsArray[date("Y")]); ?></h4> <?php    
+                                    } else {
+                                    ?> <h4>Number of orders in <?php echo date("Y").': '.count($yearsArray[date("Y")]); ?></h4> <?php    
+                                    }
+                                    ?>
+                                    <p><?php foreach ($yearsArray as $key=>$val) echo '<a href="?page=account-details&year='.$key.'&tab=my-recent-orders">'.$key.'</a> | '; ?></p>
                                 </div>
                             <?php } // sizeof ?>
                         </div>
@@ -203,7 +209,7 @@
 										<?php while($rating=$db->fetch_array($rq)) { ?>
                                             <tr>
                                                 <td><?php echo date($datecountry,strtotime($rating['date'])); ?></td>
-                                                <td><a href="order-summary.php?order=<?php echo $rating['order_id']; ?>"><?php echo $rating['order_id']; ?></a></td>
+                                                <td><a href="index.php?page=order-summary&order=<?php echo $rating['order_id']; ?>"><?php echo $rating['order_id']; ?></a></td>
                                                 <td><?php echo getData('restaurants','name',$rating['restaurant_id']); ?> &nbsp; </td>
                                                 <td><span class="rating">
 														<?php 

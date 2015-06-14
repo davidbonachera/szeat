@@ -47,7 +47,9 @@
         <div class="col-sm-9 product-list">
         	<ul class="product-list-items">
             	<?php while ($res=$db->fetch_array($search)) : ?>
+                
                 <?php $cuisineIds = explode(', ',$res['cuisines']); ?>
+                
                 <li class="<?php foreach ($cuisineIds as $cuisine) echo $cuisine.' '; ?>">
                 	<div class="row product-strock">
                 		<div class="col-sm-2">	
@@ -77,7 +79,9 @@
                                 <?php $cuisines2 = array(); ?>
                                 <?php //while ($rcr=$db->fetch_array($rc)) $cuisines2[] = $rcr['title']; ?>
                                 <?php while ($rcr=$db->fetch_array($rc)) $cuisines2[] = ($lang=='cn'?($rcr['title_cn']==""?$rcr['title']:$rcr['title_cn']):$rcr['title']); ?>
-                                <?php echo implode(", ",$cuisines2); ?>
+                                
+                                <?php $comma = ($lang == 'cn' ? "、 " : ", "); ?>
+                                <?php echo implode($comma,$cuisines2); ?>
                                 
                                 <br>
                             

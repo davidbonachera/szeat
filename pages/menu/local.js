@@ -43,3 +43,6 @@ $('a[href*=#]:not([href=#])').click(function() {
       }
     }
 });
+
+
+$("#restoclosedmodal").modal({ show : true });

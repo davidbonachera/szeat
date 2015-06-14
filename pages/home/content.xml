@@ -16,7 +16,7 @@
         <tagline>在线点外卖</tagline>
         <where>您的所在区域</where>
         <building>您的小区楼栋</building>
-        <foodtype>您喜欢的菜系?</foodtype>
+        <foodtype>您喜欢的菜系</foodtype>
         <search>为我找寻附近外卖餐厅</search>
 
         <selectArea>选择地区</selectArea>

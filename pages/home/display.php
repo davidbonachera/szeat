@@ -4,7 +4,13 @@
     <div class="row">
 
         <div id="homesub" class="text-center page-header">
-            <h2><?php echo ($xml->$lang->tagline == "" ? $xml->en->tagline : $xml->$lang->tagline); ?></h2>
+            <?php
+            if ($lang=='cn') {
+                echo '<h2 class="chinfont">';    
+            } else {
+                echo '<h2>';
+            }
+            echo ($xml->$lang->tagline == "" ? $xml->en->tagline : $xml->$lang->tagline); ?></h2>
         </div>
 
     </div>

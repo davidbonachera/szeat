@@ -245,7 +245,8 @@ $newOrders 	= $db->affected_rows;
                                       <tr>
                                           <th class="sorting_desc hidden"></th>
                                           <th>Received</th>
-                                          <th>Restaurant</th>
+                                          <th>Restaurant (EN)</th>
+                                          <th>Restaurant (CN)</th>
                                           <th>User</th>
                                           <th>Price</th>
                                           <th>Sent</th>
@@ -268,6 +269,7 @@ $newOrders 	= $db->affected_rows;
                                             	<td class="hidden"><?php echo $r['id']; ?></td>
                                                 <td><?php echo date("H:i d-m-y",strtotime($r['date'])); ?></td>
                                                 <td><?php echo getData('restaurants','name',$r['restaurant_id']); ?></td>
+                                                <td><?php echo getData('restaurants','name_cn',$r['restaurant_id']); ?></td>
                                                 <td><?php echo getData('users','name',$r['user_id']); ?></td>
                                                 <td><?php echo _priceSymbol; ?><?php echo $r['price']; ?></td>
                                                 <td class="center">

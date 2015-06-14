@@ -174,23 +174,36 @@ $query = $db->query_first("SELECT * FROM orders WHERE id='$id'");
                                       
                                       <h3>Restaurant Information</h3>
                                       <div class="control-group">
-                                        <label class="control-label" for="restaurant_id">Name</label>
+                                        <label class="control-label" for="restaurant_id">Name (EN)</label>
                                         <div class="controls">
                                           <span class="input-xlarge uneditable-input"><?php echo getData('restaurants','name',$query['restaurant_id']); ?></span>
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="restaurant_id">Address (EN)</label>
+                                        <div class="controls">
+                                          <span class="input-xlarge uneditable-input"><?php echo getData('restaurants','address',$query['restaurant_id']); ?></span>
+                                        </div>
+                                      </div>                                         
+                                      <div class="control-group">
+                                        <label class="control-label" for="restaurant_id">Name (CN)</label>
+                                        <div class="controls">
+                                          <span class="input-xlarge uneditable-input"><?php echo getData('restaurants','name_cn',$query['restaurant_id']); ?></span>
+                                        </div>
+                                      </div>  
+                                      <div class="control-group">
+                                        <label class="control-label" for="restaurant_id">Address (CN)</label>
+                                        <div class="controls">
+                                          <span class="input-xlarge uneditable-input"><?php echo getData('restaurants','address_cn',$query['restaurant_id']); ?></span>
+                                        </div>
+                                      </div>                                                                           
                                       <div class="control-group">
                                         <label class="control-label" for="restaurant_id">Phone</label>
                                         <div class="controls">
                                           <span class="input-xlarge uneditable-input"><?php echo getData('restaurants','phone',$query['restaurant_id']); ?></span>
                                         </div>
                                       </div>
-                                      <div class="control-group">
-                                        <label class="control-label" for="restaurant_id">Address</label>
-                                        <div class="controls">
-                                          <span class="input-xlarge uneditable-input"><?php echo getData('restaurants','address',$query['restaurant_id']); ?></span>
-                                        </div>
-                                      </div>
+                                  
                                       
                                       <h3>Order Details</h3>
                                       <table cellpadding="5" style="margin-left:105px">
@@ -199,31 +212,52 @@ $query = $db->query_first("SELECT * FROM orders WHERE id='$id'");
                                             <th align="left">Quantity</th>
                                             <th align="left">Price</th>
                                         </tr>
+                                        
                                         <tr><td colspan="3"></td></tr>
-										<?php $query2 = $db->query("SELECT * FROM order_items WHERE order_id={$query['id']} ORDER BY id"); ?>
+                                        <?php $query2 = $db->query("SELECT * FROM order_items WHERE order_id={$query['id']} ORDER BY id"); ?>
                                         <?php $total_price = 0; ?>
-                                    	<?php if ($db->affected_rows > 0) { ?>
-                                    		<?php while($r2=$db->fetch_array($query2)) { ?>
-                                                <?php 
-													if($r2['menu_item_size'] > 0) { 
-														$itemNumber = getData('menu_items','item_number',$r2['menu_item_id']);
-														$itemName 	= getData('menu_items','name',$r2['menu_item_id']);
-														$itemValue 	= getData('menu_item_sizes','value',$r2['menu_item_size']);
-														$itemPrice 	= getData('menu_item_sizes','price',$r2['menu_item_size']);
-														$itemQuantity = $r2['quantity'];
-													} else {
-														$itemNumber = getData('menu_items','item_number',$r2['menu_item_id']);
-														$itemName 	= getData('menu_items','name',$r2['menu_item_id']);
-														$itemValue	= NULL;
-														$itemPrice 	= getData('menu_items','price',$r2['menu_item_id']);
-														$itemQuantity = $r2['quantity'];
-													}
-												?>
-                                                <tr>
-                                                    <td><?php echo "no. ".$itemNumber." ".$itemName." ".$itemValue; ?></td>
-                                                    <td><?php echo $itemQuantity; ?>x </td>
-                                                    <td><?php echo ($itemPrice*$itemQuantity); ?> <?php echo _priceSymbol; ?></td>
-                                                </tr>
+                                        <?php if ($db->affected_rows > 0) { ?>
+                                        <?php while($r2=$db->fetch_array($query2)) { ?>
+
+                                        <?php 
+
+                													if($r2['menu_item_size'] > 0) { 
+                														$itemNumber = getData('menu_items','item_number',$r2['menu_item_id']);
+
+                														$itemName 	= getData('menu_items','name',$r2['menu_item_id']);                                    
+                                            $itemName_cn   = getData('menu_items','name_cn',$r2['menu_item_id']);
+
+                														$itemValue 	= getData('menu_item_sizes','value',$r2['menu_item_size']);
+                                            $itemValue_cn  = getData('menu_item_sizes','value_cn',$r2['menu_item_size']);
+                														
+                                            $itemPrice 	= getData('menu_item_sizes','price',$r2['menu_item_size']);                														
+                                            $itemQuantity = $r2['quantity'];
+
+                													} else {
+
+                														$itemNumber = getData('menu_items','item_number',$r2['menu_item_id']);
+
+                														$itemName 	= getData('menu_items','name',$r2['menu_item_id']);
+                                            $itemName_cn   = getData('menu_items','name_cn',$r2['menu_item_id']);
+                														
+                                            $itemValue	= NULL;
+                														$itemPrice 	= getData('menu_items','price',$r2['menu_item_id']);
+                														$itemQuantity = $r2['quantity'];
+                													}
+
+              												  ?>
+                                        <tr>
+                                          
+                                          <?php
+                                          if($r2['menu_item_size'] > 0) { ?>
+                                            <td><?php echo "no. ".$itemNumber." ".$itemName." (".$itemName_cn.") ".$itemValue." (".$itemValue_cn.")"; ?></td>
+                                          <?php } else { ?>
+                                            <td><?php echo "no. ".$itemNumber." ".$itemName." (".$itemName_cn.")"; ?></td>
+                                          <?php } ?>
+
+                                            <td><?php echo $itemQuantity; ?>x </td>
+                                            <td><?php echo ($itemPrice*$itemQuantity); ?> <?php echo _priceSymbol; ?></td>
+                                        </tr>
                                                 <?php $total_price += ($itemPrice*$itemQuantity); ?>
 		                                    <?php } // endwhile $query loop ?>
         	                            <?php } // $db->affected_rows ?>
@@ -244,19 +278,39 @@ $query = $db->query_first("SELECT * FROM orders WHERE id='$id'");
                                       </div>
                                       
                                       <h3>User Information</h3>
+                                      
+                                      <?php $userInfo = $db->query_first("SELECT * FROM users WHERE id={$query['user_id']}"); ?>
+                                      
                                       <div class="control-group">
-                                      	<?php $userInfo = $db->query_first("SELECT * FROM users WHERE id={$query['user_id']}"); ?>
                                         <label class="control-label" for="user_id">Area</label>
                                         <div class="controls">
                                           <span class="input-xlarge uneditable-input"><?php echo getData('areas','title',$userInfo['area_id']); ?></span>
                                         </div>
                                       </div>
+
                                       <div class="control-group">
                                         <label class="control-label" for="user_id">Building</label>
                                         <div class="controls">
                                           <span class="input-xlarge uneditable-input"><?php echo getData('buildings','title',$userInfo['building_id']); ?></span>
                                         </div>
                                       </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label" for="user_id">Area (CN)</label>
+                                        <div class="controls">
+                                          <span class="input-xlarge uneditable-input"><?php echo getData('areas','title_cn',$userInfo['area_id']); ?></span>
+                                        </div>
+                                      </div>
+
+                                      <div class="control-group">
+                                        <label class="control-label" for="user_id">Building (CN)</label>
+                                        <div class="controls">
+                                          <span class="input-xlarge uneditable-input"><?php echo getData('buildings','title_cn',$userInfo['building_id']); ?></span>
+                                        </div>
+                                      </div>
+
+
+
                                       <div class="control-group">
                                         <label class="control-label" for="user_id">Block / Apt #</label>
                                         <div class="controls">

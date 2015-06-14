@@ -41,8 +41,10 @@
                 <strong><?php echo ($xml->$lang->typafood==""?$xml->en->typafood:$xml->$lang->typafood); ?>: </strong>
                 <?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['restaurant_id']} AND r.status=1 AND c.status=1"); ?>
                 <?php while ($rcr=$db->fetch_array($rc)) $cuisines[] = ($lang=='cn'?($rcr['title_cn']==""?$rcr['title']:$rcr['title_cn']):$rcr['title']); ?>
-               <?php echo implode(", ",$cuisines); ?>
-            
+               
+                    <?php $comma = ($lang == 'cn' ? "、 " : ", "); ?>
+                    <?php echo implode($comma,$cuisines); ?>
+
                 <br>
                 <strong><?php echo ($xml->$lang->delltime==""?$xml->en->delltime:$xml->$lang->delltime); ?>: </strong>
                 <?php $del_hours = deliveryHours($res['restaurant_id'], true); ?>

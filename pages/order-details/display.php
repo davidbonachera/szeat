@@ -37,7 +37,8 @@
                             	<?php 
     								if ($item['size'] > 0) { 
     									$itemSize  = $db->query_first("SELECT * FROM menu_item_sizes WHERE id={$item['size']}");
-    									$itemValue = $itemSize['value'];
+    									// $itemValue = $itemSize['value'];
+                                        $itemValue = ($lang == 'cn' ? ($itemSize['value_cn']==""?$itemSize['value']:$itemSize['value_cn']) : $itemSize['value']);
     									$itemPrice = $itemSize['price'];
     								} else {
     									$itemValue = $ir['value'];

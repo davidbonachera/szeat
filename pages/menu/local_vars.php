@@ -38,9 +38,13 @@ if ($db->affected_rows > 0) {
 }
 
 $currentDay = strtoupper(date("l"));
-$time = $db->query("SELECT * FROM delivery_times WHERE CURRENT_TIME() BETWEEN TIME(`start`) AND TIME(`end`) AND day='$currentDay' AND restaurant_id={$_SESSION['user']['restaurant']['id']} AND status=1");    
+
+$time = $db->query("SELECT * FROM delivery_times WHERE CURRENT_TIME() BETWEEN TIME(`start`) AND TIME(`end`) AND day='$currentDay' AND restaurant_id={$_SESSION['user']['restaurant']['id']} AND status=1");
+
 if ($db->affected_rows > 0) {
-	$deliveryAvailable = true;
+	// $deliveryAvailable = true;
 } else {
-	$deliveryAvailable = false;
+	// $deliveryAvailable = false;
 }
+
+$deliveryAvailable = true;

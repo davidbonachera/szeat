@@ -27,6 +27,7 @@
 		<revv>Review</revv>
 		<dibb>Submit</dibb>
 		<select>Select</select>
+		<pending>Pending Approval</pending>
     </en>
     <cn>
     	<home>主页</home>
@@ -55,5 +56,6 @@
 		<revv>评论</revv>
 		<dibb>提交</dibb>
 		<select>选择</select>
+		<pending>评论待核实</pending>
     </cn>
 </document>

@@ -195,3 +195,10 @@ author: bootply.com
     width:228px;
   }
 }
+
+.chinfont {
+  font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+  font-size: 3em;
+  font-weight: bold;
+  color: red;
+}

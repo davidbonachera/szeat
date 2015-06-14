@@ -23,7 +23,7 @@ if ($db->affected_rows > 0) {
 		$orderID	= $order['id'];
 		$oPrice		= $order['price'];
 		$oNotes		= $order['notes'];
-		$linkToRate	= $config['siteURL']."rate-takeaway.php?order=".$order['id'];
+		$linkToRate	= $config['siteURL']."index.php?page=rate-takeaway&order=".$order['id'];
 		
 		$itemsTable = "<table>";
 		
