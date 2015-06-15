@@ -202,3 +202,27 @@ author: bootply.com
   font-weight: bold;
   color: red;
 }
+
+#sidebarorder {
+  list-style-type: none;
+  padding: 1em;
+}
+
+#sidebarorder p {
+  font-weight: bold;
+  color: #535353;
+}
+
+#sidebarorder i {
+  float:left;
+  color: #535353;
+}
+
+#sidebarorder img {
+  float:right;
+  padding-top:0.3em;
+}
+
+#sidebarorder hr {
+  margin-bottom: 0.5em;
+}

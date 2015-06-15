@@ -60,7 +60,7 @@
                                 echo '<div class="full-order-price-row">
                                     <span class="first-element">Delivery Fee</span>
                                     <span class="second-element">RMB</span>
-                                    <span class="third-element">'.$_SESSION['user']['delivery_fee'].'</span>
+                                    <span class="third-element">'.number_format($_SESSION['user']['delivery_fee'],2).'</span>
                                 </div>';
                                 $total_price += $_SESSION['user']['delivery_fee'];
                             }
@@ -71,7 +71,7 @@
                     <div class="full-order-price-row final">
                     	<span class="first-element"><?php echo ($xml->$lang->total==""?$xml->en->total:$xml->$lang->total); ?></span>
                     	<span class="second-element"><?php echo _priceSymbol; ?></span>
-                    	<span class="third-element"><?php echo $total_price; ?></span>
+                    	<span class="third-element"><?php echo number_format($total_price,2); ?></span>
                     </div>
                 
         	   </div>

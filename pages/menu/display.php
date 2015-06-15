@@ -123,7 +123,7 @@
                     <?php } // whlie $cats loop ?>
                 </div>
             </div>
-            <?php include('includes/sidebar-order.php'); ?>
+            <?php include('pages/menu/sidebar-order.php'); ?>
         </div>
     </div>
 

@@ -1146,3 +1146,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	margin-right:auto !important;
     width: 115px !important;
 }
+
+.final {
+	font-weight: bold;
+}
