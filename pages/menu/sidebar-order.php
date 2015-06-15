@@ -73,10 +73,10 @@
             <?php
                 // stop submit if less than resto's min order
                 $spendEnough = false;
-                if ($totalItemPrice>=$res['minimum_order']) {
+                if (($totalItemPrice-$res['delivery_fee'])>=$res['minimum_order']) {
                     $spendEnough=true;
                 } else {
-                    echo '<p class="redwarning">You have not reached the restaurant\'s minimum order yet.</p>';
+                    echo '<p class="redwarning">'.($xml->$lang->minorderreach==""?$xml->en->minorderreach:$xml->$lang->minorderreach).'</p>';
                 }
             ?>
 

@@ -28,6 +28,7 @@
 		<notaccepting>This restaurant is currently not accepting orders. Please check the delivery hours.</notaccepting>
 		<viewmenu>View menu</viewmenu>
 		<bakk>Back</bakk>
+		<minorderreach>You have not reached the restaurant's minimum order yet.</minorderreach>
     </en>
     <cn>
 		<home>主页</home>
@@ -57,5 +58,6 @@
 		<notaccepting>餐厅目前停止接单，请查看餐厅外卖开放时间</notaccepting>
 		<viewmenu>浏览菜单</viewmenu>
 		<bakk>返回</bakk>
+		<minorderreach>您的订单未达到最低起订金额</minorderreach>
     </cn>
 </document>
