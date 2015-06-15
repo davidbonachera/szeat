@@ -53,10 +53,13 @@ if ($_POST) {
 										if ($db->affected_rows > 0) {
 											if ($item['menu_item_size'] > 0) {
 												$menuSize = $db->query_first("SELECT * FROM menu_item_sizes WHERE id={$item['menu_item_size']}");
-												$itemValue = $menuSize['value'];
+												
+												// changed
+												$itemValue = ($lang=='cn'?$menuSize['value_cn']:$menuSize['value']);																							
 												$itemPrice = number_format($menuSize['price']*$item['quantity'],2);
 											} else {
-												$itemValue = $menuItem['value'];
+												// changed
+												$itemValue = ($lang=='cn'?$menuItem['value_cn']:$menuItem['value']);
 												$itemPrice = number_format($menuItem['price']*$item['quantity'],2);
 											}
 											$itemsTable .= "<tr>
@@ -76,25 +79,36 @@ if ($_POST) {
 									$fromEmail 	= _email;
 									$toEmail 	= getData("users","email",$_SESSION['user']['id']);
 									$toName 	= getData("users","name",$_SESSION['user']['id']);
-									$resName	= getData("restaurants","name",$oRestaurant);
+
+									// changed
+									$resName	= getData("restaurants",($lang=='cn'?"name_cn":"name"),$oRestaurant);
+
+									// changed																		
+									if ($lang=='cn') {
+										$template	= $db->query_first("SELECT * FROM email_templates WHERE name='order_placed_cn' LIMIT 1");	
+									} else {
+										$template	= $db->query_first("SELECT * FROM email_templates WHERE name='order_placed' LIMIT 1");	
+									}
 									
-									$template	= $db->query_first("SELECT * FROM email_templates WHERE name='order_placed' LIMIT 1");
-					
 									$from_name	= $template['from_name'];
 									$from_email	= $template['from_email'];
 									
 									$mSubject = $template['subject'];
 									$mSubject = str_replace("#NAME#", 			$toName, 	$mSubject);
+									// this one needs
 									$mSubject = str_replace("#RESTAURANT#", 	$resName, 	$mSubject);
 									$mSubject = str_replace("#ORDERNO#", 		$orderID, 	$mSubject);
+									// this one needs
 									$mSubject = str_replace("#ITEMDETAILS#", 	$itemsTable,$mSubject);
 									$mSubject = str_replace("#TOTALPRICE#", 	$oPrice, 	$mSubject);
 									$mSubject = str_replace("#NOTES#", 			$oNotes, 	$mSubject);
 
 									$mBody = html_entity_decode($template['body']);
 									$mBody = str_replace("#NAME#", 			$toName, 	$mBody);
+									// this one needs
 									$mBody = str_replace("#RESTAURANT#", 	$resName, 	$mBody);
 									$mBody = str_replace("#ORDERNO#", 		$orderID, 	$mBody);
+									// this one needs
 									$mBody = str_replace("#ITEMDETAILS#", 	$itemsTable,$mBody);
 									$mBody = str_replace("#NOTES#", 		$oNotes, 	$mBody);
 									$mBody = str_replace("#TOTALPRICE#", 	number_format($oPrice,2), $mBody);

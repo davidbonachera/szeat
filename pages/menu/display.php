@@ -135,14 +135,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Restaurant closed</h4>
+                    <h4 class="modal-title"><?php echo ($xml->$lang->closed==""?$xml->en->closed:$xml->$lang->closed); ?></h4>
                 </div>
                 <div class="modal-body">
-                    <p>This restaurant is currently not accepting orders. Please check the delivery hours.</p>
+                    <p><?php echo ($xml->$lang->notaccepting==""?$xml->en->notaccepting:$xml->$lang->notaccepting); ?></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">View menu</button>
-                    <a href="javascript:history.back()" type="button" class="btn btn-primary">Back</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo ($xml->$lang->viewmenu==""?$xml->en->viewmenu:$xml->$lang->viewmenu); ?></button>
+                    <a href="javascript:history.back()" type="button" class="btn btn-primary"><?php echo ($xml->$lang->bakk==""?$xml->en->bakk:$xml->$lang->bakk); ?></a>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
