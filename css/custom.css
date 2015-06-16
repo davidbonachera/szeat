@@ -226,3 +226,7 @@ author: bootply.com
 #sidebarorder hr {
   margin-bottom: 0.5em;
 }
+
+.cursor {
+  cursor:pointer;
+}
