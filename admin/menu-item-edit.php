@@ -153,7 +153,7 @@ $query = $db->query_first("SELECT * FROM menu_items WHERE id='$mid'");
                                       <div class="control-group">
                                         <label class="control-label" for="name_cn">Chinese Name</label>
                                         <div class="controls">
-                                          <input class="input-xlarge focused" id="name_cn" name="name_cn" type="text" value="<?php echo $query['name']; ?>">
+                                          <input class="input-xlarge focused" id="name_cn" name="name_cn" type="text" value="<?php echo $query['name_cn']; ?>">
                                         </div>
                                       </div>                                      
                                       <div class="control-group">
