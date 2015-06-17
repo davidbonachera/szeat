@@ -34,9 +34,10 @@
                     <a href="https://www.facebook.com/ShenzhenEat" target="_blank"><img src="img/fbook.png" alt="" /></a>
                     <a href="https://twitter.com/ShenzhenEat" target="_blank"><img src="img/twiter.png" alt="" /></a>
                 </div>
-                <br />
-                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备15014754号-1</a>
-                <p>&copy; <?php echo date("Y"); ?> ShenzhenEat.com</p>
+                <div style="margin-top:0.5em;">
+                    <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备15014754号-1</a>
+                    <p>Web Design by <a href="mailto:davidjennings73@gmail.com">David Jennings</a><br>&copy; <?php echo date("Y"); ?> ShenzhenEat.com</p>
+                </div>
             </div>
             
         </div>
