@@ -114,37 +114,37 @@ if ($_POST) {
 						} else {
 							$_SESSION['error'] = true;
 							$_SESSION['msg']   = 'Order price must be greated than 0.';
-							header("Location: order-details.php");
+							header("Location: index.php?page=order-details");
 							exit;
 						}
 					} else {
 						$_SESSION['error'] = true;
 						$_SESSION['msg']   = 'Please enter your block/apartment.';
-						header("Location: order-details.php");
+						header("Location: index.php?page=order-details");
 						exit;
 					}
 				} else {
 					$_SESSION['error'] = true;
 					$_SESSION['msg']   = 'Please select your building.';
-					header("Location: order-details.php");
+					header("Location: index.php?page=order-details");
 					exit;
 				}
 			} else {
 				$_SESSION['error'] = true;
 				$_SESSION['msg']   = 'Please select your area.';
-				header("Location: order-details.php");
+				header("Location: index.php?page=order-details");
 				exit;
 			}
 		} else {
 			$_SESSION['error'] = true;
 			$_SESSION['msg']   = 'Please enter your phone number.';
-			header("Location: order-details.php");
+			header("Location: index.php?page=order-details");
 			exit;
 		}
 	} else {
 		$_SESSION['error'] = true;
 		$_SESSION['msg']   = 'Please enter your phone name.';
-		header("Location: order-details.php");
+		header("Location: index.php?page=order-details");
 		exit;
 	}
 } elseif (isset($_GET['order'])) {

@@ -22,7 +22,8 @@ if ($_GET) {
 		$cuisineName = NULL;
 	}
 	
-	$where = isset($where) ? $where." AND r.status=1":"WHERE r.status=1";
+
+	$where = isset($where) ? $where." AND r.".$status."=1":"WHERE r.".$status."=1";
 	
 	if (isset($_GET['sort'])) {
 		if 	   ($_GET['sort']=='best') 		$orderBy = 'ORDER BY id ASC';

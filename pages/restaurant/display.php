@@ -76,7 +76,8 @@
             <div class="block-page more-about">
                 <h2><?php echo ($xml->$lang->moreabout==""?$xml->en->moreabout:$xml->$lang->moreabout); ?> <?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?></h2>
                 <p>
-                    <?php echo $res['description']; ?>
+                    <?php echo ($lang=='cn'?($res['description_cn']!=""?$res['description_cn']:$res['description']):$res['description']); ?>
+            
                     <a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><?php echo ($lang=='cn'?($res['name_cn']==""?$res['name']:$res['name_cn']):$res['name']); ?> <?php echo ($xml->$lang->menu==""?$xml->en->menu:$xml->$lang->menu); ?></a>
                 </p>
             </div>
