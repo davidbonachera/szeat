@@ -4,7 +4,7 @@
     require_once('global/global_vars.php');
     require_once("class/Pagination.class.php");
     require_once("class/class.phpmailer.php");
-    require_once('includes/functions.php');
+    require_once('global/functions.php');
     require_once('global/global_meta.php');
     if(file_exists('pages/'.$page.'/local.css')) {
         echo '<link rel="stylesheet" type="text/css" href="pages/'.$page.'/local.css"/>';

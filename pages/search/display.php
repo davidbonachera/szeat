@@ -43,7 +43,7 @@
         </div>
     
     <div class="row">
-    	<?php require_once('includes/sidebar-search.php'); ?>
+    	<?php require_once('pages/search/sidebar.php'); ?>
         <div class="col-sm-9 product-list">
         	<ul class="product-list-items">
             	<?php while ($res=$db->fetch_array($search)) : ?>
@@ -53,7 +53,7 @@
                 <li class="<?php foreach ($cuisineIds as $cuisine) echo $cuisine.' '; ?>">
                 	<div class="row product-strock">
                 		<div class="col-sm-2">	
-                        	<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><img class="img-responsive" src="timthumb.php?w=111&zc=0&src=./<?php echo checkFeild($res['thumbnail']) ? $res['thumbnail']:'images/no_image_thumb.gif'; ?>" alt="" /></a>
+                        	<a href="index.php?page=restaurant&restaurant=<?php echo urlText($res['name']); ?>&id=<?php echo $res['restaurant_id']; ?>"><img class="img-responsive" src="timthumb.php?w=111&zc=0&src=./<?php echo checkFeild($res['thumbnail']) ? $res['thumbnail']:'img/no_image_thumb.gif'; ?>" alt="" /></a>
                         </div>
                         <div class="col-sm-7">
                         	<div class="product-name-list">

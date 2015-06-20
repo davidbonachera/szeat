@@ -6,8 +6,6 @@ $("select#area").change(function(){
 
     $.getJSON("ajaxSelect.php",{area: $(this).val(), ajax: 'true'}, function(j){
 
-        // alert('caca');
-
         var Options = '';
         for (var i = 0; i < j.length; i++) {
             Options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
@@ -16,21 +14,3 @@ $("select#area").change(function(){
         $("select#building").trigger("chosen:updated");
     });
 });
-
-// <script type="text/javascript">
-    // $(document).ready(function(){ 
-        // $('#searchForm').submit(function() {
-        //     $(".HomePageError").hide();
-        //     if ($("#area").val()=="") {
-        //         $(".HomePageError").html("Please select an area and building.");
-        //         $(".HomePageError").fadeIn("slow");
-        //         return false;
-        //     }
-        //     if ($("#building").val()=="") {
-        //         $(".HomePageError").html("Please select an area and building.");
-        //         $(".HomePageError").fadeIn("slow");
-        //         return false;
-        //     }
-        // });
-    // })
-// </script>

@@ -14,7 +14,7 @@
 
         <div class="row product-row">
         	<div class="col-sm-2">
-            	<img class="img-responsive" src="timthumb.php?w=111&zc=0&src=./<?php echo checkFeild($res['thumbnail']) ? $res['thumbnail']:'images/no_image_thumb.gif'; ?>" alt="" />
+            	<img class="img-responsive" src="timthumb.php?w=111&zc=0&src=./<?php echo checkFeild($res['thumbnail']) ? $res['thumbnail']:'img/no_image_thumb.gif'; ?>" alt="" />
             </div>
 
             <div class="col-sm-7">

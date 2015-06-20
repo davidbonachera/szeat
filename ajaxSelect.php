@@ -1,5 +1,5 @@
 <?php require_once('class/config.inc.php'); ?>
-<?php require_once('includes/functions.php'); ?>
+<?php require_once('global/functions.php'); ?>
 
 <?php
 
