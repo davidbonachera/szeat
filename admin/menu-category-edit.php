@@ -47,7 +47,7 @@ if ($_POST) {
 		$data['title'] 			= ucwords(strtolower($_POST['title']));
 		$data['title_cn'] 			= ucwords(strtolower($_POST['title_cn']));
 		$data['description'] 	= htmlentities($_POST['description']);
-		$data['description_cn'] 	= htmlentities($_POST['description_cn']);
+		$data['description_cn'] 	= ucwords(strtolower($_POST['description_cn']));
 		$data['prior']			= is_numeric($_POST['prior']) ? $_POST['prior']:0;
 
 		if ($db->query_update("menu_categories", $data, "id='$cid'")) {
