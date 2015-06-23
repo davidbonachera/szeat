@@ -15,9 +15,19 @@ if ($_POST) {
 					
 					$from_name	= $template['from_name'];
 					$from_email	= $template['from_email'];
-					$subject 	= $template['subject'];
 					
-					$messageBody = html_entity_decode($template['body']);
+					if ($lang=='cn'){
+						$subject 	= $template['subject_cn'];	
+					} else {
+						$subject 	= $template['subject'];
+					}
+									
+					if ($lang=='cn'){
+						$messageBody = html_entity_decode($template['body']);
+					} else {
+						$messageBody = html_entity_decode($template['body_cn']);
+					}
+
 					$messageBody = str_replace("#NAME#", 	$check['name'], 	$messageBody);
 					$messageBody = str_replace("#LINK#", 	$link, 				$messageBody);
 

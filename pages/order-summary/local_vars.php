@@ -82,16 +82,26 @@ if ($_POST) {
 					
 									$from_name	= $template['from_name'];
 									$from_email	= $template['from_email'];
-									
-									$mSubject = $template['subject'];
+																										
+									if ($lang=='cn') {
+										$mSubject = $template['subject_cn'];	
+									} else {
+										$mSubject = $template['subject'];
+									}
+
 									$mSubject = str_replace("#NAME#", 			$toName, 	$mSubject);
 									$mSubject = str_replace("#RESTAURANT#", 	$resName, 	$mSubject);
 									$mSubject = str_replace("#ORDERNO#", 		$orderID, 	$mSubject);
 									$mSubject = str_replace("#ITEMDETAILS#", 	$itemsTable,$mSubject);
 									$mSubject = str_replace("#TOTALPRICE#", 	$oPrice, 	$mSubject);
-									$mSubject = str_replace("#NOTES#", 			$oNotes, 	$mSubject);
+									$mSubject = str_replace("#NOTES#", 			$oNotes, 	$mSubject);									
 
-									$mBody = html_entity_decode($template['body']);
+									if ($lang=='cn') {
+										$mBody = html_entity_decode($template['body_cn']);	
+									} else {
+										$mBody = html_entity_decode($template['body']);	
+									}
+
 									$mBody = str_replace("#NAME#", 			$toName, 	$mBody);
 									$mBody = str_replace("#RESTAURANT#", 	$resName, 	$mBody);
 									$mBody = str_replace("#ORDERNO#", 		$orderID, 	$mBody);

@@ -36,6 +36,9 @@ if ($_POST) {
 			$data["from_email"] 		= $_POST["from_email"];
 			$data["subject"]			= $_POST["subject"];
 			$data["body"] 				= $_POST["body"];
+
+			$data["subject_cn"]			= $_POST["subject_cn"];
+			$data["body_cn"] 			= $_POST["body_cn"];
 		
 			$db->query_update("email_templates", $data, "id='$id'");
 			if($db->affected_rows > 0){
@@ -133,24 +136,43 @@ $query = $db->query_first("SELECT * FROM email_templates WHERE id='$id'");
                                         </div>
                                       </div>
                                       <div class="control-group">
-                                        <label class="control-label" for="subject">* Subject</label>
+                                        <label class="control-label" for="subject">* Subject (EN)</label>
                                         <div class="controls">
                                           <input class="input-xlarge focused" id="subject" name="subject" type="text" value="<?php echo $query['subject']; ?>">
                                         </div>
                                       </div>
+                                      <div class="control-group">
+                                        <label class="control-label" for="subject_cn">* Subject (CN)</label>
+                                        <div class="controls">
+                                          <input class="input-xlarge focused" id="subject_cn" name="subject_cn" type="text" value="<?php echo $query['subject_cn']; ?>">
+                                        </div>
+                                      </div>                                      
                                       <div class="control-group hidden-phone">
-                                          <label class="control-label" for="body">* BODY</label>
+                                          <label class="control-label" for="body">* BODY (EN)</label>
                                           <div class="controls">
                                             <textarea class="cleditor" id="body" name="body" rows="3"><?php echo $query['body']; ?></textarea>
                                             <span class="help-inline">
-                                            	<br /><strong>Predefined Vars:</strong><br />
+                                            	<!-- <br /><strong>Predefined Vars:</strong><br /> -->
 												<?php $vars = explode(",", $query['vars']); ?>
                                                 <ul>
-                                                	<?php foreach ($vars as $key=>$var) echo '<li>'.$var.'</li>'; ?>
+                                                	<?php //foreach ($vars as $key=>$var) echo '<li>'.$var.'</li>'; ?>
                                                 </ul>
                                             </span>
                                           </div>
                                       </div>
+                                      <div class="control-group hidden-phone">
+                                          <label class="control-label" for="body_cn">* BODY (CN)</label>
+                                          <div class="controls">
+                                            <textarea class="cleditor" id="body_cn" name="body_cn" rows="3"><?php echo $query['body_cn']; ?></textarea>
+                                            <span class="help-inline">
+                                            	<!-- <br /><strong>Predefined Vars:</strong><br /> -->
+												<?php  $vars = explode(",", $query['vars']); ?>
+                                                <ul>
+                                                	<?php  //foreach ($vars as $key=>$var) echo '<li>'.$var.'</li>'; ?>
+                                                </ul>
+                                            </span>
+                                          </div>
+                                      </div>                                      
                                       
                                       <div class="form-actions">
                                         <button id="submit" name="submit" type="submit" class="btn btn-primary">Save changes</button>

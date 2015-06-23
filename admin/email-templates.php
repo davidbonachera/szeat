@@ -91,7 +91,8 @@ if (isset($_GET['id']) && checkFeild($_GET['id'])) {
                                       <tr>
                                           <th>Template Name</th>
                                           <th>From</th>
-                                          <th>Subject</th>
+                                          <th>Subject (EN)</th>
+                                          <th>Subject (CN)</th>
                                           <th>Actions</th>
                                       </tr>
                                   </thead>   
@@ -103,6 +104,7 @@ if (isset($_GET['id']) && checkFeild($_GET['id'])) {
                                                 <td><?php echo ucwords(str_replace("_"," ",$r['name'])); ?></td>
                                                 <td><?php echo $r['from_name']; ?><br /><em><?php echo $r['from_email']; ?></em></td>
                                                 <td class="center"><?php echo $r['subject']; ?></td>
+                                                <td class="center"><?php echo $r['subject_cn']; ?></td>
                                                 <td class="center">
                                                     <a class="btn btn-info" href="email-templates-edit.php?id=<?php echo $r['id']; ?>" title="Edit">
                                                         <i class="icon-edit icon-white"></i>  
