@@ -58,7 +58,7 @@
                         <?php
                             if ((isset($_SESSION['user']['delivery_fee'])&&($_SESSION['user']['delivery_fee']>0))) {
                                 echo '<div class="full-order-price-row">
-                                    <span class="first-element"><?php echo ($xml->$lang->dellfee==""?$xml->en->dellfee:$xml->$lang->dellfee); ?></span>
+                                    <span class="first-element">'.($xml->$lang->dellfee==""?$xml->en->dellfee:$xml->$lang->dellfee).'</span>
                                     <span class="second-element">RMB</span>
                                     <span class="third-element">'.number_format($_SESSION['user']['delivery_fee'],2).'</span>
                                 </div>';
