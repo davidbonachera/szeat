@@ -153,7 +153,7 @@
                     
                         <div class="col-xs-12">
                             <div class="checkbox">
-                                <label><input type="checkbox" name="terms" value="1"><?php echo ($xml->$lang->aghee2==""?$xml->en->aghee2:$xml->$lang->aghee2); ?>.</label>
+                                <label><input type="checkbox" name="terms" checked="checked" value="1"><?php echo ($xml->$lang->aghee2==""?$xml->en->aghee2:$xml->$lang->aghee2); ?>.</label>
                             </div>
                         </div>
 
