@@ -1,4 +1,10 @@
-<?php $xml = simplexml_load_file("pages/order-summary/content.xml"); ?>
+<?php $xml = simplexml_load_file("pages/order-summary/content.xml");    // if(isset($_POST)){   echo "<pre>"; print_r($_POST); die;}?>
+<style>
+.main_it_cla{width:100%; float:left; padding:0 15px; font-size:12px; margin-bottom:15px;}
+.main_it_cla p{border-bottom:1px solid hsl(0, 0%, 40%); margin:7px 0; font-weight:bold;}
+.item_f{width:41%; float:left;}
+.item_s{width:25%; float:left;}
+</style>
 <div class="container main">
     	<div class="row">
         	<div class="col-xs-12">
@@ -57,7 +63,7 @@
                 	}
                 	?>
 
-                    <table width="368">
+                    <table width="100%">
                        <tbody>
                             <?php $items = $db->query("SELECT * FROM order_items WHERE order_id={$orderID}"); ?>
                             <?php $total_price = 0; 
@@ -78,10 +84,72 @@
 												$itemPrice = number_format($ir['price']*$item['quantity'],2);
 											}
 										?>
-                                        <tr>
-                                            <td nowrap><?php echo $item['quantity']; ?> x  no. <?php __($ir['item_number']); ?> <?php __($ir['name']); ?> <?php echo $itemValue; ?></td>
-                                            <td><?php echo _priceSymbol; ?> <?php echo $itemPrice; ?></td>
+                                        <tr><b>
+                                            <td style="float: left; width: 76%;">
+											<?php echo $item['quantity']; ?> x  no. <?php __($ir['item_number']); ?> <?php __($ir['name']); ?> <?php echo $itemValue; ?></td>
+                                            <td><?php echo _priceSymbol; ?> <?php echo $itemPrice; ?></td> </b>
                                         </tr>
+		<!-- ------------------------------layers code start ------------------------------------------------------------------------------	-->
+										<?php $layers_ofitems = $db->query("SELECT * FROM order_item_layers WHERE order_item_id={$item['id']} GROUP BY layer_id "); 
+										
+										if ($db->affected_rows > 0) { ?>
+										
+										<?php while($lay_ersofitem=$db->fetch_array($layers_ofitems)) { 
+										
+										//$layersidd=lay_ersofitem['id'];    // we will use this id in attributes query     ?>
+												
+										<?php	$layer_row = $db->query_first("SELECT * FROM menu_item_layers WHERE id={$lay_ersofitem['layer_id']}");   ?>
+											
+											<?php 
+											$layername = $layer_row['name'];
+											
+											?>
+											 
+												 <tr>
+											<td colspan="4">
+											<div class="main_it_cla" style="">
+											<p style=""><?php echo $layername; ?>  </p>
+										
+											<!-- attribute code start ------------------------------------------------------------------------------	-->
+											<?php $attrib = $db->query("SELECT * FROM order_item_layers WHERE order_item_id={$item['id']} AND layer_id={$lay_ersofitem['layer_id']}"); 
+												  if ($db->affected_rows > 0) { ?>
+											<?php while($attr_val=$db->fetch_array($attrib)) { //echo"<pre>"; print_r(($attr_val);die;?>
+										
+											<?php $attr_row= $db->query_first("SELECT * FROM layer_lists WHERE id={$attr_val['attribute_id']}"); ?>
+											<?php 
+											$attribname=$attr_row['name'];
+											$attribprice=$attr_row['price'];
+											$total_price=$total_price+($attribprice* $attr_val['quantity']);
+											?>
+											
+										<div>
+											<div class="item_f" style=""><?php echo $attr_val['quantity']."x ";?><?php echo $attribname; ?></div>
+											<div class="item_s" style=""><?php echo _priceSymbol; ?> </div>
+											<div class="item_s" style=""><?php echo $attr_val['quantity']*$attribprice;?></div>
+											</div>
+								
+								
+								
+										<!--	<div>
+											<div class="item_f" style=""><?php echo $lay_ersofitem['quantity']."x";?><?php echo $attribname;?></div>
+											<div class="item_s" style="">RMB </div>
+											<div class="item_s" style=""><?php echo $attribprice*$lay_ersofitem['quantity'];?></div>
+											</div> -->
+													<?php    
+												} // while end of order_item_layers
+														}              ?>
+                                 
+                                  
+                                </div>
+                                </td></tr>
+										
+										
+									<?php    
+												} // while end of order_item_layers
+														}              ?>
+                               
+<!-- ------------------------------------------------- end layers and attributes --------------------------------------------------------- -->
+										
                                         <?php $total_price += $itemPrice; ?>
                                     <?php } // $db->affected_rows > 0 ?>
                                 <?php } // while $items ?>
@@ -90,7 +158,7 @@
                         <tfoot>
                             <tr>
                                 <th width="15%"><?php echo ($xml->$lang->total==""?$xml->en->total:$xml->$lang->total); ?>:</th>
-                                <th width="15%"><?php echo _priceSymbol; ?>  <?php echo $total_price; ?></th>
+                                <th width="15%"><?php echo _priceSymbol; ?>  <?php echo number_format($total_price,2); ?></th>
                             </tr>
                        </tfoot>
                     </table>

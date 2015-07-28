@@ -7,6 +7,7 @@
             <li><a href="areas.php"><i class="icon-map-marker icon-white"></i><span class="hidden-tablet"> Areas</span></a></li>
             <li><a href="buildings.php"><i class="icon-map-marker icon-white"></i><span class="hidden-tablet"> Buildings</span></a></li>
             <li><a href="cuisines.php"><i class="icon-fire icon-white"></i><span class="hidden-tablet"> Cuisines</span></a></li>
+			
             <li><a href="restaurants.php"><i class="icon-certificate icon-white"></i><span class="hidden-tablet"> Restaurants</span></a></li>
             <li><a href="orders.php"><i class="icon-shopping-cart icon-white"></i><span class="hidden-tablet"> Orders</span></a></li>
             <li><a href="ratings.php"><i class="icon-star icon-white"></i><span class="hidden-tablet"> Ratings</span></a></li>

@@ -1,4 +1,60 @@
-<?php $xml = simplexml_load_file("pages/order-details/content.xml"); ?>
+<?php $xml = simplexml_load_file("pages/order-details/content.xml");          $totalprz=0; ?>
+<style>
+.div_iva{ width:96%; padding-left:0; float:left; margin-bottom:10px;}
+.div_iva p{ color:#000; margin:7px 0; border-bottom:solid 1px #666;}
+
+.item_in{ width:70%; float:left; font-size: 12px;}
+
+.item_in1{ width:15%; float:left; font-size: 12px;}
+.w_full_cl{float:left; width:98%}
+
+@media (min-width: 1070px) and (max-width: 1268px) {
+	
+	.div_iva {
+    float: left;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    width: 345px;
+}
+
+	}
+	@media (min-width: 770px) and (max-width: 968px) {
+	.full-order-price-container {
+    margin-bottom: 40px;
+    margin-left: 0;
+    margin-right: 0;
+}
+.item_in {
+    float: left;
+    font-size: 12px;
+    width: 49%;
+}
+	}
+	
+@media (min-width: 270px) and (max-width: 768px) {
+	.full-order-price-container {
+    margin-bottom: 40px;
+    margin-left: 0;
+    margin-right: 0;
+}
+}
+@media (min-width: 270px) and (max-width: 568px) {
+	.full-order-price-container .full-order-price-row .second-element {
+    float: right;
+    text-align: center;
+    width: 50px;
+}
+.full-order-price-container .full-order-price-row .third-element {
+    float: right;
+    text-align: right;
+    width: 73px;
+}
+	.full-order-price-container .full-order-price-row .first-element {
+    padding-right: 1em;
+    width: 100%;
+}
+	}
+</style>
 <div class="container">
 
 	<div class="col-xs-12">
@@ -46,10 +102,55 @@
     								}
     							?>
                                 <div class="full-order-price-row">
-                                    <span class="first-element"><?php echo $item['quantity']; ?> x n.<?php __($ir['item_number']); ?>: <?php __($ir['name']); ?> <?php echo $itemValue; ?></span>
+                                  <b>  <span class="first-element"><?php echo $item['quantity']; ?> x n.<?php __($ir['item_number']); ?>: <?php __($ir['name']); ?> <?php echo $itemValue; ?></span>
                                     <span class="second-element"><?php echo _priceSymbol; ?></span>
                                     <span class="third-element"><?php echo number_format($itemPrice*$item['quantity'],2); ?></span>
-                                    <a href="index.php?page=order-details&remove_item=<?php echo $item['id']; ?>&size=<?php echo $item['size']; ?>" class="delete-button"></a>
+                                    <a href="index.php?page=order-details&remove_item=<?php echo $item['id']; ?>&size=<?php echo $item['size']; ?>" class="delete-button"></a></b>
+									<div class="div_iva" style="">
+								
+								<?php
+	
+								foreach($item['layers'] as $lay_id)
+								{
+									//echo "<pre>";print_r($lay_id);die;
+									//print_r($llaayyeerr);die;
+								$layers = $db->query_first("SELECT * FROM menu_item_layers WHERE id={$lay_id['id']} AND $status=1"); 
+										$item_layer_name=$layers['name']; 
+									//print_r($item_layer_name);die;
+									?>  
+									  <p><?php echo $item_layer_name;?></p> 
+							
+									<?php
+									//$attributes = $db->query_first("SELECT * FROM layer_lists WHERE id={$item['layers']['attributes']} AND $status=1"); 
+									
+									foreach($lay_id['attributes']  as $attribid=>$attribqty)
+									{
+									//	print_r($attrib);die;
+										$attributes = $db->query_first("SELECT * FROM layer_lists WHERE id={$attribid} AND $status=1"); 
+										$attrib_name=$attributes['name'];
+										$attrib_price=$attributes['price'];
+										$newprice=$attrib_price*$attribqty;
+										
+										//for total pricing of attributes
+										$total_price=number_format($newprice,2)+$total_price;
+										?> 
+										
+										 <div class="w_full_cl" >
+										<div class="item_in"><?php echo $attribqty;?>x <?php echo $attrib_name;?></div>
+										 <div class="item_in1"><?php echo _priceSymbol; ?></div>
+										 <div class="item_in1"><?php     echo number_format($newprice,2);?></div>
+										 </div>
+
+										<?php
+										
+									}
+								
+
+								}								
+								?>
+								
+								  </div>
+									
                                 </div>
                                 <?php $total_price += number_format($itemPrice*$item['quantity'],2); ?>
     						<?php } // $db->affected_rows > 0 ?>
@@ -71,7 +172,7 @@
                     <div class="full-order-price-row final">
                     	<span class="first-element"><?php echo ($xml->$lang->total==""?$xml->en->total:$xml->$lang->total); ?></span>
                     	<span class="second-element"><?php echo _priceSymbol; ?></span>
-                    	<span class="third-element"><?php echo number_format($total_price,2); ?></span>
+                    	<span class="third-element"><?php echo number_format($total_price+ $totalprz,2); ?></span>
                     </div>
                 
         	   </div>
@@ -168,7 +269,7 @@
                                 </div>                                                           
 
                                 <textarea class="notesbox" name="notes" id="notes" style="display:none;"><?php echo isset($_SESSION['user']['notes']) ? $_SESSION['user']['notes']:NULL; ?></textarea>
-                                <input type="hidden" name="price" id="price" value="<?php echo $total_price; ?>" />                
+                                <input type="hidden" name="price" id="price" value="<?php echo $total_price+$totalprz; ?>" />                
 
                                 <div class="form-group" style="margin-top:1em;">
                                     <div class="col-md-offset-4 col-md-1">

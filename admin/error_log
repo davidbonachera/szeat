@@ -1,0 +1,7 @@
+[24-Jul-2015 08:59:30 UTC] PHP Parse error:  syntax error, unexpected ''comission_t' (T_ENCAPSED_AND_WHITESPACE), expecting ']' in /home/prolificsolution/public_html/projects/szeat/admin/invoicing-generate.php on line 168
+[25-Jul-2015 13:10:49 UTC] PHP Parse error:  syntax error, unexpected 'Reply' (T_STRING) in /home/prolificsolution/public_html/projects/szeat/admin/orders-edit.php on line 114
+[25-Jul-2015 13:10:51 UTC] PHP Parse error:  syntax error, unexpected 'Reply' (T_STRING) in /home/prolificsolution/public_html/projects/szeat/admin/orders-edit.php on line 114
+[25-Jul-2015 13:11:34 UTC] PHP Parse error:  syntax error, unexpected 'X' (T_STRING) in /home/prolificsolution/public_html/projects/szeat/admin/orders-edit.php on line 115
+[25-Jul-2015 13:12:33 UTC] PHP Parse error:  syntax error, unexpected 'Reply' (T_STRING) in /home/prolificsolution/public_html/projects/szeat/admin/orders-edit.php on line 115
+[25-Jul-2015 13:31:21 UTC] PHP Parse error:  syntax error, unexpected 'X' (T_STRING) in /home/prolificsolution/public_html/projects/szeat/admin/orders-edit.php on line 116
+[25-Jul-2015 13:31:24 UTC] PHP Parse error:  syntax error, unexpected 'X' (T_STRING) in /home/prolificsolution/public_html/projects/szeat/admin/orders-edit.php on line 116

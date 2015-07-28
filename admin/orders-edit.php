@@ -97,6 +97,7 @@ if ($_POST) {
         } else {
           $mBody = html_entity_decode($template['body']); 
         }
+//echo "<pre>";print_r($from_email);die;
 			$mBody = str_replace("#NAME#", 			$toName, 	$mBody);
 			$mBody = str_replace("#RESTAURANT#", 	$resName, 	$mBody);
 			$mBody = str_replace("#ORDERNO#", 		$orderID, 	$mBody);
@@ -104,7 +105,25 @@ if ($_POST) {
 			$mBody = str_replace("#NOTES#", 		$oNotes, 	$mBody);
 			$mBody = str_replace("#LINK#", 			$linkToRate,$mBody);
 			$mBody = str_replace("#TOTALPRICE#", 	number_format($oPrice,2), $mBody);
+			
+			$to = $toEmail;
+			//echo $to;die;
+			$subject = $mSubject;
+			$txt = $mBody;
 
+$headers = 'From: Shenzhen Eat<admin@shenzheneat.com>' . "\r\n";
+    $headers .="Reply-To:admin@shenzheneat.com \r\n" ;
+    $headers .='X-Mailer: PHP/' . phpversion();
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
+
+
+			//$headers  = 'MIME-Version: 1.0' . "\r\n";
+			//$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			//$headers .= "From: admin@shenzheneat.com \r\n";
+			//echo "<pre>";print_r($txt);die;
+	
+			mail($to,$subject,$txt,$headers);
 			sendEmail($from_name, $from_email, $toEmail, $mSubject, $mBody);
 		}
 		
@@ -145,6 +164,13 @@ $query = $db->query_first("SELECT * FROM orders WHERE id='$id'");
 	<![endif]-->
 	<link rel="shortcut icon" href="img/favicon.ico">
 </head>
+ <style>
+.main_it_cla{width:100%; float:left; padding:0 15px; font-size:12px; margin-bottom:15px;}
+.main_it_cla p{border-bottom:1px solid hsl(0, 0%, 40%); margin:7px 0; font-weight:bold;}
+.item_f{width:63%; float:left;}
+.item_s{width:18%; float:left;}
+</style>
+
 <body>
 	<?php include("include/header.php"); ?>
 		<div class="container-fluid">
@@ -258,14 +284,76 @@ $query = $db->query_first("SELECT * FROM orders WHERE id='$id'");
                                           
                                           <?php
                                           if($r2['menu_item_size'] > 0) { ?>
-                                            <td><?php echo "no. ".$itemNumber." ".$itemName." (".$itemName_cn.") ".$itemValue." (".$itemValue_cn.")"; ?></td>
+                                            <td><?php echo "No. ".$itemNumber." ".$itemName." (".$itemName_cn.") ".$itemValue." (".$itemValue_cn.")"; ?></td>
                                           <?php } else { ?>
-                                            <td><?php echo "no. ".$itemNumber." ".$itemName." (".$itemName_cn.")"; ?></td>
+                                            <td><?php echo "No. ".$itemNumber." ".$itemName." (".$itemName_cn.")"; ?></td>
                                           <?php } ?>
 
                                             <td><?php echo $itemQuantity; ?>x </td>
                                             <td><?php echo ($itemPrice*$itemQuantity); ?> <?php echo _priceSymbol; ?></td>
                                         </tr>
+		<!-- ------------------------------layers code start ------------------------------------------------------------------------------	-->
+										<?php $layers_ofitems = $db->query("SELECT * FROM order_item_layers WHERE order_item_id={$r2['id']} GROUP BY layer_id "); 
+										
+										if ($db->affected_rows > 0) { ?>
+										
+										<?php while($lay_ersofitem=$db->fetch_array($layers_ofitems)) { 
+										
+										//$layersidd=lay_ersofitem['id'];    // we will use this id in attributes query     ?>
+												
+										<?php	$layer_row = $db->query_first("SELECT * FROM menu_item_layers WHERE id={$lay_ersofitem['layer_id']}");   ?>
+											
+											<?php 
+											$layername = $layer_row['name'];
+											
+											?>
+											 
+												<tr><td colspan="6">
+											<div class="main_it_cla" style="">
+											<p style=""><?php echo $layername; ?>  </p>
+										
+											<!-- attribute code start ------------------------------------------------------------------------------	-->
+											<?php $attrib = $db->query("SELECT * FROM order_item_layers WHERE order_item_id={$r2['id']} AND layer_id={$lay_ersofitem['layer_id']}"); 
+												  if ($db->affected_rows > 0) { ?>
+											<?php while($attr_val=$db->fetch_array($attrib)) { //echo"<pre>"; print_r(($attr_val);die;?>
+										
+											<?php $attr_row= $db->query_first("SELECT * FROM layer_lists WHERE id={$attr_val['attribute_id']}"); ?>
+											<?php 
+											$attribname=$attr_row['name'];
+											$attribprice=$attr_row['price'];
+											$total_price=$total_price+($attribprice* $attr_val['quantity']);
+											?>
+											
+										<div>
+											<div class="item_f" style=""><?php echo $attr_val['quantity']."x ";?><?php echo $attribname; ?></div>
+											<div class="item_s" style=""><?php echo _priceSymbol; ?> </div>
+											<div class="item_s" style=""><?php echo $attr_val['quantity']*$attribprice;?></div>
+											</div>
+								
+								
+								
+										<!--	<div>
+											<div class="item_f" style=""><?php echo $lay_ersofitem['quantity']."x";?><?php echo $attribname;?></div>
+											<div class="item_s" style="">RMB </div>
+											<div class="item_s" style=""><?php echo $attribprice*$lay_ersofitem['quantity'];?></div>
+											</div> -->
+													<?php    
+												} // while end of order_item_layers
+														}              ?>
+                                 
+                                  
+                                </div>
+                                </td></tr>
+										
+										
+									<?php    
+												} // while end of order_item_layers
+														}              ?>
+                               
+<!-- ------------------------------------------------- end layers and attributes --------------------------------------------------------- -->
+										
+										
+										
                                                 <?php $total_price += ($itemPrice*$itemQuantity); ?>
 		                                    <?php } // endwhile $query loop ?>
         	                            <?php } // $db->affected_rows ?>

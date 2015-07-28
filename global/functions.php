@@ -101,14 +101,18 @@ function sendEmail($fromName, $fromEmail, $toEmail, $subject, $emailBody, $debug
 		$mail->AddAddress($toEmail);
 		$mail->Subject 	= $subject;
 		$mail->WordWrap = 80;
+		//echo print_r($mail);die;
+		//echo $mail->MsgHTML($emailBody, dirname(__FILE__), true); die;
 		$mail->MsgHTML($emailBody, dirname(__FILE__), true); //Create message bodies and embed images
 		
 		if ($mail->Send()) {
+			//echo "yes";
 			return true;
 		}else{
+			//echo "no";
 			return false;
 		}
-		
+		//die;
 	} catch (phpmailerException $e) {
 		if ($debug===true) { 
 			echo '<pre>';

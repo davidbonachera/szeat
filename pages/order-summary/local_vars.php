@@ -33,7 +33,7 @@ if ($_POST) {
 									
 									$itemsTable = "<table>";
 
-									foreach ($_SESSION['user']['items'] as $key=>$item) {
+									foreach ($_SESSION['user']['items'] as $key=>$item) { //echo "<pre>"; print_r( $_SESSION['user']['items']);die;
 										
 										$data2['user_id'] 			= $_SESSION['user']['id'];
 										$data2['restaurant_id'] 	= $_SESSION['user']['restaurant']['id'];
@@ -44,6 +44,41 @@ if ($_POST) {
 										$data2['status'] 			= 1;
 										
 										$order_item = $db->query_insert("order_items",$data2);
+										
+										
+										//print_r($order_item);die('here');
+										
+										foreach($item['layers'] as $lay_id)
+								{
+									$layerid=$lay_id['id'];
+									
+									foreach($lay_id['attributes']  as $attrib_id=>$attrib_qty)
+									{
+										
+											/*echo "layer_id  ";	print_r($layerid); echo "<br>";
+											echo "attribid  ";	print_r($attrib_id); echo "<br>";
+											echo "attribqty ";	print_r($attrib_qty);  echo "<pre>";  */
+											
+										$data11['order_item_id'] 			= $order_item;
+										$data11['restaurant_id'] 	= $_SESSION['user']['restaurant']['id'];
+										$data11['layer_id'] 			= $layerid;
+										$data11['attribute_id'] 		= $attrib_id;
+										$data11['quantity'] 			= $attrib_qty;
+										
+										
+									 $db->query_insert("order_item_layers",$data11);
+										unset($data11);
+									}
+									
+
+								}				
+										
+										
+										
+										
+										
+										
+
 									}
 									
 									$itemsTable = "<table>";
@@ -108,8 +143,22 @@ if ($_POST) {
 									$mBody = str_replace("#ITEMDETAILS#", 	$itemsTable,$mBody);
 									$mBody = str_replace("#NOTES#", 		$oNotes, 	$mBody);
 									$mBody = str_replace("#TOTALPRICE#", 	number_format($oPrice,2), $mBody);
+									
+									 //echo $from_name.'**'.$from_email.'**'.$toEmail.'**'.$mSubject.'**'.$mBody; die;
+									$to = $toEmail;
+//echo $to;die;
+$subject = $mSubject;
+$txt = $mBody;
+$headers = 'From: Shenzhen Eat<admin@shenzheneat.com>' . "\r\n";
 
-									sendEmail($from_name, $from_email, $toEmail, $mSubject, $mBody);
+    $headers .="Reply-To:admin@shenzheneat.com \r\n" ;
+    $headers .='X-Mailer: PHP/' . phpversion();
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
+
+//echo "<pre>";print_r($txt);die;
+mail($to,$subject,$txt,$headers);
+																	sendEmail($from_name, $from_email, $toEmail, $mSubject, $mBody);
 									
 									$_SESSION['error'] = false;
 									$_SESSION['msg']   = 'Your order has been placed successfully.';

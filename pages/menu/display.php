@@ -1,4 +1,228 @@
+<style>
+body{ background:url(bg.jpg)}
+.outdiv{background: hsl(0, 0%, 0%) none repeat scroll 0 0;
+    bottom: 0;
+    height: 100%;
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    width: 100%;}
+	
+.div_in{margin:0; position:relative; z-index:999;}
+.div_in_in{ background: hsl(0, 0%, 100%) none repeat scroll 0 0;
+    margin: auto;
+    min-height: 178px;
+    padding: 0;
+    width: 305px; mix-height:480px; overflow:auto;}
+
+.div_in_in h5{  color: hsl(357, 84%, 43%);
+    font-size: 25px;
+    margin: 8px 0;
+    text-align:left;
+}
+.div_in_in p{  color: #000;
+    font-size: 15px;
+    margin: 16px 0;
+    text-align:left;
+}
+.div_in_in1{ background: hsl(0, 0%, 100%) none repeat scroll 0 0;
+    margin: auto;
+    min-height: 178px;
+    padding:6px 11px;
+    width: 330px; mix-height:480px; overflow:auto;}
+
+.div_in_in1 h5{  color: hsl(357, 84%, 43%);
+    font-size: 25px;
+    margin: 8px 0;
+    text-align:left;
+}
+.div_in_in1 p{  color: #000;
+    font-size: 15px;
+    margin: 16px 0;
+    text-align:left;
+}
+form {
+    margin: 0;
+}
+.control{
+   float: left;
+    width: 214px;
+}
+.control01{
+       float: right;
+    width: 89px;
+}
+
+#LocationPrompt input {
+    border: 1px solid hsl(358, 56%, 89%);
+    border-radius: 2px;
+    font-size: 1.4rem;
+    height: 42px;
+    margin: 0;
+    min-width: 10rem;
+    padding: 0 6px;
+    width: 90%;
+}
+.button{-moz-user-select: none;
+    background-color: hsl(41, 99%, 66%);
+    border: medium none;
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: hsl(0, 0%, 20%) !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+  
+    line-height: 1;
+    max-width: 300px;
+    padding: 11px 17px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;}
+	
+	
+	.button2{-moz-user-select: none;
+    background-color: hsl(41, 27%, 66%);
+    border: medium none;
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: hsl(0, 0%, 20%) !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+  
+    line-height: 1;
+    max-width: 300px;
+    padding: 11px 17px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;}
+	.button_none{
+		-moz-user-select: none;
+    border: medium none;
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: hsl(0, 0%, 20%) !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+  
+    line-height: 1;
+    max-width: 300px;
+    padding: 4px 10px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+	}
+	.button1{-moz-user-select: none;
+    background-color: hsl(41, 99%, 66%);
+    border: medium none;
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: hsl(0, 0%, 20%) !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+  
+    line-height: 1;
+    max-width: 300px;
+    padding: 4px 10px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;}
+	
+	.regex{width:200px; float:left; height:30px;}
+	.h_top_heding{background:#900; height:auto; float:left; width:100%; color:#fff;}
+	.h_top_heding h5{color:#fff; text-align:center;}
+	.right{float:right;}
+	.addItem{width:100%; float:left}
+	.item{width:130px; float:left}
+	.price{width:; float:left}
+	.body_in{float:left; width:100%; padding:10px;}
+	.body_in ul li{list-style:none}
+	.body_in ul{padding:0}
+	.li_sty_fist{background:#f0f7fd; float:left; width:100%; padding:7px 0}
+	.li_sty_fist_last{background:#fff; float:left; width:100%; padding:7px 0}
+	.li_sty_fist_last_misns{background:#d9dee3; float:left; width:100%; padding:7px 0}
+	.cl_close{color: #fff; right:0; position: absolute; margin: 0px 157px; opacity: 1;}
+	@media (min-width: 268px) and (max-width: 779px) 
+	{
+	.cl_close{color: #fff; right:0; position: absolute; margin: 0px 0; opacity: 1;}
+	.div_in_in {
+    background: hsl(0, 0%, 100%) none repeat scroll 0 0;
+    margin: auto;
+    min-height: 178px;
+    overflow: auto;
+    padding: 0;
+    width: 100%;
+}
+	
+	}
+</style>
+
 <?php $xml = simplexml_load_file("pages/menu/content.xml"); ?>
+					<div id="myModal2" class="modal fade in" style="display:none" aria-hidden="false">
+					<div class="outdiv"></div>
+					 <div role="document" class="modal-dialog">
+						<div class="div_in">
+						
+					<div class="div_in_in1"><button aria-label="Close" data-dismiss="modal" class="close" type="button" style="color: #000; position: absolute; margin: 0px -16px; opacity: 1;"><span aria-hidden="true">×</span></button>
+					<h5>We need your postcode</h5>
+					<p>So we can tell if this restaurant deliver to your address.</p>
+
+								<div class="control">
+									<input type="text"  class="regex">
+								</div>
+								<div class="control01">
+									<button class="button" id="ValidateLocation">Check</button>
+								</div>
+
+					</div>
+						   
+					</div>
+
+					</div><!-- /.modal-dialog -->
+					  </div>
+					 
+  
+		<div id="myModal1" class="modal fade in" style="display:none" aria-hidden="false">
+								<div class="outdiv"></div>
+									<div role="document" class="modal-dialog">
+									  <div class="">
+
+										<div class="div_in">
+										
+								<div class="div_in_in makelayer">
+								<button aria-label="Close" data-dismiss="modal" class="close cl_close" type="button" style=""><span aria-hidden="true">×</span></button>
+								
+
+											
+											
+
+
+									   
+								</div>
+
+								</div>
+										
+										
+
+									  </div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+				</div>
+  
 <div class="container main">
     	<div class="row">
         	<div class="col-xs-12">
@@ -90,34 +314,81 @@
                     <ul>
                     	<div class="price"><?php echo ($xml->$lang->bigprice==""?$xml->en->bigprice:$xml->$lang->bigprice); ?></div>
                     	<?php $items = $db->query("SELECT * FROM menu_items WHERE menu_cat_id={$cat['id']} AND $status=1 ORDER BY item_number"); ?>
-                        <?php while($item=$db->fetch_array($items)) { ?>
+                        <?php while($item=$db->fetch_array($items)) {    //echo "<pre>"; print_r($item);         ?>
                         <li>
                         	<div class="item-info-container">
                                 <p><b><?php echo $item['item_number']; ?>.</b> <?php echo ($lang=='cn'?($item['name_cn']==""?$item['name']:$item['name_cn']):$item['name']); ?></p>
                                 <strong><?php echo ($lang=='cn'?($item['description_cn']==""?$item['description']:$item['description_cn']):$item['description']); ?></strong>
                             </div>
                             <div class="strock">
+							
+							
+							
 								<?php if ($item['price']!='0.00') { ?>
                                     <div class="block">
-                                        <span><?php echo $item['value']; ?></span>
-                                        <i><?php echo $item['price']; ?><a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&add_item=<?php echo $item['id']; ?>&size=0&id=<?php echo $res['id']; ?>"><img src="img/add.png" alt="" /></a></i>
+									
+                                      <!--  <span><?php echo $item['value']; ?></span>-->
+										
+										
+                                        <i>
+										
+										
+										<?php echo $item['price']; ?>  <img  style="cursor: pointer;" class="show_popup" i="<?php echo urlText($res['name']); ?>" dir="<?php echo $item['id']; ?>" b="<?php echo $item['name']; ?>"  a="<?php echo 0;?>" s="<?php echo $res['id']; ?>" src="img/add.png" alt="" >
+										
+										
+										</i>
+			<!-- <i><?php echo $item['price']; ?><a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&add_item=<?php echo $item['id']; ?>&size=0&id=<?php echo $res['id']; ?>"><img src="img/add.png" alt="" /></a></i>  -->
+										
+										
+								<!--		 <a href="javascript:void(0);" onclick ="javascript:$('#myModal1').show();"  data-target="#myModal1" data-toggle="modal">open POP up</a>-->
+										
                                         <b><?php echo _priceSymbol; ?></b>
                                     </div>
-                                <?php } ?>
+															<?php } ?>
                                 
+								
+								
+								
                                 <?php $menuItem_Sizes = $db->query("SELECT * FROM menu_item_sizes WHERE menu_item_id={$item['id']}"); ?>
 								 <?php if ($db->affected_rows > 0) { ?>
                                     <?php while($menuItem_Size=$db->fetch_array($menuItem_Sizes)) { ?>
-                                        <div class="block">
+                                     <!--   <div class="block">
                                             <span><?php echo ($lang=='cn'?($menuItem_Size['value_cn']==""?$menuItem_Size['value']:$menuItem_Size['value_cn']):$menuItem_Size['value']); ?></span>
-                                            <i><?php echo $menuItem_Size['price']; ?><a href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&add_item=<?php echo $menuItem_Size['menu_item_id']; ?>&size=<?php echo $menuItem_Size['id']; ?>&id=<?php echo $res['id']; ?>"><img src="img/add.png" alt="" /></a></i>
+                                            <i><?php echo $menuItem_Size['price']; ?><?php //echo $item['price']; ?>  <img class="show_popup" dir="<?php echo $item['id']; ?>" b="<?php echo $item['name']; ?>" src="img/add.png" alt="" ></i>
+                                      <b><?php echo _priceSymbol; ?></b>
+                                        </div>-->
+										
+										
+										 <div class="block">
+                                            <span><?php echo ($lang=='cn'?($menuItem_Size['value_cn']==""?$menuItem_Size['value']:$menuItem_Size['value_cn']):$menuItem_Size['value']); ?></span>
+											
+											
+              <i><!--<?php echo $menuItem_Size['price']; ?><a   style="cursor: pointer;" href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&add_item=<?php echo $menuItem_Size['menu_item_id']; ?>&size=<?php echo $menuItem_Size['id']; ?>&id=<?php echo $res['id']; ?>"><img src="img/add.png" alt="" /></a>-->
+			 <?php echo $menuItem_Size['price']; ?> <img  style="cursor: pointer;" class="show_popup" i="<?php echo urlText($res['name']); ?>" dir="<?php echo $menuItem_Size['menu_item_id']; ?>" b="<?php echo $item['name']; ?>" a="<?php echo $menuItem_Size['id'];?>"  s="<?php echo $res['id']; ?>" src="img/add.png" alt="" >
+			  
+			  </i>
+											
+											
+											
+											
+											
+											
                                       <b><?php echo _priceSymbol; ?></b>
                                         </div>
+										
+										
+										
+										
+										
+										
+										
+										
+										
                                     <?php } // while $menuItem_Size loop ?>
                                 <?php } // if $db->affected_rows ?>
                             </div>
                         </li>
-                        <?php } // whlie $items loop ?>
+                        <?php }  // whlie $items loop ?>
                     </ul>
             		<span class="seperator"></span>
                     <?php } // whlie $cats loop ?>
@@ -147,6 +418,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <?php }
+    <?php } ?>
 
-    
+ 

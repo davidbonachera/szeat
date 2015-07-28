@@ -438,6 +438,8 @@ if (isset($_GET['c_id'])) {
                         </div><!--/span-->
                     </div><!--/row-->
                     
+                   
+                    
                     <div class="row-fluid sortable">		
                         <div class="span12">
                             <div class="box-header" data-original-title>
@@ -460,6 +462,7 @@ if (isset($_GET['c_id'])) {
                                           <th>Price</th>
                                           <th>English Status</th>
                                           <th>Chinese Status</th>
+										
                                           <th>Actions</th>
                                       </tr>
                                   </thead>   
@@ -484,7 +487,10 @@ if (isset($_GET['c_id'])) {
                                                     <span class="label <?php echo $r['status_cn']==1 ? 'label-success' : NULL; ?>">
                                                     	<?php echo $r['status_cn']==1 ? 'Active' : 'Inactive'; ?>
                                                     </span>
-                                                </td>                                                
+                                                </td>  	
+
+															
+												
                                                 <td class="center">
                                                 	<a class="btn btn-info" href="menu-item-edit.php?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>" title="Edit">
                                                         <i class="icon-edit icon-white"></i>  
@@ -494,10 +500,39 @@ if (isset($_GET['c_id'])) {
                                                     </a>
                                                     <a class="btn btn-warning" href="?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>&status_cn=<?php echo $r['status_cn']==1 ? 0:1; ?>" title="Change Status">
                                                         <i class="icon-eye-<?php echo $r['status_cn']==1 ? 'open':'close'; ?> icon-white"></i> 
-                                                    </a>                                                    
-                                                    <a class="btn btn-danger" href="?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>&delete" title="Delete">
-                                                        <i class="icon-trash icon-white"></i> 
+                                                    </a> 
+													<a class="btn btn-info" href="menu_layers_show.php?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>" title="View Layer ">
+                                                        <i class="icon-th-large icon-white"></i>  
                                                     </a>
+													
+                                                    
+													
+													<a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $r['id']; ?>" title="Delete">
+                                                        <i class="icon-trash icon-white"></i>
+                                                    </a>
+
+                                                    <div class="modal fade" id="deleteModal<?php echo $r['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <div class="col">
+
+                                                                        <p>Are you sure?</p>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                                        <a class="btn btn-danger" href="?id=<?php echo $id; ?>&m_id=<?php echo $r["id"]; ?>&delete" title="Delete">
+																			<i class="icon-trash icon-white"></i> 
+																		</a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+													
+													
+													
+													
+													
                                                     <a class="btn btn-success" href="menus-sizes.php?menu_item=<?php echo $r["id"]; ?>&id=<?php echo $id; ?>" title="Detailed Price">
                                                         <i class="icon-tags icon-white"></i> 
                                                     </a>

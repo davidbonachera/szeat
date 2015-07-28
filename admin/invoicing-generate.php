@@ -56,7 +56,13 @@ ob_start();
 		font-size:16px;
 	}
 	</style>
+	
+	
+	
+	
 </head>
+
+
 <body>
 <table align="center" border="0">
 	<tr>
@@ -104,6 +110,8 @@ ob_start();
 						$page				= 0;
 						$totalPrice 		= 0;
 						$totalCommission 	= 0;
+						$attr_price = 0;
+						$attr_commision =0;
 					?>
                     <?php while($r=$db->fetch_array($query)) { ?>
                         <?php isset($count) ? $count++:$count=1; ?>
@@ -122,12 +130,16 @@ ob_start();
 								$itemQuantity = $r['quantity'];
 							} 
 						?>
-                        <tr bgcolor="<?php echo $count%2==0 ? '#CCCCCC':NULL; ?>">
+						
+						
+                        <tr height="auto" bgcolor="<?php echo $count%2==0 ? '#CCCCCC':NULL; ?>">
                             <td width="80"><?php echo date("d-m-y",strtotime($r['date'])); ?></td>
                             <td width="80"><?php echo $r['order_id']; ?></td>
                             <td width="150"><?php echo $itemQuantity." x no. ".$itemNumber." ".$itemName." ".$itemValue; ?></td>
                             <td width="100">
 	                            <?php echo _priceSymbol; ?> 
+				
+							
 								<?php
 									$sumPrice = number_format($itemPrice*$itemQuantity, 2);
                                     echo $sumPrice;
@@ -135,6 +147,7 @@ ob_start();
                             </td>
                             <td width="100"><?php echo getData("users","name",$r['user_id']); ?></td>
                             <td width="100">
+							
                             	<?php 
 									if ($res['comission_type']=='fixed') {
 										$comission = ($res['comission_value']*$itemQuantity);
@@ -145,8 +158,118 @@ ob_start();
 								?>
                             </td>
                         </tr>
+						<!-- ------------------------------layers code start ------------------------------------------------------------------------------	-->
+			<?php $only_atbprice=0; ?>
+										<?php $layers_ofitems = $db->query("SELECT * FROM order_item_layers WHERE order_item_id={$r['id']} GROUP BY layer_id "); 
+										
+										if ($db->affected_rows > 0) { ?>
+										
+										<?php while($lay_ersofitem=$db->fetch_array($layers_ofitems)) { 
+										
+										//$layersidd=lay_ersofitem['id'];    // we will use this id in attributes query     ?>
+												
+										<?php	$layer_row = $db->query_first("SELECT * FROM menu_item_layers WHERE id={$lay_ersofitem['layer_id']}");   ?>
+											
+											<?php 
+											$layername = $layer_row['name'];
+											
+											?>
+											 
+												<tr bgcolor="<?php echo $count%2==0 ? '#CCCCCC':NULL; ?>">
+											<td width="80"> <i><?php echo $layername; ?> </i> </td>
+											
+											  <td width="80"></td>
+											  <td width="150"></td>
+											  <td width="100"></td>
+											  <td width="100"></td>
+											  <td width="100"></td>
+																	
+											
+											</tr>
+											
+										
+						<!-- attribute code start ------------------------------------------------------------------------------	-->
+											<?php $attrib = $db->query("SELECT * FROM order_item_layers WHERE order_item_id={$r['id']} AND layer_id={$lay_ersofitem['layer_id']}"); 
+												  if ($db->affected_rows > 0) { ?>
+											<?php while($attr_val=$db->fetch_array($attrib)) { //echo"<pre>"; print_r(($attr_val);die;?>
+										
+											<?php $attr_row= $db->query_first("SELECT * FROM layer_lists WHERE id={$attr_val['attribute_id']}"); ?>
+											<?php 
+											$attribname=$attr_row['name'];
+											$attribprice=$attr_row['price'];
+											$sumPrice=$sumPrice+($attribprice* $attr_val['quantity']);
+											
+											$only_atbprice=$only_atbprice+($attribprice* $attr_val['quantity']);
+											?>
+											
+										
+								
+									<tr bgcolor="<?php echo $count%2==0 ? '#CCCCCC':NULL; ?>">
+											<td width="80">   </td>
+											<td width="80">   </td>
+											<td width="150"> <?php echo $attr_val['quantity']."x ";?><?php echo $attribname; ?></td>
+											 <td width="100"><?php echo _priceSymbol; ?><?php echo $attr_val['quantity']*$attribprice;?></td>
+											  <td width="100"></td>
+											  <td width="100"></td>
+											
+								</tr>
+								
+								
+								
+								
+								
+								
+								
+										<!--	<div>
+											<div class="item_f" style=""><?php echo $lay_ersofitem['quantity']."x";?><?php echo $attribname;?></div>
+											<div class="item_s" style="">RMB </div>
+											<div class="item_s" style=""><?php echo $attribprice*$lay_ersofitem['quantity'];?></div>
+											</div> -->
+													<?php    
+												} // while end of order_item_layers
+														}              ?>
+                                
+                                  
+                             
+										
+										
+									<?php    
+												} // while end of order_item_layers
+														}              ?>
+														
+							
+                            	<?php 
+									if ($res['comission_type']=='fixed') {
+										$comission2 = ($res['comission_value']*$itemQuantity);
+									} elseif ($res['comission_type']=='percent') {
+										$comission2 = ((($only_atbprice*$res['comission_value'])/100)*$itemQuantity);
+									}
+									
+									$totalCommission=$comission2+$totalCommission;
+									
+									
+									
+									//echo number_format($comission2,2);
+								?>
+									<tr bgcolor="<?php echo $count%2==0 ? '#CCCCCC':NULL; ?>">
+											<td width="80">   </td>
+											<td width="80"> </td>
+											<td width="150"><b>Total Attributes</b>   </td>
+											 <td width="100"><?php echo _priceSymbol; ?><?php echo $only_atbprice; ?></td>
+											  <td width="100"></td>
+											  <td width="100"><?php echo _priceSymbol; ?> <?php echo number_format($comission2,2); ?></td>
+											
+							</tr>
+								
+								
+								
+								
+<!-- ------------------------------------------------- end layers and attributes --------------------------------------------------------- -->
+						
+						
                         <?php 
 							$totalPrice += $sumPrice; 
+							//$comission=$comission+$attr_commision;
 							$totalCommission += $comission;
 						?>
 <?php if ($count%5==0) { ?>
@@ -197,7 +320,7 @@ ob_start();
                     <td align="right">Total Commission:</td>
                     <td align="right">
                     	<?php echo _priceSymbol; ?> 
-						<?php echo number_format($totalCommission,2); ?>
+						<?php echo number_format($totalCommission,2);d?>
                     </td>
                 </tr>
 			</table>
