@@ -33,9 +33,12 @@ $(document).ready(function(){
 		$currentYear 	= date("Y");
 		$chartOrders	= array();
 		$chartUsers		= array();
-		
+		$date31 = 0;
 		$orders = $db->query("SELECT COUNT(*) AS total, DAYOFMONTH(date) AS day FROM orders WHERE MONTH(date)='$currentMonth' AND YEAR(date)='$currentYear' GROUP BY day LIMIT 30"); 
 		while($or=$db->fetch_array($orders)) {
+                    if($or['day'] == 31){
+                        $date31 = 1;
+                    }
 			$chartOrders[] = "[{$or['day']}, {$or['total']}]";
 		}
 		$users = $db->query("SELECT COUNT(*) AS total, DAYOFMONTH(date) AS day FROM users WHERE MONTH(date)='$currentMonth' AND YEAR(date)='$currentYear' GROUP BY day LIMIT 30"); 
@@ -47,6 +50,10 @@ $(document).ready(function(){
 	var orders = [<?php echo implode(', ',$chartOrders); ?>];
 	var users = [<?php echo implode(', ',$chartUsers); ?>];
 	charts(orders, users);
+        var date31 = "<?php echo $date31;?>";
+        if(date31 == 1){
+            $(".x1Axis").append('<div style="position:absolute;text-align:center;left:990px;top:280px;width:60px" class="tickLabel">31</div>')
+        }
 	
 	/*
 	$('#checkPaid').click(function() {

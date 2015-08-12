@@ -1148,7 +1148,7 @@ function charts(orders, users) {
 	if($("#serverload").length)
 	{	
 		var options = {
-			series: { shadowSize: 1 },
+			series: { shadowSize: 2 },
 			lines: { show: true, lineWidth: 0.4, fill: true, fillColor: { colors: [ { opacity: 0.1 }, { opacity: 1 } ] }},
 			yaxis: { min: 0, max: 100, tickFormatter: function (v) { return v + "%"; }},
 			xaxis: { show: false },

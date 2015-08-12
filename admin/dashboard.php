@@ -83,7 +83,7 @@
                                 <h2><i class="icon-signal"></i><span class="break"></span>Site Statistics</h2>
                             </div>
                             <div class="box-content">
-                                <div id="stats-chart"  class="center" style="height:300px" ></div>
+                                <div id="stats-chart"  class="center" style="height:300px;" ></div>
                             </div>
                         </div>
                     </div>
