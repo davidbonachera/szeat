@@ -9,11 +9,16 @@
             width: 100%;}
 
     .div_in{margin:0; position:relative; z-index:999;}
-    .div_in_in{ background: hsl(0, 0%, 100%) none repeat scroll 0 0;
-                margin: auto;
-                min-height: 178px;
-                padding: 0;
-                width: 305px; mix-height:480px; overflow:auto;}
+    .div_in_in {
+        background: hsl(0, 0%, 100%) none repeat scroll 0 0;
+        height: 50%;
+        margin: auto;
+        max-height: 560px;
+        min-height: 178px;
+        overflow: auto;
+        padding: 0;
+        width: 334px;
+    }
 
     .div_in_in h5{  color: hsl(357, 84%, 43%);
                     font-size: 25px;
@@ -260,7 +265,8 @@
             <div class="product-type-list">
                 <strong><?php echo ($xml->$lang->typafood == "" ? $xml->en->typafood : $xml->$lang->typafood); ?>: </strong>
                 <?php $rc = $db->query("SELECT r.*,c.* FROM `restaurants_cuisines` AS r LEFT JOIN cuisines AS c ON r.`cuisine_id`=c.id WHERE r.restaurant_id={$res['id']} AND r.status=1 AND c.status=1"); ?>
-                <?php while ($rcr = $db->fetch_array($rc))
+                <?php
+                while ($rcr = $db->fetch_array($rc))
                     $cuisines[] = ($lang == 'cn' ? ($rcr['title_cn'] == "" ? $rcr['title'] : $rcr['title_cn']) : $rcr['title']);
                 ?>
 
@@ -300,7 +306,7 @@
                     <?php $cats = $db->query("SELECT * FROM menu_categories WHERE restaurant_id={$res['id']} AND $status=1 ORDER BY prior ASC"); ?>
                     <?php while ($cr = $db->fetch_array($cats)) { ?>
                         <li><a href="#<?php echo $cr['id']; ?>"><?php echo ($lang == 'cn' ? ($cr['title_cn'] == "" ? $cr['title'] : $cr['title_cn']) : $cr['title']); ?></a></li>
-<?php } // while $cats loop   ?>
+<?php } // while $cats loop    ?>
                 </ul>
             </div>
         </div>
@@ -316,7 +322,7 @@
                     <ul>
                         <div class="price"><?php echo ($xml->$lang->bigprice == "" ? $xml->en->bigprice : $xml->$lang->bigprice); ?></div>
                         <?php $items = $db->query("SELECT * FROM menu_items WHERE menu_cat_id={$cat['id']} AND $status=1 ORDER BY item_number"); ?>
-    <?php while ($item = $db->fetch_array($items)) {    //echo "<pre>"; print_r($item);           ?>
+    <?php while ($item = $db->fetch_array($items)) {    //echo "<pre>"; print_r($item);            ?>
                             <li>
                                 <div class="item-info-container">
                                     <p><b><?php echo $item['item_number']; ?>.</b> <?php echo ($lang == 'cn' ? ($item['name_cn'] == "" ? $item['name'] : $item['name_cn']) : $item['name']); ?></p>
@@ -329,7 +335,7 @@
         <?php if ($item['price'] != '0.00') { ?>
                                         <div class="block">
 
-                        <!--  <span><?php echo $item['value']; ?></span>-->
+                                    <!--  <span><?php echo $item['value']; ?></span>-->
 
 
                                             <i>
@@ -356,7 +362,7 @@
             <?php while ($menuItem_Size = $db->fetch_array($menuItem_Sizes)) { ?>
                                             <!--   <div class="block">
                                                    <span><?php echo ($lang == 'cn' ? ($menuItem_Size['value_cn'] == "" ? $menuItem_Size['value'] : $menuItem_Size['value_cn']) : $menuItem_Size['value']); ?></span>
-                                                   <i><?php echo $menuItem_Size['price']; ?><?php //echo $item['price'];   ?>  <img class="show_popup" dir="<?php echo $item['id']; ?>" b="<?php echo $item['name']; ?>" src="img/add.png" alt="" ></i>
+                                                   <i><?php echo $menuItem_Size['price']; ?><?php //echo $item['price'];    ?>  <img class="show_popup" dir="<?php echo $item['id']; ?>" b="<?php echo $item['name']; ?>" src="img/add.png" alt="" ></i>
                                              <b><?php echo _priceSymbol; ?></b>
                                                </div>-->
 
@@ -365,7 +371,7 @@
                                                 <span><?php echo ($lang == 'cn' ? ($menuItem_Size['value_cn'] == "" ? $menuItem_Size['value'] : $menuItem_Size['value_cn']) : $menuItem_Size['value']); ?></span>
 
 
-                                <i><!--<?php echo $menuItem_Size['price']; ?><a   style="cursor: pointer;" href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&add_item=<?php echo $menuItem_Size['menu_item_id']; ?>&size=<?php echo $menuItem_Size['id']; ?>&id=<?php echo $res['id']; ?>"><img src="img/add.png" alt="" /></a>-->
+                                                <i><!--<?php echo $menuItem_Size['price']; ?><a   style="cursor: pointer;" href="index.php?page=menu&restaurant=<?php echo urlText($res['name']); ?>&add_item=<?php echo $menuItem_Size['menu_item_id']; ?>&size=<?php echo $menuItem_Size['id']; ?>&id=<?php echo $res['id']; ?>"><img src="img/add.png" alt="" /></a>-->
                 <?php echo $menuItem_Size['price']; ?> <img  style="cursor: pointer;" class="show_popup" i="<?php echo urlText($res['name']); ?>" dir="<?php echo $menuItem_Size['menu_item_id']; ?>" b="<?php echo $item['name']; ?>" a="<?php echo $menuItem_Size['id']; ?>"  s="<?php echo $res['id']; ?>" src="img/add.png" alt="" >
 
                                                 </i>
@@ -387,13 +393,13 @@
 
 
                                         <?php } // while $menuItem_Size loop ?>
-        <?php } // if $db->affected_rows   ?>
+        <?php } // if $db->affected_rows    ?>
                                 </div>
                             </li>
-    <?php }  // whlie $items loop   ?>
+    <?php }  // whlie $items loop    ?>
                     </ul>
                     <span class="seperator"></span>
-<?php } // whlie $cats loop   ?>
+<?php } // whlie $cats loop    ?>
             </div>
         </div>
 <?php include('pages/menu/sidebar-order.php'); ?>
